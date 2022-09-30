@@ -28,3 +28,9 @@ https://stackoverflow.com/questions/60987997/why-torch-cuda-is-available-returns
 wsl --list
 wsl --install -d Ubuntu
 wsl --set-default-version 1
+-------------------------------------------------
+op ubuntu
+First use this command:
+sudo apt-get update
+Then:
+sudo apt-get install python3-pip
