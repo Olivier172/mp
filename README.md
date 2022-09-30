@@ -16,3 +16,10 @@ PIP commandos
 3) pip install library -> nieuwe library installeren. handige zijn [numpy, matplotlib, pandas, jupyter, torch, torchvision, torchaudio] (dit is de pytorch lib)
 
 -----------------------------------------------------------
+
+handige trouble shooting
+https://www.youtube.com/watch?v=myouQBBDhXQ 
+https://learn.microsoft.com/en-us/windows/wsl/tutorials/wsl-vscode
+https://code.visualstudio.com/docs/remote/wsl#_getting-started
+https://cloudbytes.dev/snippets/upgrade-python-to-latest-version-on-ubuntu-linux
+https://stackoverflow.com/questions/60987997/why-torch-cuda-is-available-returns-false-even-after-installing-pytorch-with
