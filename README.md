@@ -23,3 +23,8 @@ https://learn.microsoft.com/en-us/windows/wsl/tutorials/wsl-vscode
 https://code.visualstudio.com/docs/remote/wsl#_getting-started
 https://cloudbytes.dev/snippets/upgrade-python-to-latest-version-on-ubuntu-linux
 https://stackoverflow.com/questions/60987997/why-torch-cuda-is-available-returns-false-even-after-installing-pytorch-with
+
+-----------------------------------------------------------
+wsl --list
+wsl --install -d Ubuntu
+wsl --set-default-version 1
