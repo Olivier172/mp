@@ -3,7 +3,8 @@
 def main():
     print("Hello :)")
     print("bla bla bla")
-    
-    syntax fout hahaha
+    x=6
+    if(x==6):
+        print("het is waar hehe")
 
 main()
