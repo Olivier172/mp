@@ -1,0 +1,6 @@
+#Geinstalleerde libraries voor de masterproef zijn:
+pip install numpy
+pip install matplotlib
+pip install pandas
+pip install jupyter
+pip install torch (de pytroch library)
