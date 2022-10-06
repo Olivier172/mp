@@ -9,4 +9,5 @@ def ReLU(x):
   else: 
     return 0
     
+error rates worden vaak uitgedrukt in %top 5 erros = geeft hoe vaak het netwerk het juiste antwoord niet in de top 5 dichtsbijzijnde antwoorden zet
   
