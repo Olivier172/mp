@@ -1,0 +1,12 @@
+Lesson 1 :
+
+DEEP LEARNING = features laten bepalen door een meerlaags neuraal netwerk in plaats van de features zelf te bepalen (=machine learning).
+
+Vaak voorkomende functie Relu = max(0,x) dus eigenlijk positieve nummers overnemen en negatieve waardes afbeelden op 0.
+def ReLU(x):
+  if x>0:
+    return x
+  else: 
+    return 0
+    
+  
