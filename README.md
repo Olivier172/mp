@@ -14,6 +14,7 @@ PIP commandos
 1) pip list -> alle libraries laten zien
 2) pip show library -> info/versie checken
 3) pip install library -> nieuwe library installeren. handige zijn [numpy, matplotlib, pandas, jupyter, torch, torchvision, torchaudio] (dit is de pytorch lib)
+4) pip freeze > requirements.txt (alle libraries staan dan in requirements.txt)
 
 -----------------------------------------------------------
 
