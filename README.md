@@ -16,6 +16,15 @@ PIP commandos
 3) pip install library -> nieuwe library installeren. handige zijn [numpy, matplotlib, pandas, jupyter, torch, torchvision, torchaudio] (dit is de pytorch lib)
 4) pip freeze > requirements.txt (alle libraries staan dan in requirements.txt)
 
+Virtual envirement
+maken: $python3 -m venv venv
+activeren: $source venv/bin/activate
+deactiveren : $deactivate
+https://realpython.com/python-virtual-environments-a-primer/#activate-it 
+
+nvidia driver info (cuda versie checken)
+nvidia-smi commando in cmd uitvoeren
+
 -----------------------------------------------------------
 
 handige trouble shooting
