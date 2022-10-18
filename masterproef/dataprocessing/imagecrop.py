@@ -5,8 +5,7 @@ cropcounter=0 #global var to count crops
 def main():
     print("Main function imagecrop.py")
     dir= "E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed" #absolute path to the dataset on the disk, change this on another PC!
-    
-    """
+
     #the test pictures
     logfile_test = open("logfile_test.txt","w")
     for i in range(0,2941):
@@ -25,8 +24,8 @@ def main():
         else:
             print("Excecution cropImage OK :" + filenameImage)
     logfile_test.close()
-    """
-    """
+   
+  
     #the train pictures
     global cropcounter
     cropcounter = 0 #resetting the cropcounter to 0
@@ -47,7 +46,6 @@ def main():
         else:
             print("Excecution cropImage OK :" + filenameImage)
     logfile_train.close()
-    """
     
     #the val pictures
     global cropcounter
