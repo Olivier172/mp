@@ -17,9 +17,15 @@ PIP commandos
 4) pip freeze > requirements.txt (alle libraries staan dan in requirements.txt)
 
 Virtual envirement
+:::linux:::
 maken: $python3 -m venv venv
 activeren: $source venv/bin/activate
 deactiveren : $deactivate
+:::windows:::
+maken: python -m venv venvps
+activeren: venvps\Scripts\activate
+deactiveren : deactivate
+
 https://realpython.com/python-virtual-environments-a-primer/#activate-it 
 
 nvidia driver info (cuda versie checken)
