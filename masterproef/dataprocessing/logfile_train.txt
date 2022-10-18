@@ -1,0 +1,150 @@
+something went wrong while excecuting cropImage
+filenameImage E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\images\train\train_21.jpg
+filenameLabels E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\labels\train\train_21.txt
+something went wrong while excecuting cropImage
+filenameImage E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\images\train\train_38.jpg
+filenameLabels E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\labels\train\train_38.txt
+something went wrong while excecuting cropImage
+filenameImage E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\images\train\train_40.jpg
+filenameLabels E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\labels\train\train_40.txt
+something went wrong while excecuting cropImage
+filenameImage E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\images\train\train_305.jpg
+filenameLabels E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\labels\train\train_305.txt
+something went wrong while excecuting cropImage
+filenameImage E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\images\train\train_340.jpg
+filenameLabels E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\labels\train\train_340.txt
+something went wrong while excecuting cropImage
+filenameImage E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\images\train\train_621.jpg
+filenameLabels E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\labels\train\train_621.txt
+something went wrong while excecuting cropImage
+filenameImage E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\images\train\train_737.jpg
+filenameLabels E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\labels\train\train_737.txt
+something went wrong while excecuting cropImage
+filenameImage E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\images\train\train_775.jpg
+filenameLabels E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\labels\train\train_775.txt
+something went wrong while excecuting cropImage
+filenameImage E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\images\train\train_789.jpg
+filenameLabels E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\labels\train\train_789.txt
+something went wrong while excecuting cropImage
+filenameImage E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\images\train\train_882.jpg
+filenameLabels E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\labels\train\train_882.txt
+something went wrong while excecuting cropImage
+filenameImage E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\images\train\train_903.jpg
+filenameLabels E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\labels\train\train_903.txt
+something went wrong while excecuting cropImage
+filenameImage E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\images\train\train_924.jpg
+filenameLabels E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\labels\train\train_924.txt
+something went wrong while excecuting cropImage
+filenameImage E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\images\train\train_1024.jpg
+filenameLabels E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\labels\train\train_1024.txt
+something went wrong while excecuting cropImage
+filenameImage E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\images\train\train_1239.jpg
+filenameLabels E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\labels\train\train_1239.txt
+something went wrong while excecuting cropImage
+filenameImage E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\images\train\train_1924.jpg
+filenameLabels E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\labels\train\train_1924.txt
+something went wrong while excecuting cropImage
+filenameImage E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\images\train\train_2324.jpg
+filenameLabels E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\labels\train\train_2324.txt
+something went wrong while excecuting cropImage
+filenameImage E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\images\train\train_2376.jpg
+filenameLabels E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\labels\train\train_2376.txt
+something went wrong while excecuting cropImage
+filenameImage E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\images\train\train_2903.jpg
+filenameLabels E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\labels\train\train_2903.txt
+something went wrong while excecuting cropImage
+filenameImage E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\images\train\train_2986.jpg
+filenameLabels E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\labels\train\train_2986.txt
+something went wrong while excecuting cropImage
+filenameImage E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\images\train\train_3240.jpg
+filenameLabels E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\labels\train\train_3240.txt
+something went wrong while excecuting cropImage
+filenameImage E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\images\train\train_3421.jpg
+filenameLabels E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\labels\train\train_3421.txt
+something went wrong while excecuting cropImage
+filenameImage E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\images\train\train_3556.jpg
+filenameLabels E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\labels\train\train_3556.txt
+something went wrong while excecuting cropImage
+filenameImage E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\images\train\train_3560.jpg
+filenameLabels E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\labels\train\train_3560.txt
+something went wrong while excecuting cropImage
+filenameImage E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\images\train\train_3832.jpg
+filenameLabels E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\labels\train\train_3832.txt
+something went wrong while excecuting cropImage
+filenameImage E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\images\train\train_4222.jpg
+filenameLabels E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\labels\train\train_4222.txt
+something went wrong while excecuting cropImage
+filenameImage E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\images\train\train_4325.jpg
+filenameLabels E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\labels\train\train_4325.txt
+something went wrong while excecuting cropImage
+filenameImage E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\images\train\train_4337.jpg
+filenameLabels E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\labels\train\train_4337.txt
+something went wrong while excecuting cropImage
+filenameImage E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\images\train\train_5007.jpg
+filenameLabels E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\labels\train\train_5007.txt
+something went wrong while excecuting cropImage
+filenameImage E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\images\train\train_5137.jpg
+filenameLabels E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\labels\train\train_5137.txt
+something went wrong while excecuting cropImage
+filenameImage E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\images\train\train_5143.jpg
+filenameLabels E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\labels\train\train_5143.txt
+something went wrong while excecuting cropImage
+filenameImage E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\images\train\train_5298.jpg
+filenameLabels E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\labels\train\train_5298.txt
+something went wrong while excecuting cropImage
+filenameImage E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\images\train\train_5627.jpg
+filenameLabels E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\labels\train\train_5627.txt
+something went wrong while excecuting cropImage
+filenameImage E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\images\train\train_5762.jpg
+filenameLabels E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\labels\train\train_5762.txt
+something went wrong while excecuting cropImage
+filenameImage E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\images\train\train_5822.jpg
+filenameLabels E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\labels\train\train_5822.txt
+something went wrong while excecuting cropImage
+filenameImage E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\images\train\train_5903.jpg
+filenameLabels E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\labels\train\train_5903.txt
+something went wrong while excecuting cropImage
+filenameImage E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\images\train\train_6052.jpg
+filenameLabels E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\labels\train\train_6052.txt
+something went wrong while excecuting cropImage
+filenameImage E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\images\train\train_6090.jpg
+filenameLabels E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\labels\train\train_6090.txt
+something went wrong while excecuting cropImage
+filenameImage E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\images\train\train_6138.jpg
+filenameLabels E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\labels\train\train_6138.txt
+something went wrong while excecuting cropImage
+filenameImage E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\images\train\train_6409.jpg
+filenameLabels E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\labels\train\train_6409.txt
+something went wrong while excecuting cropImage
+filenameImage E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\images\train\train_6722.jpg
+filenameLabels E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\labels\train\train_6722.txt
+something went wrong while excecuting cropImage
+filenameImage E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\images\train\train_6788.jpg
+filenameLabels E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\labels\train\train_6788.txt
+something went wrong while excecuting cropImage
+filenameImage E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\images\train\train_7120.jpg
+filenameLabels E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\labels\train\train_7120.txt
+something went wrong while excecuting cropImage
+filenameImage E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\images\train\train_7576.jpg
+filenameLabels E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\labels\train\train_7576.txt
+something went wrong while excecuting cropImage
+filenameImage E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\images\train\train_7622.jpg
+filenameLabels E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\labels\train\train_7622.txt
+something went wrong while excecuting cropImage
+filenameImage E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\images\train\train_7883.jpg
+filenameLabels E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\labels\train\train_7883.txt
+something went wrong while excecuting cropImage
+filenameImage E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\images\train\train_8020.jpg
+filenameLabels E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\labels\train\train_8020.txt
+something went wrong while excecuting cropImage
+filenameImage E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\images\train\train_8146.jpg
+filenameLabels E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\labels\train\train_8146.txt
+something went wrong while excecuting cropImage
+filenameImage E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\images\train\train_8166.jpg
+filenameLabels E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\labels\train\train_8166.txt
+something went wrong while excecuting cropImage
+filenameImage E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\images\train\train_8233.jpg
+filenameLabels E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\labels\train\train_8233.txt
+something went wrong while excecuting cropImage
+filenameImage E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\images\train\train_8234.jpg
+filenameLabels E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed\labels\train\train_8234.txt
