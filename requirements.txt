@@ -1,6 +1,9 @@
-numpy==1.23.3
-/jupyter==1.0.0
-/matplotlib==3.6.0
-pandas==1.5.0
-torch==1.12.1
+numpy
+jupyter
+matplotlib
+pandas
+torch -> eindelijk stable version voor cuda 11.7
+opencv-python
+vissl -> build from source
+apex -> build from source 
 
