@@ -1,3 +1,45 @@
 something went wrong while excecuting cropImage
 filenameImage /home/olivier/Documents/mp/SKU110K/SKU110K_fixed/images/test/test_22.jpg
 filenameLabels /home/olivier/Documents/mp/SKU110K/SKU110K_fixed/labels/test/test_22.txt
+something went wrong while excecuting cropImage
+filenameImage /home/olivier/Documents/mp/SKU110K/SKU110K_fixed/images/test/test_132.jpg
+filenameLabels /home/olivier/Documents/mp/SKU110K/SKU110K_fixed/labels/test/test_132.txt
+something went wrong while excecuting cropImage
+filenameImage /home/olivier/Documents/mp/SKU110K/SKU110K_fixed/images/test/test_178.jpg
+filenameLabels /home/olivier/Documents/mp/SKU110K/SKU110K_fixed/labels/test/test_178.txt
+something went wrong while excecuting cropImage
+filenameImage /home/olivier/Documents/mp/SKU110K/SKU110K_fixed/images/test/test_184.jpg
+filenameLabels /home/olivier/Documents/mp/SKU110K/SKU110K_fixed/labels/test/test_184.txt
+something went wrong while excecuting cropImage
+filenameImage /home/olivier/Documents/mp/SKU110K/SKU110K_fixed/images/test/test_232.jpg
+filenameLabels /home/olivier/Documents/mp/SKU110K/SKU110K_fixed/labels/test/test_232.txt
+something went wrong while excecuting cropImage
+filenameImage /home/olivier/Documents/mp/SKU110K/SKU110K_fixed/images/test/test_274.jpg
+filenameLabels /home/olivier/Documents/mp/SKU110K/SKU110K_fixed/labels/test/test_274.txt
+something went wrong while excecuting cropImage
+filenameImage /home/olivier/Documents/mp/SKU110K/SKU110K_fixed/images/test/test_521.jpg
+filenameLabels /home/olivier/Documents/mp/SKU110K/SKU110K_fixed/labels/test/test_521.txt
+something went wrong while excecuting cropImage
+filenameImage /home/olivier/Documents/mp/SKU110K/SKU110K_fixed/images/test/test_853.jpg
+filenameLabels /home/olivier/Documents/mp/SKU110K/SKU110K_fixed/labels/test/test_853.txt
+something went wrong while excecuting cropImage
+filenameImage /home/olivier/Documents/mp/SKU110K/SKU110K_fixed/images/test/test_910.jpg
+filenameLabels /home/olivier/Documents/mp/SKU110K/SKU110K_fixed/labels/test/test_910.txt
+something went wrong while excecuting cropImage
+filenameImage /home/olivier/Documents/mp/SKU110K/SKU110K_fixed/images/test/test_923.jpg
+filenameLabels /home/olivier/Documents/mp/SKU110K/SKU110K_fixed/labels/test/test_923.txt
+something went wrong while excecuting cropImage
+filenameImage /home/olivier/Documents/mp/SKU110K/SKU110K_fixed/images/test/test_1346.jpg
+filenameLabels /home/olivier/Documents/mp/SKU110K/SKU110K_fixed/labels/test/test_1346.txt
+something went wrong while excecuting cropImage
+filenameImage /home/olivier/Documents/mp/SKU110K/SKU110K_fixed/images/test/test_1598.jpg
+filenameLabels /home/olivier/Documents/mp/SKU110K/SKU110K_fixed/labels/test/test_1598.txt
+something went wrong while excecuting cropImage
+filenameImage /home/olivier/Documents/mp/SKU110K/SKU110K_fixed/images/test/test_1655.jpg
+filenameLabels /home/olivier/Documents/mp/SKU110K/SKU110K_fixed/labels/test/test_1655.txt
+something went wrong while excecuting cropImage
+filenameImage /home/olivier/Documents/mp/SKU110K/SKU110K_fixed/images/test/test_1796.jpg
+filenameLabels /home/olivier/Documents/mp/SKU110K/SKU110K_fixed/labels/test/test_1796.txt
+something went wrong while excecuting cropImage
+filenameImage /home/olivier/Documents/mp/SKU110K/SKU110K_fixed/images/test/test_1929.jpg
+filenameLabels /home/olivier/Documents/mp/SKU110K/SKU110K_fixed/labels/test/test_1929.txt

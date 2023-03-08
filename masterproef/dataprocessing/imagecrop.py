@@ -28,75 +28,75 @@ def main():
     cropcounter = 0 #resetting the cropcounter to 0
     logfile_test = open(Path("logfile_test.txt"),"w")
     for i in range(0,2941):
-        filenameImage= dir.joinpath("images","test", "test_"+ str(i) + ".jpg") 
-        filenameLabels= dir.joinpath("labels","test", "test_"+ str(i) + ".txt") 
-        baseFilenameResult= dirResult.joinpath("test") 
-        filenameResult = "testcrop_"  # "baseFilenameResult/testcrop_cropcounter" 
-        rv = cropImage(filenameImage,filenameLabels,baseFilenameResult,filenameResult)
+        filepathImage= dir.joinpath("images","test", "test_"+ str(i) + ".jpg") 
+        filepathLabels= dir.joinpath("labels","test", "test_"+ str(i) + ".txt") 
+        baseFilepathResult= dirResult.joinpath("test") 
+        filenameResult = "testcrop_"  # "baseFilepathResult/testcrop_cropcounter" 
+        rv = cropImage(filepathImage,filepathLabels,baseFilepathResult,filenameResult)
         if(rv==-1):
             print("something went wrong while excecuting cropImage")
-            print("filenameImage " + str(filenameImage))
-            print("filenameLabels " + str(filenameLabels))
+            print("filenameImage " + str(filepathImage))
+            print("filenameLabels " + str(filepathLabels))
             logfile_test.write("something went wrong while excecuting cropImage\n")
-            logfile_test.write("filenameImage " + str(filenameImage) +"\n")
-            logfile_test.write("filenameLabels " + str(filenameLabels) +"\n")
+            logfile_test.write("filenameImage " + str(filepathImage) +"\n")
+            logfile_test.write("filenameLabels " + str(filepathLabels) +"\n")
         else:
-            print("Excecution cropImage OK :" + str(filenameImage))
+            print("Excecution cropImage OK :" + str(filepathImage))
     logfile_test.close()
    
     #the train pictures
     cropcounter = 0 #resetting the cropcounter to 0
     logfile_train = open(Path("logfile_train.txt"),"w")
     for i in range(0,8235):
-        filenameImage= dir.joinpath("images","train","train_"+ str(i) + ".jpg") 
-        filenameLabels= dir.joinpath("labels","train","train_"+ str(i) + ".txt")  
-        baseFilenameResult= dirResult.joinpath("train") 
-        filenameResult = "traincrop_"  # "baseFilenameResult/traincrop_cropcounter" 
-        rv = cropImage(filenameImage,filenameLabels,baseFilenameResult,filenameResult)
+        filepathImage= dir.joinpath("images","train","train_"+ str(i) + ".jpg") 
+        filepathLabels= dir.joinpath("labels","train","train_"+ str(i) + ".txt")  
+        baseFilepathResult= dirResult.joinpath("train") 
+        filenameResult = "traincrop_"  # "baseFilepathResult/traincrop_cropcounter" 
+        rv = cropImage(filepathImage,filepathLabels,baseFilepathResult,filenameResult)
         if(rv==-1):
             print("something went wrong while excecuting cropImage")
-            print("filenameImage " + str(filenameImage))
-            print("filenameLabels " + str(filenameLabels))
+            print("filepathImage " + str(filepathImage))
+            print("filepathLabels " + str(filepathLabels))
             logfile_train.write("something went wrong while excecuting cropImage\n")
-            logfile_train.write("filenameImage " + str(filenameImage) +"\n")
-            logfile_train.write("filenameLabels " + str(filenameLabels) +"\n")
+            logfile_train.write("filepathImage " + str(filepathImage) +"\n")
+            logfile_train.write("filepathLabels " + str(filepathLabels) +"\n")
         else:
-            print("Excecution cropImage OK :" + str(filenameImage))
+            print("Excecution cropImage OK :" + str(filepathImage))
     logfile_train.close()
 
     #the val pictures
     cropcounter = 0 #resetting the cropcounter to 0
     logfile_val = open(Path("logfile_val.txt"),"w")
     for i in range(0,600): #600
-        filenameImage= dir.joinpath("images","val", "val_"+ str(i) + ".jpg") 
-        filenameLabels= dir.joinpath("labels", "val", "val_"+ str(i) + ".txt") 
-        baseFilenameResult= dirResult.joinpath("val") 
+        filepathImage= dir.joinpath("images","val", "val_"+ str(i) + ".jpg") 
+        filepathLabels= dir.joinpath("labels", "val", "val_"+ str(i) + ".txt") 
+        baseFilepathResult= dirResult.joinpath("val") 
         filenameResult = "valcrop_"  # "baseFilenameResult/valcrop_cropcounter" 
-        rv = cropImage(filenameImage,filenameLabels,baseFilenameResult,filenameResult)
+        rv = cropImage(filepathImage,filepathLabels,baseFilepathResult,filenameResult)
         if(rv==-1):
             print("something went wrong while excecuting cropImage")
-            print("filenameImage " + str(filenameImage))
-            print("filenameLabels " + str(filenameLabels))
+            print("filepathImage " + str(filepathImage))
+            print("filepathLabels " + str(filepathLabels))
             logfile_val.write("something went wrong while excecuting cropImage\n")
-            logfile_val.write("filenameImage " + str(filenameImage) +"\n")
-            logfile_val.write("filenameLabels " + str(filenameLabels) +"\n")
+            logfile_val.write("filepathImage " + str(filepathImage) +"\n")
+            logfile_val.write("filepathLabels " + str(filepathLabels) +"\n")
         else:
-            print("Excecution cropImage OK :" + str(filenameImage))
+            print("Excecution cropImage OK :" + str(filepathImage))
     logfile_val.close()
     
     return 0
 
 
-# @param filenameImage : the path to the input image
-# @param filenameLabels : path to the corresponding labels of that input image, conataining bounding box coordinates of the crops
-# @param baseFilenameResult : path to the resulting files (crops) to be saved
+# @param filepathImage : the path to the input image
+# @param filepathLabels : path to the corresponding labels of that input image, conataining bounding box coordinates of the crops
+# @param baseFilepathResult : path to the resulting files (crops) to be saved
 # @param filenameResult : name of the file to be saved
 # returns 0 if the image was succesfully cropped, -1 if an error occured
-def cropImage(filenameImage:Path,filenameLabels:Path,baseFilenameResult:Path, filenameResult):
+def cropImage(filepathImage:Path,filepathLabels:Path,baseFilepathResult:Path, filenameResult):
     try:
-        im = Image.open(filenameImage,"r")# Opens a image in RGB mode
+        im = Image.open(filepathImage,"r")# Opens a image in RGB mode
     except:
-        print("Something went wrong openening this image " + str(filenameImage))
+        print("Something went wrong openening this image " + str(filepathImage))
         return -1
  
     # Size of the image in pixels (size of original image)
@@ -105,9 +105,9 @@ def cropImage(filenameImage:Path,filenameLabels:Path,baseFilenameResult:Path, fi
     #print("height is " + str(height))
 
     try:
-        f = open(filenameLabels, "r") #reading anotations
+        f = open(filepathLabels, "r") #reading anotations
     except:
-        print("Something went wrong openening this annotation file " + str(filenameLabels))
+        print("Something went wrong openening this annotation file " + str(filepathLabels))
         return -1
 
     while(True):
@@ -134,7 +134,7 @@ def cropImage(filenameImage:Path,filenameLabels:Path,baseFilenameResult:Path, fi
         # Shows the image in image viewer
         #im1.show()
         global cropcounter 
-        filename_result = baseFilenameResult.joinpath(filenameResult + str(cropcounter) + ".jpg") 
+        filename_result = baseFilepathResult.joinpath(filenameResult + str(cropcounter) + ".jpg") 
         cropcounter+=1
         #print("resulting file " + filename_result)
         try:
