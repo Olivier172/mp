@@ -45,7 +45,6 @@ def main():
     logfile_test.close()
    
     #the train pictures
-    global cropcounter
     cropcounter = 0 #resetting the cropcounter to 0
     logfile_train = open(Path("logfile_train.txt"),"w")
     for i in range(0,8235):
@@ -66,7 +65,6 @@ def main():
     logfile_train.close()
 
     #the val pictures
-    global cropcounter
     cropcounter = 0 #resetting the cropcounter to 0
     logfile_val = open(Path("logfile_val.txt"),"w")
     for i in range(0,600): #600
