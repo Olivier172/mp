@@ -1,16 +1,28 @@
-# Importing Image class from PIL module
+from pathlib import Path
 from PIL import Image
 cropcounter=0 #global var to count crops
 
 def main():
     print("Main function imagecrop.py")
-    dir= "E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed" #absolute path to the dataset on the disk, change this on another PC!
 
-    #the test pictures
-    logfile_test = open("logfile_test.txt","w")
+    #dir= "E:\AAA_MASTERPROEF\github\sku110k_dataset\SKU110K_fixed" #absolute path to the dataset on the disk, change this on another PC!
+    dir = Path("/home/olivier/Documents/mp/SKU110K/SKU110K_fixed") #absolute path to the dataset on disk
+    # structure of the dataset $tree -L 3
+    # └── SKU110K_fixed
+    # ├── images
+    # │   ├── test
+    # │   ├── train
+    # │   └── val
+    # └── labels
+    #     ├── test
+    #     ├── train
+    #     └── val
+
+    # the test pictures
+    logfile_test = open(Path("logfile_test.txt"),"w")
     for i in range(0,2941):
-        filenameImage= dir +"\images\\test\\test_"+ str(i) + ".jpg" #double \ is needed before t because otherwise python thinks you mean tab as \t
-        filenameLabels= dir + "\labels\\test\\test_"+ str(i) + ".txt"
+        filenameImage= dir.joinpath("images","test", "test_"+ str(i) + ".jpg") 
+        filenameLabels= dir.joinpath("labels","test", "test_"+ str(i) + ".txt") 
         baseFilenameResult="cropped_images\\test\\testcrop_"
 
         rv = cropImage(filenameImage,filenameLabels,baseFilenameResult)
@@ -29,7 +41,7 @@ def main():
     #the train pictures
     global cropcounter
     cropcounter = 0 #resetting the cropcounter to 0
-    logfile_train = open("logfile_train.txt","w")
+    logfile_train = open(Path("logfile_train.txt"),"w")
     for i in range(0,8235):
         filenameImage= dir +"\images\\train\\train_"+ str(i) + ".jpg" #double \ is needed before t because otherwise python thinks you mean tab as \t
         filenameLabels= dir + "\labels\\train\\train_"+ str(i) + ".txt"
@@ -50,7 +62,7 @@ def main():
     #the val pictures
     global cropcounter
     cropcounter = 0 #resetting the cropcounter to 0
-    logfile_val = open("logfile_val.txt","w")
+    logfile_val = open(Path("logfile_val.txt"),"w")
     for i in range(0,600):
         filenameImage= dir +"\images\\val\\val_"+ str(i) + ".jpg" #double \ is needed before t because otherwise python thinks you mean tab as \t
         filenameLabels= dir + "\labels\\val\\val_"+ str(i) + ".txt"
@@ -75,7 +87,7 @@ def main():
 # @param filenameImage : the input image
 # @param filenameLabels : corresponding labels of that image that conatain bounding box coords of the crops
 # @param baseFilenameResult : base name of the resulting files (crops)
-#returns if the image was succesfully cropped
+# returns 0 if the image was succesfully cropped, -1 if an error occured
 def cropImage(filenameImage,filenameLabels,baseFilenameResult):
     try:
         im = Image.open(filenameImage,"r")# Opens a image in RGB mode

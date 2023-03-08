@@ -1,6 +1,7 @@
-venv/
-venvps/
-venvu/
+.venv/
 sku110k_dataset/
 .vscode/
 masterproef/dataprocessing/cropped_images/
+vissl/
+SKU110K/
+cropped_images/
