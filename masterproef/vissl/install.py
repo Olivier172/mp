@@ -13,6 +13,7 @@ print(version_str)
 
 # install apex (pre-compiled with optimizer C++ extensions and CUDA kernels)
 # !pip install apex -f https://dl.fbaipublicfiles.com/vissl/packaging/apexwheels/{version_str}/download.html
+pip install apex -f https://dl.fbaipublicfiles.com/vissl/packaging/apexwheels/py38_cu101_pyt180/download.html
 
 # # # clone vissl repository and checkout latest version.
 # !git clone --recursive https://github.com/facebookresearch/vissl.git
