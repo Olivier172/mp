@@ -50,6 +50,7 @@ print(version_str)
 # import torch
 
 #trouble shooting
+
 # als pip install -e .[dev] faalt omwille van Python.h
 # sudo apt-get install python3.8-dev
 
@@ -58,3 +59,7 @@ print(version_str)
 # !sudo apt update
 # !sudo apt install python3.8
 # !/usr/local/bin/python3.8 -m pip install virtualenv
+
+#grub settings in /etc/default/grub
+# GRUB_HIDDEN_TIMEOUT = aantal sec, stel timeout in of comment uit voor geen timeout
+# GRUB_TIMEOUT_STYLE=hidden, dit moet je uitcommenten met # als je grub wel wilt zien
