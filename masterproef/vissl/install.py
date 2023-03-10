@@ -48,3 +48,13 @@ print(version_str)
 # import tensorboard
 # import apex
 # import torch
+
+#trouble shooting
+# als pip install -e .[dev] faalt omwille van Python.h
+# sudo apt-get install python3.8-dev
+
+#oude python installeren
+# !sudo add-apt-repository ppa:deadsnakes/ppa
+# !sudo apt update
+# !sudo apt install python3.8
+# !/usr/local/bin/python3.8 -m pip install virtualenv
