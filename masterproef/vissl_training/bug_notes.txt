@@ -1,0 +1,26 @@
+Een bestand om tegengekomen bugs en oplossingen bij te houden
+------------------------------------------------------
+melding tijdens runnen vissl_catalog.py
+** fvcore version of PathManager will be deprecated soon. **
+** Please migrate to the version in iopath repo. **
+https://github.com/facebookresearch/iopath 
+
+
+pip show iopath:
+Name: iopath
+Version: 0.1.9
+Summary: A library for providing I/O abstraction.
+Home-page: https://github.com/facebookresearch/iopath
+Author: FAIR
+Author-email: 
+License: MIT licensed, as found in the LICENSE file
+Location: /home/olivier/Documents/mp/.venv/lib/python3.8/site-packages
+Requires: portalocker, tqdm
+Required-by: fvcore, vissl
+
+oplossing 
+pip install -U iopath 
+OF
+pip install -U 'git+https://github.com/facebookresearch/iopath'
+MAAR vissl required versie 0.1.9 ook al is die deprecated soon, dus doe maar niks!
+------------------------------------------------------

@@ -1,0 +1,67 @@
+#kijk op de vissl docs naar voorbeeld quicksimclr
+
+#OUDE PYTHONS INSTALLEREN
+!sudo sudo add-apt-repository ppa:deadsnakes/ppa
+!sudo apt update
+!sudo apt install python3.8
+# !/usr/local/bin/python3.8 -m pip install virtualenv
+
+#een venv maken met oude python
+!python3.8 -m venv .venv
+!source activate .venv
+!which pip # Should be in venv!! Else, install pip for venv (see Google)
+
+#PYTORCH INSTALLEREN
+!pip install torch==1.8.0+cu101 torchvision==0.9.0+cu101 -f https://download.pytorch.org/whl/torch_stable.html
+
+# install Apex by checking system settings: cuda version, pytorch version, and python version
+import sys
+import torch
+version_str="".join([
+    f"py3{sys.version_info.minor}_cu",
+    torch.version.cuda.replace(".",""),
+    f"_pyt{torch.__version__[0:5:2]}"
+])
+print(version_str)
+#CONTROLE dit zou py38_cu101_pyt180 moeten zijn....
+
+#APEX INSTALLEREN
+!pip install apex -f https://dl.fbaipublicfiles.com/vissl/packaging/apexwheels/py38_cu101_pyt180/download.html
+
+#VISSL INSTALLEREN, eerst in mp dir zetten
+# # clone vissl repository and checkout latest version.
+!git clone --recursive https://github.com/facebookresearch/vissl.git
+
+%cd vissl/
+
+!git checkout v0.1.6
+!git checkout -b v0.1.6
+
+# install vissl dependencies
+!pip install --progress-bar off -r requirements.txt
+!pip install opencv-python
+
+# update classy vision install to commit compatible with v0.1.6
+!pip uninstall -y classy_vision
+!pip install classy-vision@https://github.com/facebookresearch/ClassyVision/tarball/4785d5ee19d3bcedd5b28c1eb51ea1f59188b54d
+
+# Update fairscale to commit compatible with v0.1.6
+!pip uninstall -y fairscale
+!pip install fairscale@https://github.com/facebookresearch/fairscale/tarball/df7db85cef7f9c30a5b821007754b96eb1f977b6
+
+# install vissl dev mode (e stands for editable)
+!pip install -e .[dev]
+
+#dit zou moeten lukken nu
+import vissl
+import tensorboard
+import apex
+import torch
+
+#pip upgraden
+pip install -U pip
+#cache verwijder
+pip cache purge
+
+dit is allemaal geinstalleerd met pip install -e .[dev]
+Successfully installed absl-py-1.4.0 alabaster-0.7.13 appdirs-1.4.4 attrs-22.2.0 babel-2.12.1 beautifulsoup4-4.11.2 black-19.3b0 bleach-6.0.0 bs4-0.0.1 cachetools-5.3.0 certifi-2022.12.7 cfgv-3.3.1 charset-normalizer-3.1.0 click-8.1.3 contourpy-1.0.7 cycler-0.11.0 defusedxml-0.7.1 distlib-0.3.6 docutils-0.19 faiss-gpu-1.7.2 fastjsonschema-2.16.3 filelock-3.9.0 flake8-3.8.1 flake8-bugbear-23.2.13 flake8-comprehensions-3.10.1 fonttools-4.39.0 google-auth-2.16.2 google-auth-oauthlib-0.4.6 grpcio-1.51.3 identify-2.5.19 idna-3.4 imagesize-1.4.1 importlib-metadata-6.0.0 isort-5.7.0 jinja2-3.1.2 jsonschema-4.17.3 jupyter-client-8.0.3 jupyter-core-5.2.0 jupyterlab-pygments-0.2.2 kiwisolver-1.4.4 markdown-3.4.1 markupsafe-2.1.2 matplotlib-3.6.3 mccabe-0.6.1 mistune-2.0.5 nbclient-0.7.2 nbconvert-7.2.9 nbformat-5.7.3 nodeenv-1.7.0 oauthlib-3.2.2 packaging-23.0 pandocfilters-1.5.0 pkgutil-resolve-name-1.3.10 platformdirs-3.1.0 pre-commit-3.1.1 protobuf-4.22.1 pyasn1-0.4.8 pyasn1-modules-0.2.8 pycocotools-2.0.6 pycodestyle-2.6.0 pyflakes-2.2.0 pygments-2.14.0 pyparsing-3.0.9 pyrsistent-0.19.3 python-dateutil-2.8.2 pytz-2022.7.1 pyzmq-25.0.0 requests-2.28.2 requests-oauthlib-1.3.1 rsa-4.9 six-1.16.0 snowballstemmer-2.2.0 soupsieve-2.4 sphinx-6.1.3 sphinxcontrib-applehelp-1.0.4 sphinxcontrib-devhelp-1.0.2 sphinxcontrib-htmlhelp-2.0.1 sphinxcontrib-jsmath-1.0.1 sphinxcontrib-qthelp-1.0.3 sphinxcontrib-serializinghtml-1.1.5 tensorboard-2.12.0 tensorboard-data-server-0.7.0 tensorboard-plugin-wit-1.8.1 tinycss2-1.2.1 toml-0.10.2 tornado-6.2 traitlets-5.9.0 urllib3-1.26.14 virtualenv-20.20.0 vissl-0.1.6 webencodings-0.5.1 werkzeug-2.2.3
