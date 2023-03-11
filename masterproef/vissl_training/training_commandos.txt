@@ -2,7 +2,12 @@ run in virtual env
 cd vissl/tools/
 python run_distributed_engines.py ...
 
-
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 rotnet:
-python run_distributed_engines.py config=pretrain/rotnet/rotnet_8gpu_resnet +config/pretrain/rotnet/dataset=sku110k
+python run_distributed_engines.py config=pretrain/rotnet/rotnet_8gpu_resnet \
++config/pretrain/rotnet/dataset=sku110k
+
+error op laptop:
 RuntimeError: CUDA error: no kernel image is available for execution on the device
+
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
