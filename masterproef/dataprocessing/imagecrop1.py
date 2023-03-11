@@ -1,9 +1,14 @@
+# imagecrop1.py 
+# alternative version of imagecrop.py
+# this script saves the image crops from the same image 
+# in different folders within the test train val folders
+
 from pathlib import Path
 from PIL import Image
-cropcounter=0 #global var to count crops
+imageCounter = 0 #global variable to count which image we are cropping from the test, train or val set
 
 def main():
-    print("Main function imagecrop.py")
+    print("Main function imagecrop1.py")
 
     # structure of the dataset $tree -L 3
     # └── SKU110K_fixed
@@ -16,17 +21,17 @@ def main():
     #           ├── train
     #           └── val
     dir = Path("/home/olivier/Documents/mp/SKU110K/SKU110K_fixed") #absolute path to the dataset on disk
-    #expected structure where the files will be saved
-    # cropped_images
+    # expected structure where the files will be saved
+    # cropped_images1
     #     ├── test
     #     ├── train
     #     └── val
-    dirResult = Path("/home/olivier/Documents/mp/cropped_images") #path to where the crops will be saved
+    dirResult = Path("/home/olivier/Documents/mp/cropped_images1") #path to where the crops will be saved
     
     # the test pictures
-    global cropcounter
-    cropcounter = 0 #resetting the cropcounter to 0
-    logfile_test = open(Path("logfile_test.txt"),"w")
+    global imageCounter
+    imageCounter=0 #count the test images
+    logfile_test = open(Path("logfile_test1.txt"),"w")
     for i in range(0,2941):
         filepathImage= dir.joinpath("images","test", "test_"+ str(i) + ".jpg") 
         filepathLabels= dir.joinpath("labels","test", "test_"+ str(i) + ".txt") 
@@ -45,8 +50,8 @@ def main():
     logfile_test.close()
    
     #the train pictures
-    cropcounter = 0 #resetting the cropcounter to 0
-    logfile_train = open(Path("logfile_train.txt"),"w")
+    imageCounter=0 #count the train images
+    logfile_train = open(Path("logfile_train1.txt"),"w")
     for i in range(0,8235):
         filepathImage= dir.joinpath("images","train","train_"+ str(i) + ".jpg") 
         filepathLabels= dir.joinpath("labels","train","train_"+ str(i) + ".txt")  
@@ -65,8 +70,8 @@ def main():
     logfile_train.close()
 
     #the val pictures
-    cropcounter = 0 #resetting the cropcounter to 0
-    logfile_val = open(Path("logfile_val.txt"),"w")
+    imageCounter=0 #count the val images
+    logfile_val = open(Path("logfile_val1.txt"),"w")
     for i in range(0,600): #600
         filepathImage= dir.joinpath("images","val", "val_"+ str(i) + ".jpg") 
         filepathLabels= dir.joinpath("labels", "val", "val_"+ str(i) + ".txt") 
@@ -92,11 +97,14 @@ def main():
 # @param baseFilepathResult : path to the resulting files (crops) to be saved
 # @param filenameResult : name of the file to be saved
 # returns 0 if the image was succesfully cropped, -1 if an error occured
-def cropImage(filepathImage:Path,filepathLabels:Path,baseFilepathResult:Path, filenameResult):
+def cropImage(filepathImage:Path,filepathLabels:Path,baseFilepathResult:Path, filenameResult:str):
+    global imageCounter
+
     try:
         im = Image.open(filepathImage,"r")# Opens a image in RGB mode
     except:
         print("Something went wrong openening this image " + str(filepathImage))
+        imageCounter+=1
         return -1
  
     # Size of the image in pixels (size of original image)
@@ -108,8 +116,14 @@ def cropImage(filepathImage:Path,filepathLabels:Path,baseFilepathResult:Path, fi
         f = open(filepathLabels, "r") #reading anotations
     except:
         print("Something went wrong openening this annotation file " + str(filepathLabels))
+        imageCounter+=1
         return -1
 
+    cropcounter = 0 #resetting the cropcounter to 0 for crops from a new image
+    #creating a dir for this image and it's crops
+    path = baseFilepathResult / ("im" + str(imageCounter)) 
+    path.mkdir(exist_ok=True)
+    baseFilepathResult = path
     while(True):
         line = f.readline() #format= class x_center y_center width_a height_a
         annotations = line.split()
@@ -133,16 +147,16 @@ def cropImage(filepathImage:Path,filepathLabels:Path,baseFilepathResult:Path, fi
         im1 = im.crop((left, top, right, bottom))
         # Shows the image in image viewer
         #im1.show()
-        global cropcounter 
-        filename_result = baseFilepathResult.joinpath(filenameResult + str(cropcounter) + ".jpg") 
+        filename_result = baseFilepathResult.joinpath("im" + str(imageCounter) + "_crop" + str(cropcounter) + ".jpg") 
         cropcounter+=1
         #print("resulting file " + filename_result)
         try:
             im1.save(filename_result)
         except:
             print("Something went wrong saving  " + str(filename_result))
+            imageCounter+=1
             return -1
-
+    imageCounter+=1
     im.close()
     f.close()
     return 0 # everything went well, all the crops were cut out and saved
