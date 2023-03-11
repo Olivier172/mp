@@ -1,6 +1,51 @@
 run in virtual env
-cd vissl/tools/
-python run_distributed_engines.py ...
+>> source .venv/bin/activate
+
+trainingen uitvoeren
+>> cd vissl/tools/
+>> python run_distributed_engines.py ...
+
+dataset moet in de catalogus staan, dus in /home/olivier/Documents/mp/vissl/configs/config/dataset_catalog.json
+entry toevoegen: (dan kan je daarna in yaml files gewoon de naam "sku110k_folder" gebruiken
+{
+    "sku110k_folder": {
+        "train": ["/home/olivier/Documents/mp/cropped_images/train", "<unused>"],
+        "val": ["/home/olivier/Documents/mp/cropped_images/test", "<unused>"]
+    },
+    ....
+}
+zorg dat de dataset structuur van het volgende formaat is:
+    # cropped_images
+    #     ├── test
+    #     │   └── unlabeled
+    #     ├── train
+    #     │   └── unlabeled
+    #     └── val
+    #         └── unlabeled
+
+dan een eigen config maken om bepaalde keys van de training hyperparameters te overschrijven
+bv in /home/olivier/Documents/mp/vissl/configs/config/pretrain/rotnet maak een folder dataset met daarin een file sku110k.yaml
+Deze ziet er bv zo uit:
+# @package _global_
+config:
+  VERBOSE: True
+  DATA:
+    NUM_DATALOADER_WORKERS: 1
+    TRAIN:
+      DATA_SOURCES: [disk_folder]
+      DATASET_NAMES: [sku110k_folder]
+      DATA_LIMIT: 100
+    TEST:
+      DATA_SOURCES: [disk_folder]
+      DATASET_NAMES: [sku110k_folder]
+      DATA_LIMIT: 100
+  DISTRIBUTED:
+    #1 gpu
+    NUM_PROC_PER_NODE: 1 
+  CHECKPOINT:
+    DIR: "/home/olivier/Documents/mp/checkpoints"
+
+en voeg dan aan het trainings commando +config/pretrain/rotnet/dataset=sku110k toe
 
 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 rotnet:
