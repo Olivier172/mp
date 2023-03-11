@@ -19,8 +19,12 @@ def main():
     #expected structure where the files will be saved
     # cropped_images
     #     ├── test
-    #     ├── train
+    #     │   └── unlabeled
+    #     ├── train
+    #     │   └── unlabeled
     #     └── val
+    #         └── unlabeled
+
     dirResult = Path("/home/olivier/Documents/mp/cropped_images") #path to where the crops will be saved
     
     # the test pictures
@@ -30,7 +34,7 @@ def main():
     for i in range(0,2941):
         filepathImage= dir.joinpath("images","test", "test_"+ str(i) + ".jpg") 
         filepathLabels= dir.joinpath("labels","test", "test_"+ str(i) + ".txt") 
-        baseFilepathResult= dirResult.joinpath("test") 
+        baseFilepathResult= dirResult.joinpath("test","unlabeled") 
         filenameResult = "testcrop_"  # "baseFilepathResult/testcrop_cropcounter" 
         rv = cropImage(filepathImage,filepathLabels,baseFilepathResult,filenameResult)
         if(rv==-1):
@@ -50,7 +54,7 @@ def main():
     for i in range(0,8235):
         filepathImage= dir.joinpath("images","train","train_"+ str(i) + ".jpg") 
         filepathLabels= dir.joinpath("labels","train","train_"+ str(i) + ".txt")  
-        baseFilepathResult= dirResult.joinpath("train") 
+        baseFilepathResult= dirResult.joinpath("train","unlabeled") 
         filenameResult = "traincrop_"  # "baseFilepathResult/traincrop_cropcounter" 
         rv = cropImage(filepathImage,filepathLabels,baseFilepathResult,filenameResult)
         if(rv==-1):
@@ -70,7 +74,7 @@ def main():
     for i in range(0,600): #600
         filepathImage= dir.joinpath("images","val", "val_"+ str(i) + ".jpg") 
         filepathLabels= dir.joinpath("labels", "val", "val_"+ str(i) + ".txt") 
-        baseFilepathResult= dirResult.joinpath("val") 
+        baseFilepathResult= dirResult.joinpath("val","unlabeled") 
         filenameResult = "valcrop_"  # "baseFilepathResult/valcrop_cropcounter" 
         rv = cropImage(filepathImage,filepathLabels,baseFilepathResult,filenameResult)
         if(rv==-1):
