@@ -2,8 +2,8 @@ run in virtual env
 >> source .venv/bin/activate
 
 trainingen uitvoeren
->> cd vissl/tools/
->> python run_distributed_engines.py ...
+>> cd vissl/
+>> python tools/run_distributed_engines.py ...
 
 dataset moet in de catalogus staan, dus in /home/olivier/Documents/mp/vissl/configs/config/dataset_catalog.json
 entry toevoegen: (dan kan je daarna in yaml files gewoon de naam "sku110k_folder" gebruiken
@@ -30,28 +30,59 @@ Deze ziet er bv zo uit:
 config:
   VERBOSE: True
   DATA:
-    NUM_DATALOADER_WORKERS: 1
+    NUM_DATALOADER_WORKERS: 1 #1cpu
     TRAIN:
       DATA_SOURCES: [disk_folder]
       DATASET_NAMES: [sku110k_folder]
-      DATA_LIMIT: 100
+      DATA_LIMIT: 100 #eventueel limiteren van hoeveel images we gebruiken
     TEST:
       DATA_SOURCES: [disk_folder]
       DATASET_NAMES: [sku110k_folder]
       DATA_LIMIT: 100
   DISTRIBUTED:
-    #1 gpu
-    NUM_PROC_PER_NODE: 1 
+    NUM_PROC_PER_NODE: 1 #1gpu
   CHECKPOINT:
     DIR: "/home/olivier/Documents/mp/checkpoints"
 
 en voeg dan aan het trainings commando +config/pretrain/rotnet/dataset=sku110k toe
+Gouden refentie voor de YAML file opties:
+https://github.com/facebookresearch/vissl/blob/main/vissl/config/defaults.yaml 
 
 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 rotnet:
-python run_distributed_engines.py config=pretrain/rotnet/rotnet_8gpu_resnet \
+python tools/run_distributed_engines.py config=pretrain/rotnet/rotnet_8gpu_resnet \
 +config/pretrain/rotnet/dataset=sku110k
 
+stap1: 
+voeg dataset toe aan dataset_catalog.json (naam=sku110k_folder) in /home/olivier/Documents/mp/vissl/configs/config/dataset_catalog.json
+
+stap2: 
+maak een YAML file voor enkele trainingsconfigs te overschrijven
+filenaam: sku110k.yaml in /home/olivier/Documents/mp/vissl/configs/config/pretrain/rotnet/dataset/sku110k.yaml
+inhoud:
+# @package _global_
+config:
+  VERBOSE: True
+  DATA:
+    NUM_DATALOADER_WORKERS: 1
+    TRAIN:
+      DATA_SOURCES: [disk_folder]
+      DATASET_NAMES: [sku110k_folder]
+    TEST:
+      DATA_SOURCES: [disk_folder]
+      DATASET_NAMES: [sku110k_folder]
+  DISTRIBUTED:
+    #1 gpu
+    NUM_PROC_PER_NODE: 1 
+  CHECKPOINT:
+    DIR: "/home/olivier/Documents/mp/checkpoints/rotnet_full"
+    CHECKPOINT_FREQUENCY: 25
+
+stap3:
+cd vissl/
+voer het trainingscommando uit
+python tools/run_distributed_engines.py config=pretrain/jigsaw/jigsaw_8gpu_resnet \
++config/pretrain/jigsaw/dataset=sku110k
 
 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
