@@ -86,6 +86,7 @@ config:
     CHECKPOINT_FREQUENCY: 25
     
 stap3:
+cd vissl/
 voer het trainingscommando uit
 python tools/run_distributed_engines.py config=pretrain/jigsaw/jigsaw_8gpu_resnet \
 +config/pretrain/jigsaw/dataset=sku110k
