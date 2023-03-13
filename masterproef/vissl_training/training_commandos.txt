@@ -52,7 +52,42 @@ rotnet:
 python run_distributed_engines.py config=pretrain/rotnet/rotnet_8gpu_resnet \
 +config/pretrain/rotnet/dataset=sku110k
 
-error op laptop:
-RuntimeError: CUDA error: no kernel image is available for execution on the device
 
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+jigsaw:
+python tools/run_distributed_engines.py config=pretrain/jigsaw/jigsaw_8gpu_resnet \
++config/pretrain/jigsaw/dataset=sku110k
+
+stap1: 
+voeg dataset toe aan dataset_catalog.json (naam=sku110k_folder) in /home/olivier/Documents/mp/vissl/configs/config/dataset_catalog.json
+
+stap2: 
+maak een YAML file voor enkele trainingsconfigs te overschrijven
+filenaam: sku110k.yaml in /home/olivier/Documents/mp/vissl/configs/config/pretrain/jigsaw/dataset/sku110k.yaml
+inhoud:
+# @package _global_
+config:
+  VERBOSE: True
+  DATA:
+    NUM_DATALOADER_WORKERS: 1
+    TRAIN:
+      DATA_SOURCES: [disk_folder]
+      DATASET_NAMES: [sku110k_folder]
+    TEST:
+      DATA_SOURCES: [disk_folder]
+      DATASET_NAMES: [sku110k_folder]
+  DISTRIBUTED:
+    #1 gpu
+    NUM_PROC_PER_NODE: 1 
+  CHECKPOINT:
+    DIR: "/home/olivier/Documents/mp/checkpoints/jigsaw_full"
+    CHECKPOINT_FREQUENCY: 25
+    
+stap3:
+voer het trainingscommando uit
+python tools/run_distributed_engines.py config=pretrain/jigsaw/jigsaw_8gpu_resnet \
++config/pretrain/jigsaw/dataset=sku110k
+ 
 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
