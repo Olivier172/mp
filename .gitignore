@@ -6,3 +6,4 @@ vissl/
 SKU110K/
 cropped_images*/
 checkpoints/
+logfile_*
