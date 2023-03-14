@@ -6,7 +6,7 @@ trainingen uitvoeren
 >> python tools/run_distributed_engines.py ...
 
 dataset moet in de catalogus staan, dus in /home/olivier/Documents/mp/vissl/configs/config/dataset_catalog.json
-entry toevoegen: (dan kan je daarna in yaml files gewoon de naam "sku110k_folder" gebruiken
+entry toevoegen: (dan kan je daarna in yaml files gewoon de naam "sku110k_folder" gebruiken)
 {
     "sku110k_folder": {
         "train": ["/home/olivier/Documents/mp/cropped_images/train", "<unused>"],
@@ -43,10 +43,28 @@ config:
     NUM_PROC_PER_NODE: 1 #1gpu
   CHECKPOINT:
     DIR: "/home/olivier/Documents/mp/checkpoints"
+    CHECKPOINT_FREQUENCY: 25
 
 en voeg dan aan het trainings commando +config/pretrain/rotnet/dataset=sku110k toe
 Gouden refentie voor de YAML file opties:
 https://github.com/facebookresearch/vissl/blob/main/vissl/config/defaults.yaml 
+
+checkpoint frequency instellen:
+# how frequently should the model be checkpointed. The model is checkpointed
+# only if the training is on (i.e. the eval phases are never checkpointed).
+# epochs start from 0 so the 1st epoch is always checkpointed.
+# Examples:
+#   CHECKPOINT_FREQUENCY = 1 -> checkpoint after every training epoch
+#   CHECKPOINT_FREQUENCY = N -> checkpoint after every N training epochs
+#                               when train_epoch_num % CHECKPOINT_FREQ = 0.
+# In VISSL, if the workflow involves training and testing both, the number of
+# phases = train phases + test epochs. So if we alternate train and test, the
+# phase number is: 0 (train), 1 (test), 2 (train), 3 (test)...
+# and train_phase_idx is always: 0 (corresponds to phase0), 1 (correponds to phase 2)
+# For deciding whether to checkpointing, we
+# always count the number of training phases train_phase_idx and checkpoint. However,
+# the checkpoint file has number phase_idx.
+CHECKPOINT_FREQUENCY: 1
 
 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 rotnet:
@@ -64,7 +82,7 @@ inhoud:
 config:
   VERBOSE: True
   DATA:
-    NUM_DATALOADER_WORKERS: 1
+    NUM_DATALOADER_WORKERS: 1 #1 cpu
     TRAIN:
       DATA_SOURCES: [disk_folder]
       DATASET_NAMES: [sku110k_folder]
@@ -72,8 +90,7 @@ config:
       DATA_SOURCES: [disk_folder]
       DATASET_NAMES: [sku110k_folder]
   DISTRIBUTED:
-    #1 gpu
-    NUM_PROC_PER_NODE: 1 
+    NUM_PROC_PER_NODE: 1  #1 gpu
   CHECKPOINT:
     DIR: "/home/olivier/Documents/mp/checkpoints/rotnet_full"
     CHECKPOINT_FREQUENCY: 25
@@ -81,8 +98,8 @@ config:
 stap3:
 cd vissl/
 voer het trainingscommando uit
-python tools/run_distributed_engines.py config=pretrain/jigsaw/jigsaw_8gpu_resnet \
-+config/pretrain/jigsaw/dataset=sku110k
+python tools/run_distributed_engines.py config=pretrain/rotnet/rotnet_8gpu_resnet \
++config/pretrain/rotnet/dataset=sku110k
 
 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
@@ -102,7 +119,7 @@ inhoud:
 config:
   VERBOSE: True
   DATA:
-    NUM_DATALOADER_WORKERS: 1
+    NUM_DATALOADER_WORKERS: 1 #1 cpu
     TRAIN:
       DATA_SOURCES: [disk_folder]
       DATASET_NAMES: [sku110k_folder]
@@ -110,8 +127,7 @@ config:
       DATA_SOURCES: [disk_folder]
       DATASET_NAMES: [sku110k_folder]
   DISTRIBUTED:
-    #1 gpu
-    NUM_PROC_PER_NODE: 1 
+    NUM_PROC_PER_NODE: 1 #1 gpu
   CHECKPOINT:
     DIR: "/home/olivier/Documents/mp/checkpoints/jigsaw_full"
     CHECKPOINT_FREQUENCY: 25

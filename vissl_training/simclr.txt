@@ -1,0 +1,39 @@
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+simclr: full sku110k dataset
+sku110k.yaml
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+python tools/run_distributed_engines.py config=pretrain/simclr/simclr_8node_resnet \
++config/pretrain/simclr/dataset=sku110k
+
+stap1: 
+voeg dataset toe aan dataset_catalog.json (naam=sku110k_folder) in /home/olivier/Documents/mp/vissl/configs/config/dataset_catalog.json
+
+stap2: 
+maak een YAML file voor enkele trainingsconfigs te overschrijven
+filenaam: sku110k.yaml in /home/olivier/Documents/mp/vissl/configs/config/pretrain/simclr/dataset/sku110k.yaml
+inhoud:
+# @package _global_
+config:
+  VERBOSE: True
+  DATA:
+    NUM_DATALOADER_WORKERS: 1 #1 cpu
+    TRAIN:
+      DATA_SOURCES: [disk_folder]
+      DATASET_NAMES: [sku110k_folder]
+    TEST:
+      DATA_SOURCES: [disk_folder]
+      DATASET_NAMES: [sku110k_folder]
+  DISTRIBUTED:
+    NUM_NODES: 1 # 1gpu
+    NUM_PROC_PER_NODE: 1 #1 gpu
+    RUN_ID: "auto" # 1machine
+  CHECKPOINT:
+    DIR: "/home/olivier/Documents/mp/checkpoints/simclr_full"
+    CHECKPOINT_FREQUENCY: 25
+    
+stap3:
+cd vissl/
+voer het trainingscommando uit
+python tools/run_distributed_engines.py config=pretrain/simclr/simclr_8node_resnet \
++config/pretrain/simclr/dataset=sku110k
+
