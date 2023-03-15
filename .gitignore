@@ -8,3 +8,4 @@ cropped_images*/
 checkpoints/
 logfile_*
 specifiek/
+.ipynb_checkpoints/
