@@ -8,4 +8,8 @@ cropped_images*/
 checkpoints/
 logfile_*
 specifiek/
+
+#ipython notebook stuff
 .ipynb_checkpoints/
+data/
+runs/
