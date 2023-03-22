@@ -1,0 +1,27 @@
+# @package _global_
+config:
+  VERBOSE: True
+  DATA:
+    NUM_DATALOADER_WORKERS: 2 #1 cpu
+    TRAIN:
+      DATA_SOURCES: [disk_folder]
+      DATASET_NAMES: [sku110k_folder]
+      DATA_LIMIT: 30000 # 30000 train images
+      BATCHSIZE_PER_REPLICA: 32
+  HOOKS:
+    TENSORBOARD_SETUP:
+      USE_TENSORBOARD: True # whether to use tensorboard for the visualization
+      LOG_DIR: "/home/olivier/Documents/mp/checkpoints/tensorboard" # log directory for tensorboard events
+      EXPERIMENT_LOG_DIR: "sku110k_30000_simclr"
+      FLUSH_EVERY_N_MIN: 5  # flush logs every n minutes
+      LOG_PARAMS: True # whether to log the model parameters to tensorboard
+      LOG_PARAMS_GRADIENTS: True # whether to log the model parameters gradients to tensorboard 
+      LOG_PARAMS_EVERY_N_ITERS: -1 #log params every epoch
+  DISTRIBUTED:
+    NUM_NODES: 1 #1 gpu
+    NUM_PROC_PER_NODE: 1 #1 gpu
+    RUN_ID: auto
+  CHECKPOINT:
+    DIR: "/home/olivier/Documents/mp/checkpoints/simclr_30000"
+    CHECKPOINT_FREQUENCY: 25 #every 25 epochs
+    CHECKPOINT_ITER_FREQUENCY: -1 #dont checkpoint after iterations
