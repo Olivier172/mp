@@ -1,0 +1,16 @@
+# @package _global_
+config:
+  VERBOSE: True
+  DATA:
+    NUM_DATALOADER_WORKERS: 1 #1 cpu
+    TRAIN:
+      DATA_SOURCES: [disk_folder]
+      DATASET_NAMES: [sku110k_folder]
+    TEST:
+      DATA_SOURCES: [disk_folder]
+      DATASET_NAMES: [sku110k_folder]
+  DISTRIBUTED:
+    NUM_PROC_PER_NODE: 1 #1 gpu
+  CHECKPOINT:
+    DIR: "/home/olivier/Documents/mp/checkpoints/jigsaw_full"
+    CHECKPOINT_FREQUENCY: 25

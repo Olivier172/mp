@@ -2,7 +2,7 @@
 config:
   VERBOSE: True
   DATA:
-    NUM_DATALOADER_WORKERS: 1
+    NUM_DATALOADER_WORKERS: 1 #1 cpu
     TRAIN:
       DATA_SOURCES: [disk_folder]
       DATASET_NAMES: [sku110k_folder]
@@ -13,15 +13,13 @@ config:
     TENSORBOARD_SETUP:
       USE_TENSORBOARD: True # whether to use tensorboard for the visualization
       LOG_DIR: "/home/olivier/Documents/mp/checkpoints/tensorboard" # log directory for tensorboard events
-      EXPERIMENT_LOG_DIR: "sku110k_rotnet"
+      EXPERIMENT_LOG_DIR: "sku110k_jigsaw"
       FLUSH_EVERY_N_MIN: 5  # flush logs every n minutes
       LOG_PARAMS: True # whether to log the model parameters to tensorboard
       LOG_PARAMS_GRADIENTS: True # whether to log the model parameters gradients to tensorboard 
       LOG_PARAMS_EVERY_N_ITERS: -1 #log params every epoch
   DISTRIBUTED:
-    #1 gpu
-    NUM_PROC_PER_NODE: 1 
+    NUM_PROC_PER_NODE: 1 #1 gpu
   CHECKPOINT:
-    DIR: "/home/olivier/Documents/mp/checkpoints/rotnet_full"
+    DIR: "/home/olivier/Documents/mp/checkpoints/jigsaw_full"
     CHECKPOINT_FREQUENCY: 25
-
