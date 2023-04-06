@@ -27,6 +27,9 @@ STAPPENPLAN OM VISSL TE INSTALLEREN, commando's:
 !pip install -e .[dev]
 
 Deze dependencies zouden beschikbaar moeten zijn :
+via terminal:
+python -c "import vissl, tensorboard, apex, torch"
+of in python shell:
 import vissl
 import tensorboard
 import apex
@@ -36,6 +39,9 @@ trouble shooting
 
 als pip install -e .[dev] faalt omwille van Python.h
 sudo apt-get install python3.8-dev
+
+als pip install -e .[dev] faalt omwille van x86-64-linux-gnu-gcc-failed
+sudo apt install gcc
 
 ###oude python installeren###
 sudo add-apt-repository ppa:deadsnakes/ppa
