@@ -2,7 +2,7 @@
 config:
   VERBOSE: True
   DATA:
-    NUM_DATALOADER_WORKERS: 1 #1 cpu
+    NUM_DATALOADER_WORKERS: 2 #1 cpu
     TRAIN:
       DATA_SOURCES: [disk_folder]
       DATASET_NAMES: [sku110k_folder]
@@ -19,6 +19,7 @@ config:
       LOG_PARAMS_GRADIENTS: True # whether to log the model parameters gradients to tensorboard 
       LOG_PARAMS_EVERY_N_ITERS: -1 #log params every epoch
   DISTRIBUTED:
+    NUM_NODES: 1 #1 gpu
     NUM_PROC_PER_NODE: 1 #1 gpu
   CHECKPOINT:
     DIR: "/home/olivier/Documents/mp/checkpoints/jigsaw_full"

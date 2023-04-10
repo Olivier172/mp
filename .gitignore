@@ -2,6 +2,7 @@
 sku110k_dataset/
 .vscode/
 masterproef/dataprocessing/cropped_images/
+apex/
 vissl/
 SKU110K/
 CornerShop/
