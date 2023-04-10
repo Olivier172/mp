@@ -4,6 +4,7 @@ sku110k_dataset/
 masterproef/dataprocessing/cropped_images/
 vissl/
 SKU110K/
+CornerShop/
 cropped_images*/
 checkpoints/
 logfile_*
