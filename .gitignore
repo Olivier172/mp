@@ -1,17 +1,29 @@
+#virtual envs
 .venv/
-sku110k_dataset/
+
+#ide configs
 .vscode/
-masterproef/dataprocessing/cropped_images/
-apex/
-vissl/
+
+#datasets
 SKU110K/
 CornerShop/
 cropped_images*/
+
+#weights and training results
 checkpoints/
+
+#git repos that are build from source don't have to be included
+apex/
+vissl/
+
+#logfiles
 logfile_*
+
+#folder for specific scipts on a machine
 specifiek/
 
 #ipython notebook stuff
 .ipynb_checkpoints/
 data/
 runs/
+
