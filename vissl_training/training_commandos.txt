@@ -23,6 +23,10 @@ zorg dat de dataset structuur van het volgende formaat is:
     #     └── val
     #         └── unlabeled
 
+Maak de folder waar de training de resultaten naar toe schrijft zeker aan
+bv in mp/checkpoints/rotnet_full 
+en specifier het pad naar deze folder in je yaml file bij CHECKPOINT.DIR
+
 dan een eigen config maken om bepaalde keys van de training hyperparameters te overschrijven
 bv in /home/olivier/Documents/mp/vissl/configs/config/pretrain/rotnet maak een folder dataset met daarin een file sku110k.yaml
 Deze ziet er bv zo uit:
@@ -30,22 +34,31 @@ Deze ziet er bv zo uit:
 config:
   VERBOSE: True
   DATA:
-    NUM_DATALOADER_WORKERS: 1 #1cpu
+    NUM_DATALOADER_WORKERS: 2 #1 cpu
     TRAIN:
       DATA_SOURCES: [disk_folder]
       DATASET_NAMES: [sku110k_folder]
-      DATA_LIMIT: 100 #eventueel limiteren van hoeveel images we gebruiken
     TEST:
       DATA_SOURCES: [disk_folder]
       DATASET_NAMES: [sku110k_folder]
-      DATA_LIMIT: 100
+  HOOKS:
+    TENSORBOARD_SETUP:
+      USE_TENSORBOARD: True # whether to use tensorboard for the visualization
+      LOG_DIR: "/home/olivier/Documents/mp/checkpoints/tensorboard" # log directory for tensorboard events
+      EXPERIMENT_LOG_DIR: "sku110k_rotnet"
+      FLUSH_EVERY_N_MIN: 5  # flush logs every n minutes
+      LOG_PARAMS: True # whether to log the model parameters to tensorboard
+      LOG_PARAMS_GRADIENTS: True # whether to log the model parameters gradients to tensorboard 
+      LOG_PARAMS_EVERY_N_ITERS: -1 #log params every epoch
   DISTRIBUTED:
-    NUM_PROC_PER_NODE: 1 #1gpu
+    NUM_NODES: 1 #1 gpu 
+    NUM_PROC_PER_NODE: 1 #1 gpu
   CHECKPOINT:
-    DIR: "/home/olivier/Documents/mp/checkpoints"
+    DIR: "/home/olivier/Documents/mp/checkpoints/rotnet_full"
     CHECKPOINT_FREQUENCY: 25
 
 en voeg dan aan het trainings commando +config/pretrain/rotnet/dataset=sku110k toe
+
 Gouden refentie voor de YAML file opties:
 https://github.com/facebookresearch/vissl/blob/main/vissl/config/defaults.yaml 
 
@@ -66,76 +79,24 @@ checkpoint frequency instellen:
 # the checkpoint file has number phase_idx.
 CHECKPOINT_FREQUENCY: 1
 
--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+TRAININGSCOMMANDOS:
+
 rotnet:
 python tools/run_distributed_engines.py config=pretrain/rotnet/rotnet_8gpu_resnet \
 +config/pretrain/rotnet/dataset=sku110k
 
-stap1: 
-voeg dataset toe aan dataset_catalog.json (naam=sku110k_folder) in /home/olivier/Documents/mp/vissl/configs/config/dataset_catalog.json
-
-stap2: 
-maak een YAML file voor enkele trainingsconfigs te overschrijven
-filenaam: sku110k.yaml in /home/olivier/Documents/mp/vissl/configs/config/pretrain/rotnet/dataset/sku110k.yaml
-inhoud:
-# @package _global_
-config:
-  VERBOSE: True
-  DATA:
-    NUM_DATALOADER_WORKERS: 1 #1 cpu
-    TRAIN:
-      DATA_SOURCES: [disk_folder]
-      DATASET_NAMES: [sku110k_folder]
-    TEST:
-      DATA_SOURCES: [disk_folder]
-      DATASET_NAMES: [sku110k_folder]
-  DISTRIBUTED:
-    NUM_PROC_PER_NODE: 1  #1 gpu
-  CHECKPOINT:
-    DIR: "/home/olivier/Documents/mp/checkpoints/rotnet_full"
-    CHECKPOINT_FREQUENCY: 25
-
-stap3:
-cd vissl/
-voer het trainingscommando uit
-python tools/run_distributed_engines.py config=pretrain/rotnet/rotnet_8gpu_resnet \
-+config/pretrain/rotnet/dataset=sku110k
-
--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-
--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 jigsaw:
 python tools/run_distributed_engines.py config=pretrain/jigsaw/jigsaw_8gpu_resnet \
 +config/pretrain/jigsaw/dataset=sku110k
 
-stap1: 
-voeg dataset toe aan dataset_catalog.json (naam=sku110k_folder) in /home/olivier/Documents/mp/vissl/configs/config/dataset_catalog.json
+moco:
+python tools/run_distributed_engines.py config=pretrain/moco/moco_1node_resnet \
++config/pretrain/moco/dataset=sku110k
 
-stap2: 
-maak een YAML file voor enkele trainingsconfigs te overschrijven
-filenaam: sku110k.yaml in /home/olivier/Documents/mp/vissl/configs/config/pretrain/jigsaw/dataset/sku110k.yaml
-inhoud:
-# @package _global_
-config:
-  VERBOSE: True
-  DATA:
-    NUM_DATALOADER_WORKERS: 1 #1 cpu
-    TRAIN:
-      DATA_SOURCES: [disk_folder]
-      DATASET_NAMES: [sku110k_folder]
-    TEST:
-      DATA_SOURCES: [disk_folder]
-      DATASET_NAMES: [sku110k_folder]
-  DISTRIBUTED:
-    NUM_PROC_PER_NODE: 1 #1 gpu
-  CHECKPOINT:
-    DIR: "/home/olivier/Documents/mp/checkpoints/jigsaw_full"
-    CHECKPOINT_FREQUENCY: 25
-    
-stap3:
-cd vissl/
-voer het trainingscommando uit
-python tools/run_distributed_engines.py config=pretrain/jigsaw/jigsaw_8gpu_resnet \
-+config/pretrain/jigsaw/dataset=sku110k
- 
--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+simclr:
+python tools/run_distributed_engines.py config=pretrain/simclr/simclr_8node_resnet \
++config/pretrain/simclr/dataset=sku110k
+
+swav:
+python tools/run_distributed_engines.py config=pretrain/swav/swav_8node_resnet \
++config/pretrain/swav/dataset=sku110k

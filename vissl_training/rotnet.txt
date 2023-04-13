@@ -1,80 +1,34 @@
 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 rotnet: full sku110k dataset
 sku110k.yaml
--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+-----------------------------
 python tools/run_distributed_engines.py config=pretrain/rotnet/rotnet_8gpu_resnet \
 +config/pretrain/rotnet/dataset=sku110k
 
 stap1: 
 voeg dataset toe aan dataset_catalog.json (naam=sku110k_folder) in /home/olivier/Documents/mp/vissl/configs/config/dataset_catalog.json
+Voeg entry toe aan deze json als volgt:
+{
+    "sku110k_folder": {
+        "train": ["/absoluut_pad.../mp/cropped_images/train", "<unused>"],
+        "val": ["/absoluut_pad.../mp/cropped_images/val", "<unused>"]
+    },
+    ....
+}
 
-stap2: 
+stap2:
+maak een folder aan voor de trainingsresultaten (checkpoint dir) bv mp/checkpoints/rotnet_full
+(en vermeld een pad naar deze folder in de yaml file van stap 3)
+
+stap3: 
 maak een YAML file voor enkele trainingsconfigs te overschrijven
-filenaam: sku110k.yaml in /home/olivier/Documents/mp/vissl/configs/config/pretrain/rotnet/dataset/sku110k.yaml
-inhoud:
-# @package _global_
-config:
-  VERBOSE: True
-  DATA:
-    NUM_DATALOADER_WORKERS: 1 #1 cpu
-    TRAIN:
-      DATA_SOURCES: [disk_folder]
-      DATASET_NAMES: [sku110k_folder]
-    TEST:
-      DATA_SOURCES: [disk_folder]
-      DATASET_NAMES: [sku110k_folder]
-  DISTRIBUTED:
-    NUM_PROC_PER_NODE: 1 #1 gpu
-  CHECKPOINT:
-    DIR: "/home/olivier/Documents/mp/checkpoints/rotnet_full"
-    CHECKPOINT_FREQUENCY: 25
+filenaam: sku110k.yaml in vissl/configs/config/pretrain/rotnet/dataset/sku110k.yaml
+Een kopie van deze yaml staat ook in de vissl_training folder onder pretraining/rotnet/dataset/sku110k.yaml
 
-stap3:
+stap4:
+source .venv/bin/activate (in map mp)
 cd vissl/
 voer het trainingscommando uit
 python tools/run_distributed_engines.py config=pretrain/rotnet/rotnet_8gpu_resnet \
 +config/pretrain/rotnet/dataset=sku110k
-
-
--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-rotnet: sku110k_300_100 
-- 300 trainings beelden
-- 100 validatie beelden
-sku110k_300_100.yaml
--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-python tools/run_distributed_engines.py config=pretrain/rotnet/rotnet_8gpu_resnet \
-+config/pretrain/rotnet/dataset=sku110k_300_100
-
-stap1: 
-voeg dataset toe aan dataset_catalog.json (naam=sku110k_folder) in /home/olivier/Documents/mp/vissl/configs/config/dataset_catalog.json
-
-stap2: 
-maak een YAML file voor enkele trainingsconfigs te overschrijven
-filenaam: sku110k_300_100.yaml in /home/olivier/Documents/mp/vissl/configs/config/pretrain/rotnet/dataset/sku110k_300_100.yaml
-inhoud:
-# @package _global_
-config:
-  VERBOSE: True
-  DATA:
-    NUM_DATALOADER_WORKERS: 1 #1 cpu
-    TRAIN:
-      DATA_SOURCES: [disk_folder]
-      DATASET_NAMES: [sku110k_folder]
-      DATA_LIMIT: 300 # 300 train images
-    TEST:
-      DATA_SOURCES: [disk_folder]
-      DATASET_NAMES: [sku110k_folder]
-      DATA_LIMIT: 100 # 100 val images
-  DISTRIBUTED:
-    NUM_PROC_PER_NODE: 1 #1 gpu
-  CHECKPOINT:
-    DIR: "/mnt/e/MP/checkpoints/rotnet_300_100"
-    CHECKPOINT_FREQUENCY: 25
-
-stap3:
-cd vissl/
-voer het trainingscommando uit
-python tools/run_distributed_engines.py config=pretrain/rotnet/rotnet_8gpu_resnet \
-+config/pretrain/rotnet/dataset=sku110k_300_100
-
 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-

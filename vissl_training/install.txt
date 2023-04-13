@@ -1,31 +1,26 @@
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 !!Doe het volgende in een venv met python3.8!!
 STAPPENPLAN OM VISSL TE INSTALLEREN, commando's:
 1) pip install torch==1.8.0+cu101 torchvision==0.9.0+cu101 -f https://download.pytorch.org/whl/torch_stable.html
 2) pip install apex -f https://dl.fbaipublicfiles.com/vissl/packaging/apexwheels/py38_cu101_pyt180/download.html
 3) vissl
 # # clone vissl repository and checkout latest version.
-!git clone --recursive https://github.com/facebookresearch/vissl.git
-
-%cd vissl/
-
-!git checkout v0.1.6
-!git checkout -b v0.1.6
-
+git clone --recursive https://github.com/facebookresearch/vissl.git
+cd vissl/
+git checkout v0.1.6
+git checkout -b v0.1.6
 # install vissl dependencies
-!pip install --progress-bar off -r requirements.txt
-!pip install opencv-python
-
+pip install --progress-bar off -r requirements.txt
+pip install opencv-python
 # update classy vision install to commit compatible with v0.1.6
-!pip uninstall -y classy_vision
-!pip install classy-vision@https://github.com/facebookresearch/ClassyVision/tarball/4785d5ee19d3bcedd5b28c1eb51ea1f59188b54d
-
+pip uninstall -y classy_vision
+pip install classy-vision@https://github.com/facebookresearch/ClassyVision/tarball/4785d5ee19d3bcedd5b28c1eb51ea1f59188b54d
 # Update fairscale to commit compatible with v0.1.6
-!pip uninstall -y fairscale
-!pip install fairscale@https://github.com/facebookresearch/fairscale/tarball/df7db85cef7f9c30a5b821007754b96eb1f977b6
-
+pip uninstall -y fairscale
+pip install fairscale@https://github.com/facebookresearch/fairscale/tarball/df7db85cef7f9c30a5b821007754b96eb1f977b6
 # install vissl dev mode (e stands for editable)
-!pip install -e .[dev]
-
+pip install -e .[dev]
+4) Controle
 Deze dependencies zouden beschikbaar moeten zijn :
 via terminal:
 python -c "import vissl, tensorboard, apex, torch"
@@ -34,6 +29,7 @@ import vissl
 import tensorboard
 import apex
 import torch
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 trouble shooting
 
@@ -53,11 +49,12 @@ python3.8 -m venv .venv
 of met een absoluut pad naar de python3.8 binary
 !/usr/local/bin/python3.8 -m pip install virtualenv
 
+GRUB SETUP bij dual booth machines:
 grub settings in /etc/default/grub
 GRUB_HIDDEN_TIMEOUT = aantal sec, stel timeout in of comment uit voor geen timeout
 GRUB_TIMEOUT_STYLE=hidden, dit moet je uitcommenten met # als je grub de grub timeout wel wilt zien
 
-
+vissl code om de juiste apex versie te vinden:
 # Install pytorch version 1.8
 !pip install torch==1.8.0+cu101 torchvision==0.9.0+cu101 -f https://download.pytorch.org/whl/torch_stable.html
 

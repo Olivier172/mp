@@ -1,46 +1,34 @@
 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 swav: full sku110k dataset
 sku110k.yaml
--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+---------------------------
 python tools/run_distributed_engines.py config=pretrain/swav/swav_8node_resnet \
 +config/pretrain/swav/dataset=sku110k
 
 stap1: 
 voeg dataset toe aan dataset_catalog.json (naam=sku110k_folder) in /home/olivier/Documents/mp/vissl/configs/config/dataset_catalog.json
+Voeg entry toe aan deze json als volgt:
+{
+    "sku110k_folder": {
+        "train": ["/absoluut_pad.../mp/cropped_images/train", "<unused>"],
+        "val": ["/absoluut_pad.../mp/cropped_images/val", "<unused>"]
+    },
+    ....
+}
 
-stap2: 
+stap2:
+maak een folder aan voor de trainingsresultaten (checkpoint dir) bv mp/checkpoints/swav_full
+(en vermeld een pad naar deze folder in de yaml file van stap 3)
+
+stap3: 
 maak een YAML file voor enkele trainingsconfigs te overschrijven
 filenaam: sku110k.yaml in /home/olivier/Documents/mp/vissl/configs/config/pretrain/swav/dataset/sku110k.yaml
-inhoud:
-# @package _global_
-config:
-  VERBOSE: True
-  DATA:
-    NUM_DATALOADER_WORKERS: 1 #1 cpu
-    TRAIN:
-      DATA_SOURCES: [disk_folder]
-      DATASET_NAMES: [sku110k_folder]
-  HOOKS:
-    TENSORBOARD_SETUP:
-      USE_TENSORBOARD: True # whether to use tensorboard for the visualization
-      LOG_DIR: "/home/olivier/Documents/mp/checkpoints/tensorboard" # log directory for tensorboard events
-      EXPERIMENT_LOG_DIR: "sku110k_swav"
-      FLUSH_EVERY_N_MIN: 5  # flush logs every n minutes
-      LOG_PARAMS: True # whether to log the model parameters to tensorboard
-      LOG_PARAMS_GRADIENTS: True # whether to log the model parameters gradients to tensorboard 
-      LOG_PARAMS_EVERY_N_ITERS: -1 #log params every epoch
-  DISTRIBUTED:
-    NUM_NODES: 1 # 1gpu
-    NUM_PROC_PER_NODE: 1 #1 gpu
-    RUN_ID: "auto" #1 machine
-  CHECKPOINT:
-    DIR: "/home/olivier/Documents/mp/checkpoints/swav_full"
-    CHECKPOINT_FREQUENCY: 25
-    CHECKPOINT_ITER_FREQUENCY: -1 #don't checkpoint after iterations
+Een kopie van deze yaml staat ook in de vissl_training folder onder pretraining/swav/dataset/sku110k.yaml
     
-stap3:
+stap4:
+source .venv/bin/activate (in map mp)
 cd vissl/
 voer het trainingscommando uit
 python tools/run_distributed_engines.py config=pretrain/swav/swav_8node_resnet \
 +config/pretrain/swav/dataset=sku110k
-
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
