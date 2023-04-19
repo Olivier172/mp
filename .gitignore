@@ -4,6 +4,9 @@
 #ide configs
 .vscode/
 
+#python cache
+__pycache__/
+
 #datasets
 SKU110K/
 CornerShop/
