@@ -5,8 +5,11 @@ from vissl.utils.hydra_config import compose_hydra_configuration, convert_to_att
 from vissl.models import build_model
 from classy_vision.generic.util import load_checkpoint
 from vissl.utils.checkpoint import init_model_from_consolidated_weights
+from termcolor import cprint
 
-def load_model(modelName:str, verbose=False):
+def load_model(model_name:str, verbose=False):
+    if(verbose):
+        cprint("In function load_model()", "green")
     #dictionary to summarize the paths to the the training config used and the path to the weigths
     #train_config path is a relative path from the vissl folder
     #weights path is an absolute path to where the final_checkpoint.torch is stored 
@@ -24,26 +27,26 @@ def load_model(modelName:str, verbose=False):
         "moco":
         {
             "train_config": "validation/moco_full/train_config.yaml",
-            "weights": "/home/olivier/Documents/master/mp/checkpoints/sku110k/moco_full/model_final_checkpoint_phase199.torch"
+            "weights": "/home/olivier/Documents/master/mp/checkpoints/sku110k/moco_full/model_final_checkpoint_phase"
         },
         "simclr":
         {
-            "train_config": "",
-            "weights": ""
+            "train_config": "validation/simclr_full/train_config.yaml",
+            "weights": "/home/olivier/Documents/master/mp/checkpoints/sku110k/simclr_full/model_final_checkpoint_phase99.torch"
         },
         "swav":
         {
-            "train_config": "",
-            "weights": ""
+            "train_config": "validation/swav_full/train_config.yaml",
+            "weights": "/home/olivier/Documents/master/mp/checkpoints/sku110k/swav_full/model_final_checkpoint_phase"
         }    
     }
-    if(modelName not in PATHS.keys()):
-        print(f"The model you tried to load ({modelName}) is not available")
+    if(model_name not in PATHS.keys()):
+        print(f"The model you tried to load ({model_name}) is not available")
         return 0
 
     #CHOOSE the model you want to validate here
-    train_config = PATHS[modelName]["train_config"] #change the key of the PATHS dict to the desired model name
-    weights_file = PATHS[modelName]["weights"]
+    train_config = PATHS[model_name]["train_config"] #change the key of the PATHS dict to the desired model name
+    weights_file = PATHS[model_name]["weights"]
     if(verbose):
         print('Train config at (relative path from vissl/...):\n' + train_config)
         print('SSL pretrained weights at:\n' + weights_file)
@@ -72,7 +75,7 @@ def load_model(modelName:str, verbose=False):
     #build the model
     model = build_model(cfg.MODEL, cfg.OPTIMIZER)
     if(verbose):
-        print(f"Model {modelName} was succusfully build")
+        print(f"Model {model_name} was succusfully build")
     
     # Load the checkpoint weights.
     weights = load_checkpoint(checkpoint_path=cfg.MODEL.WEIGHTS_INIT.PARAMS_FILE)
@@ -87,6 +90,6 @@ def load_model(modelName:str, verbose=False):
     )
 
     if(verbose):
-        print(f"Weights for model {modelName} succesfully loaded")
+        print(f"Weights for model {model_name} succesfully loaded")
         
     return model
