@@ -763,7 +763,7 @@ MODEL:
       name: null
   WEIGHTS_INIT:
     APPEND_PREFIX: ''
-    PARAMS_FILE: /home/olivier/Documents/master/mp/checkpoints/sku110k/simclr_full/model_final_checkpoint_phase99.torch
+    PARAMS_FILE: /home/olivier/Documents/master/mp/checkpoints/sku110k/jigsaw_full/model_final_checkpoint_phase104.torch
     REMOVE_PREFIX: ''
     SKIP_LAYERS:
     - num_batches_tracked

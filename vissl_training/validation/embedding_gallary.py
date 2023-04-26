@@ -16,7 +16,7 @@ def extract_features(path:Path, model, verbose=False) -> torch.Tensor:
         verbose (bool, optional): When True, you get prints from this function. Defaults to False.
 
     Returns:
-        torch.Tensor: _description_
+        torch.Tensor: a feature vector with dimensions torch.size([2048])
     """
     image = Image.open(path)
     # Convert images to RGB. This is important
