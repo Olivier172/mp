@@ -24,9 +24,12 @@ def extract_features(path:Path, model, verbose=False) -> torch.Tensor:
     image = image.convert("RGB")
 
     # Image transformation pipeline.
+    # Must match the training transformation pipeline
     pipeline = transforms.Compose([
-      transforms.CenterCrop(224),
+      transforms.Resize(256),
+      transforms.CenterCrop(255),
       transforms.ToTensor(),
+      transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
     ])
     
     x = pipeline(image)
@@ -141,7 +144,7 @@ def main():
     print(f"using {device} device", end="\n\n")   
     
     #creating the embedding library
-    make_embedding_gallary(Path("data/" + model_name),model, verbose=True, exist_ok=False)
+    make_embedding_gallary(Path("data/" + model_name),model, verbose=True, exist_ok=True)
     read_embedding_gallary(Path("data/" + model_name))
     
 if __name__ == "__main__":
