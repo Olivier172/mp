@@ -4,6 +4,8 @@ import torchvision.transforms as transforms
 import numpy as np
 from pathlib import Path
 from termcolor import cprint
+from sklearn.metrics import average_precision_score
+from sklearn.metrics import precision_recall_curve 
 
 def read_embedding_gallary(dir:Path):
     cprint("In function calc_sim_matrix()", "green")
@@ -21,7 +23,7 @@ def read_embedding_gallary(dir:Path):
         
     return fts_stack, fts_stack_norm, labels
 
-def calc_ip_cosine_sim(fts_stack:torch.Tensor):
+def calc_ip_cosine_sim(fts_stack:torch.Tensor, dir:Path=None):
     """Calulates a simularity matrix based on the inner product / cosine simularity a metric.
     Args:
         fts_stack (torch.Tensor): fts_stack: stack of embeddings -> inner product
@@ -40,7 +42,7 @@ def calc_ip_cosine_sim(fts_stack:torch.Tensor):
     print(f"std: {torch.std(sim_matrix)}")
     return sim_matrix
 
-def calc_eucl_dist_sim(fts_stack:torch.Tensor):
+def calc_eucl_dist_sim(fts_stack:torch.Tensor, dir:Path=None):
     """Calulates a simularity matrix based on the euclidian distance as a metric.
 
     Args:
@@ -67,6 +69,34 @@ def calc_eucl_dist_sim(fts_stack:torch.Tensor):
     print(f"std: {torch.std(sim_matrix)}")
     return sim_matrix
     
+def calc_avg_precision(sim_matrix:torch.Tensor, labels, verbose=False):
+    cprint("In function calc_avg_precision", "green")
+    sim_matrix_np = sim_matrix.numpy()
+    labels_np = np.array(labels)
+    if(verbose):
+        print(f"sim_matrix_np shape {sim_matrix_np.shape}")
+        print(f"labels shape {labels_np.shape}")
+        print(f"len sim_matrix_np {len(sim_matrix_np)}")
+    
+    
+    #return indicis of all unique class labels
+    #class_idxs = np.unique(labels_np, return_index=True)
+    #calculate mAP, mean over all AP for each class
+    #AP is average precision of a class with different threshods (poisitions in the PR curve)
+    mAP = 0
+    for i in range(len(sim_matrix_np)):
+        #y_true contains the ground truth for classification (True if label of query is the same)
+        #gallary labels == query label (query is on the diagonal so the i th element of the i th row)
+        y_true = labels_np == labels_np[i] 
+        y_score = sim_matrix_np[i] 
+        #compute AP
+        AP = average_precision_score(y_true=y_true, y_score=y_score)
+        mAP += AP 
+        
+    mAP /= len(sim_matrix_np)
+    if(verbose):
+        cprint(f"mAP of this model is: {mAP}","magenta")
+    
         
 def calc_sim_matrix(model_name:str):
     """Calulates the simularity matrix of the entire embedding gallary
@@ -79,14 +109,26 @@ def calc_sim_matrix(model_name:str):
     #transform to np arrays
     #fts_stack_np, fts_stack_norm_np = fts_stack.numpy(), fts_stack_norm.numpy()
     
-    cprint("inner product", "cyan")
-    calc_eucl_dist_sim(fts_stack=fts_stack)
+    
+    # cprint("inner product", "cyan")
+    # sim_mat = calc_eucl_dist_sim(fts_stack=fts_stack)
+    
     cprint("cosine simularity", "cyan")
-    calc_eucl_dist_sim(fts_stack=fts_stack_norm)
-    cprint("euclidian distance", "cyan")
-    calc_eucl_dist_sim(fts_stack=fts_stack)
-    cprint("euclidian distance with normalized features", "cyan")
-    calc_eucl_dist_sim(fts_stack=fts_stack_norm)
+    p = dir / "sim_mat.torch"
+    if( p.exists()):
+        cprint("sim_mat already exists","green")
+        sim_mat = torch.load(p)
+    else:
+        cprint("sim_mat doesn't exist yet, calulating...", "yellow")
+        sim_mat = calc_ip_cosine_sim(fts_stack=fts_stack_norm)
+        torch.save(sim_mat, p)
+        
+    # cprint("euclidian distance", "cyan")
+    # sim_mat = calc_eucl_dist_sim(fts_stack=fts_stack)
+    # cprint("euclidian distance with normalized features", "cyan")
+    # sim_mat = calc_eucl_dist_sim(fts_stack=fts_stack_norm)
+    
+    calc_avg_precision(sim_matrix=sim_mat, labels=labels, verbose=True)
     
     
 def main():
