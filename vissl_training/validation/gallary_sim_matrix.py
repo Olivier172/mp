@@ -87,7 +87,7 @@ def calc_avg_precision(sim_matrix:torch.Tensor, labels, verbose=False):
     for i in range(len(sim_matrix_np)):
         #y_true contains the ground truth for classification (True if label of query is the same)
         #gallary labels == query label (query is on the diagonal so the i th element of the i th row)
-        y_true = labels_np == labels_np[i] 
+        y_true = labels_np == labels_np[i] #find all matches for the label of the current query (boolean np array)
         y_score = sim_matrix_np[i] 
         #compute AP
         AP = average_precision_score(y_true=y_true, y_score=y_score)
@@ -114,7 +114,7 @@ def calc_sim_matrix(model_name:str):
     # sim_mat = calc_eucl_dist_sim(fts_stack=fts_stack)
     
     cprint("cosine simularity", "cyan")
-    p = dir / "sim_mat.torch"
+    p = dir / "sim_mat_cosim.torch"
     if( p.exists()):
         cprint("sim_mat already exists","green")
         sim_mat = torch.load(p)

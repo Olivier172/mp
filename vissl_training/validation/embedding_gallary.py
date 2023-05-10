@@ -1,4 +1,5 @@
 import torch
+import torchvision
 import os
 import torchvision.transforms as transforms
 from load_vissl_model import load_model
@@ -8,12 +9,49 @@ from termcolor import cprint #colored prints
 from tqdm import tqdm #loading bars with heavy loops
 
 def extract_features(img_path:Path, model, verbose=False, device="cpu") -> torch.Tensor:
+    """calculates the inference of an image (from img_path) using the model given. Returns the feature vector.
+    The image goes trough a resize, centercrop, totensor and normalize transformation. Subsequently inference is calculated
+    and the feature vector is returned.
+
+    Args:
+        path (Path): Path to the input image.
+        model (vissl model): Vissl model to use for inference.
+        verbose (bool, optional): When True, you get prints from this function. Defaults to False.
+        device (string or torch.device): When gpu is available, device=torch.device("cuda") is used for inference (not implemented yet)
+
+    Returns:
+        torch.Tensor: a feature vector with dimensions torch.size([2048])
+    """
+    image = Image.open(img_path)
+    # Convert images to RGB. This is important
+    # as the model was trained on RGB images.
+    image = image.convert("RGB")
+
+    # Image transformation pipeline.
+    # Must match the training transformation pipeline
+    pipeline = transforms.Compose([
+      transforms.Resize(256),
+      transforms.CenterCrop(256),
+      transforms.ToTensor(),
+      transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+    ])
+    
+    x = pipeline(image)
+    #unsqueeze adds a dim for batch size (with 1 element, the entire input tensor of the image)
+    with torch.no_grad():
+        features = model(x.unsqueeze(0))[0]
+    features = features.squeeze() #squeeze out dimensions with 1 element
+    if(verbose):
+        print(f"Features extracted have the shape: { features.shape }")
+    return features
+
+def extract_features_tencrop(img_path:Path, model, verbose=False, device="cpu") -> torch.Tensor:
     """calculates the inference of an image (stored at img_path) using the model given. 
     Test time augmentation is used, 10 crops are taken and the average embedding is returned.
     Returns the feature vector torch.size([2048]).
 
     Args:
-        img (Path): The image path for the image to feed to the neural net
+        img_path (Path): The image path for the image to feed to the neural net
         model (vissl model): Vissl model to use for inference.
         verbose (bool, optional): When True, you get prints from this function. Defaults to False.
         device (string or torch.device): When gpu is available, device=torch.device("cuda") is used for inference
@@ -93,11 +131,11 @@ def make_embedding_gallary(dir:Path, model, verbose=False, exist_ok=False, devic
     img_paths = list(CornerShop.glob("*/*.jpg")) #**/*.jpg to look into all subdirs for jpgs and iterate over them
     #img_paths = img_paths[0:100] # limit amount for now
     #extract the corresponding labels (folder names)
-    labels = [p.parent.stem for p in img_paths ] #stem attr, conatins foldername 
+    labels = [p.parent.stem for p in img_paths ] #stem attr, conatains foldername 
     #path.stem=filename without extension
     #path.name=filename with extension
     print("Extracting features:")
-    fts_stack = torch.stack([extract_features(p,model,device=device) for p in tqdm(img_paths)])
+    fts_stack = torch.stack([extract_features(p,model,device=device, verbose=False) for p in tqdm(img_paths)])
           
     #NORMALIZE features in feature stack:
     fts_stack_norm = fts_stack / fts_stack.norm(dim=1,keepdim=True) 
@@ -154,14 +192,35 @@ def read_embedding_gallary(dir:Path):
 def main():
     #Specify the model below! Possible options are:
     #"rotnet", "jigsaw", "moco", "simclr" and "swav"
-    options = ["rotnet", "jigsaw", "moco", "simclr", "swav"]
+    options = ["rotnet", "jigsaw", "moco", "simclr", "swav", "supervised"]
     print(f"Choose a model to calculate embeddings. Your options are: {options}")
     model_name = input("Your Choice:")
     while model_name not in options:
         print(f"Invalid option. Your options are: {options}")
         model_name = input("Your Choice:")
     #Loading the model
-    model = load_model(model_name,verbose=True)
+    if(model_name == "supervised"):
+        #resnet50 with imgnet pretrained weights (supervised model)
+        #https://pytorch.org/vision/0.9/models.html?highlight=resnet50#torchvision.models.resnet50
+        resnet50_model = torchvision.models.resnet50(pretrained=True)
+        #copy model without fc layer at the end,
+        #output should be ftr vector with size 2048 
+        model = torch.nn.Sequential(
+            resnet50_model.conv1,
+            resnet50_model.bn1,
+            resnet50_model.relu,
+            resnet50_model.maxpool,
+            resnet50_model.layer1,
+            resnet50_model.layer2,
+            resnet50_model.layer3,
+            resnet50_model.layer4,
+            resnet50_model.avgpool
+        )
+    else:
+        #vissl model
+        model = load_model(model_name,verbose=True)
+    #Evaluation mode
+    model = model.eval()
     #Checking for GPU device
     device = "cpu"
     # if(torch.cuda.is_available()):
