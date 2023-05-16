@@ -9,3 +9,5 @@ https://vissl.readthedocs.io/en/v0.1.6/
 *************pytorch*************
 trainen op cuda device :
 https://towardsdatascience.com/pytorch-switching-to-the-gpu-a7c0b21e8a99
+hooks
+https://web.stanford.edu/~nanbhas/blog/forward-hooks-pytorch/ 

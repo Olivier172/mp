@@ -24,10 +24,15 @@ def load_model(model_name:str, verbose=False):
             "train_config": "validation/jigsaw_full/train_config.yaml",
             "weights": "/home/olivier/Documents/master/mp/checkpoints/sku110k/jigsaw_full/model_final_checkpoint_phase104.torch"
         },
-        "moco":
+        "moco32":
         {
-            "train_config": "validation/moco_full/train_config.yaml",
-            "weights": "/home/olivier/Documents/master/mp/checkpoints/sku110k/moco_full/model_final_checkpoint_phase"
+            "train_config": "validation/moco_full_32/train_config.yaml",
+            "weights": "/home/olivier/Documents/master/mp/checkpoints/sku110k/moco_full_32/model_final_checkpoint_phase99.torch"
+        },
+        "moco64":
+        {
+            "train_config": "validation/moco_full_64/train_config.yaml",
+            "weights": "/home/olivier/Documents/master/mp/checkpoints/sku110k/moco_full_64/model_final_checkpoint_phase99.torch"
         },
         "simclr":
         {

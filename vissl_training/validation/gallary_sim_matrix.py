@@ -2,13 +2,14 @@ import torch
 import torchvision
 import torchvision.transforms as transforms
 import numpy as np
+from datetime import datetime
 from pathlib import Path
 from termcolor import cprint
 from sklearn.metrics import average_precision_score
 from sklearn.metrics import precision_recall_curve 
 
 def read_embedding_gallary(dir:Path):
-    cprint("In function calc_sim_matrix()", "green")
+    cprint("In function read_embedding_gallary()", "green")
     try:
         fts_stack = torch.load(dir / "embedding_gallary.torch")
         print(f"fts_stack has shape {fts_stack.shape}")
@@ -24,10 +25,11 @@ def read_embedding_gallary(dir:Path):
     return fts_stack, fts_stack_norm, labels
 
 def calc_ip_cosine_sim(fts_stack:torch.Tensor, dir:Path=None):
-    """Calulates a simularity matrix based on the inner product / cosine simularity a metric.
+    """
+    Calulates a simularity matrix based on the inner product / cosine simularity a metric.
     Args:
         fts_stack (torch.Tensor): fts_stack: stack of embeddings -> inner product
-        fts_stack_norm: stack of normalized embeddings -> cosim
+        fts_stack_norm (torch.Tensor): stack of normalized embeddings -> cosim
 
     Returns:
         torch.Tensor: The simularity matrix
@@ -43,7 +45,8 @@ def calc_ip_cosine_sim(fts_stack:torch.Tensor, dir:Path=None):
     return sim_matrix
 
 def calc_eucl_dist_sim(fts_stack:torch.Tensor, dir:Path=None):
-    """Calulates a simularity matrix based on the euclidian distance as a metric.
+    """
+    Calulates a simularity matrix based on the euclidian distance as a metric.
 
     Args:
         fts_stack (torch.Tensor): A torch stack with all the embeddings (normalized or not)
@@ -69,8 +72,19 @@ def calc_eucl_dist_sim(fts_stack:torch.Tensor, dir:Path=None):
     print(f"std: {torch.std(sim_matrix)}")
     return sim_matrix
     
-def calc_avg_precision(sim_matrix:torch.Tensor, labels, verbose=False):
-    cprint("In function calc_avg_precision", "green")
+def calc_mAP(sim_matrix:torch.Tensor, labels, verbose=False):
+    """
+    Function to calculate the mean Average Precision of a simularity matrix
+
+    Args:
+        sim_matrix (torch.Tensor): The simularity matrix to calculate the mAP of.
+        labels (list): list of labels containing the GT for every row in the simularity matrix
+        verbose (bool, optional): Boolean switch to enable prints. Defaults to False.
+
+    Returns:
+        float: The mAP score.
+    """
+    cprint("In function calc_mAP()", "green")
     sim_matrix_np = sim_matrix.numpy()
     labels_np = np.array(labels)
     if(verbose):
@@ -80,68 +94,184 @@ def calc_avg_precision(sim_matrix:torch.Tensor, labels, verbose=False):
     
     
     #return indicis of all unique class labels
-    #class_idxs = np.unique(labels_np, return_index=True)
-    #calculate mAP, mean over all AP for each class
-    #AP is average precision of a class with different threshods (poisitions in the PR curve)
-    mAP = 0
+    classes = list(np.unique(labels_np))
+    if(verbose):
+        print(f"amount of classes {len(classes)}")
+    #dictionary to store average precisions for every query
+    AP_queries = {}
+    for cls in classes:
+        #init every class key with an empty list
+        AP_queries[cls]=[]
+
+    #calculate AP for every query in the sim_matrix
     for i in range(len(sim_matrix_np)):
         #y_true contains the ground truth for classification (True if label of query is the same)
         #gallary labels == query label (query is on the diagonal so the i th element of the i th row)
-        y_true = labels_np == labels_np[i] #find all matches for the label of the current query (boolean np array)
+        query_label = labels_np[i]
+        y_true = labels_np == query_label #find all matches for the label of the current query (boolean np array)
         y_score = sim_matrix_np[i] 
         #compute AP
-        AP = average_precision_score(y_true=y_true, y_score=y_score)
-        mAP += AP 
+        AP_query = average_precision_score(y_true=y_true, y_score=y_score)
+        AP_queries[query_label].append(AP_query) #save average precision for this label with the results of it's class
+    
+    #AP is average precision of a class with different threshods (poisitions in the PR curve)    
+    #calculate the AP for every class:
+    AP = {}
+    for k in AP_queries.keys():
+        #compute average for this class and store in AP dict:
+        AP[k]= sum(AP_queries[k]) / len(AP_queries[k])
         
-    mAP /= len(sim_matrix_np)
+    #calculate mAP, mean over all AP for each class    
+    mAP = sum(AP.values()) / len(AP.values())
+    
     if(verbose):
         cprint(f"mAP of this model is: {mAP}","magenta")
-    
         
-def calc_sim_matrix(model_name:str):
-    """Calulates the simularity matrix of the entire embedding gallary
+    return mAP
+    
+def log_mAP_scores(dir: Path, model_name:str, mAPs:dict):
     """
+    Function to log mAP scores to a file. Results are appended to dir/mAP_scores.txt
+    
+    Args:
+        dir (Path): directory to place logfile.
+        model_name (str): name of the model used.
+        mAPs: dictionary with mAP scores.
+    """  
+    p = dir / "mAP_scores.txt"
+    cprint(f"Logging mAP scores to a file on path : {p}", "green")
+    file = open(p, "a")
+    lines = [] 
+    # Get the current date and time
+    current_datetime = datetime.now()
+    # Extract the date and time components
+    current_date = current_datetime.date()
+    current_time = current_datetime.time()
+    # Convert to string format
+    date_string = current_date.strftime('%Y-%m-%d')
+    time_string = current_time.strftime('%H:%M:%S')
+    lines.append("-"*90 + "\n")
+    lines.append(f"mAP Logging results on {date_string} @ {time_string}.\n")
+    lines.append(f"Embedding library of model {model_name} was used to calculated these scores.\n")
+    lines.append(f"inner product (ip): mAP={mAPs['ip']} \n")
+    lines.append(f"cosine simularity (cosim): mAP={mAPs['cosim']} \n")
+    lines.append(f"euclidian distance (eucl_dist): mAP={ mAPs['eucl_dist'] } \n")
+    lines.append(f"euclidian distance with normalized features (eucl_dist_norm): mAP={mAPs['eucl_dist_norm']}\n")
+    lines.append("-"*90 + "\n\n")
+    file.writelines(lines)
+    file.close()
+        
+def calc_sim_matrix(model_name:str, verbose=False, exist_ok=False, log_results=False):
+    """
+    Calulates the simularity matrix of the entire embedding gallary.
+    This is done using 4 different metrics of simularity. 
+    A mean Average Precision score is also calculated using the simularity matrix.
+    
+    Args:
+        model_name (str): The name of the model to calculate the simularity matrix for based on the 
+                          embedding gallary for this model.
+        exist_ok (Bool): Boolean switch to recalculate and overwrite sim_matrix if true.
+        verbose (Bool): Boolean switch to allow prints of this function.
+        log_results (Bool): Boolean switch to log mAP scores to a logfile.
+    """
+    cprint("In function calc_sim_matrix()", "green")
     fts_stack:torch.Tensor
     fts_stack_norm:torch.Tensor
     #read input gallary for this model
     dir = Path("data/" + model_name)
     fts_stack, fts_stack_norm, labels = read_embedding_gallary(dir)
-    #transform to np arrays
-    #fts_stack_np, fts_stack_norm_np = fts_stack.numpy(), fts_stack_norm.numpy()
+    #dictionary to save mAP scores for each metric
+    mAPs = {
+        "ip": 0.0, "cosim": 0.0, "eucl_dist": 0.0, "eucl_dist_norm": 0.0 
+    }
     
-    
-    # cprint("inner product", "cyan")
-    # sim_mat = calc_eucl_dist_sim(fts_stack=fts_stack)
-    
-    cprint("cosine simularity", "cyan")
-    p = dir / "sim_mat_cosim.torch"
-    if( p.exists()):
+    ### INNER PRODUCT AS A SIMULARITY METRIC ###
+    cprint("\ninner product", "cyan")
+    p = dir / "sim_mat_ip.torch"
+    if( p.exists() and not(exist_ok)):
         cprint("sim_mat already exists","green")
         sim_mat = torch.load(p)
     else:
-        cprint("sim_mat doesn't exist yet, calulating...", "yellow")
+        cprint("sim_mat doesn't exist yet or exist_ok=true, calulating...", "yellow")
+        sim_mat = calc_ip_cosine_sim(fts_stack=fts_stack)
+        torch.save(sim_mat, p)
+    mAPs["ip"] = calc_mAP(sim_matrix=sim_mat, labels=labels, verbose=verbose) 
+    
+    ### COSINE SIMULARITY AS A SIMULARITY METRIC ###
+    cprint("\ncosine simularity", "cyan")
+    p = dir / "sim_mat_cosim.torch"
+    if( p.exists() and not(exist_ok)):
+        cprint("sim_mat already exists","green")
+        sim_mat = torch.load(p)
+    else:
+        cprint("sim_mat doesn't exist yet or exist_ok=true, calulating...", "yellow")
         sim_mat = calc_ip_cosine_sim(fts_stack=fts_stack_norm)
         torch.save(sim_mat, p)
+    mAPs["cosim"] = calc_mAP(sim_matrix=sim_mat, labels=labels, verbose=verbose) 
+       
+    ### EUCIDIAN DISTANCE AS A SIMULARITY METRIC ###
+    cprint("\neuclidian distance", "cyan")
+    p = dir / "sim_mat_eucl_dist.torch"
+    if( p.exists() and not(exist_ok)):
+        cprint("sim_mat already exists","green")
+        sim_mat = torch.load(p)
+    else:
+        cprint("sim_mat doesn't exist yet or exist_ok=true, calulating...", "yellow")
+        sim_mat = calc_eucl_dist_sim(fts_stack=fts_stack)
+        torch.save(sim_mat, p)
+    #reverse scores in simularity matrix for mAP calculation (low euclidian distance = high score and vice versa)
+    sim_mat = sim_mat*-1
+    mAPs["eucl_dist"] = calc_mAP(sim_matrix=sim_mat, labels=labels, verbose=verbose) 
+    
+    ### EUCLIDIAN DISTANCE (NORMALIZED FEATURES) AS A SIMULARITY METRIC ###
+    cprint("\neuclidian distance with normalized features", "cyan")
+    p = dir / "sim_mat_eucl_dist_norm.torch"
+    if( p.exists() and not(exist_ok)):
+        cprint("sim_mat already exists","green")
+        sim_mat = torch.load(p)
+    else:
+        cprint("sim_mat doesn't exist yet or exist_ok=true, calulating...", "yellow")
+        sim_mat = calc_eucl_dist_sim(fts_stack=fts_stack_norm)
+        torch.save(sim_mat, p)
+    #reverse scores in simularity matrix for mAP calculation (low euclidian distance = high score and vice versa)
+    sim_mat = sim_mat*-1
+    mAPs["eucl_dist_norm"] = calc_mAP(sim_matrix=sim_mat, labels=labels, verbose=verbose) 
+    
+    if(verbose):
+        print(mAPs)
         
-    # cprint("euclidian distance", "cyan")
-    # sim_mat = calc_eucl_dist_sim(fts_stack=fts_stack)
-    # cprint("euclidian distance with normalized features", "cyan")
-    # sim_mat = calc_eucl_dist_sim(fts_stack=fts_stack_norm)
-    
-    calc_avg_precision(sim_matrix=sim_mat, labels=labels, verbose=True)
-    
+    if(log_results):
+        log_mAP_scores(dir, model_name, mAPs)
+        
+def calc_sim_matrices(model_names:list, verbose=False, exist_ok=False, log_results=False):
+    """
+    Calulates the simularity matrices of the entire embedding gallary of multiple models (listed in model_names).
+
+    Args:
+        model_names (list): The names of the models to calculate the simularity matrices for.
+        exist_ok (Bool): Boolean switch to recalculate and overwrite sim_matrix if true.
+        verbose (Bool): Boolean switch to allow prints of this function.
+        log_results (Bool): Boolean switch to log mAP scores to a logfile.
+    """ 
+    for model_name in model_names:
+        if(verbose):
+            cprint(f" \nCalculating simularity matrix and mAP scores for model :{model_name}", "green")
+        calc_sim_matrix(model_name, verbose=True, exist_ok=False, log_results=True)
     
 def main():
-    #Specify the model below! Possible options are:
-    #"rotnet", "jigsaw", "moco", "simclr" and "swav"
-    options = ["rotnet", "jigsaw", "moco", "simclr", "swav"]
+    options = ["rotnet", "jigsaw", "moco32", "moco64", "simclr", "swav", "imgnet_pretrained", "all"]
     print(f"Choose a model to calculate simularity with the embeddinig gallary. Your options are: {options}")
     model_name = input("Your Choice:")
     while model_name not in options:
         print(f"Invalid option. Your options are: {options}")
         model_name = input("Your Choice:") 
     
-    calc_sim_matrix(model_name)
-    
+    if(model_name == "all"):
+        #all available models will be used:
+        model_names = ["rotnet", "jigsaw", "moco32", "simclr", "imgnet_pretrained"]
+        calc_sim_matrices(model_names, verbose=True, exist_ok=True, log_results=True)
+    else:
+        calc_sim_matrix(model_name, verbose=True, exist_ok=False, log_results=True)
+        
 if __name__ == "__main__":
     main()

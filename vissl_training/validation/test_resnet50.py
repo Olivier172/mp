@@ -4,7 +4,8 @@ import torch
 #lets get only the feature extraction
 resnet50_model = torchvision.models.resnet50(pretrained=True)
 print(resnet50_model._forward_impl)
-resnet50_model.register_forward_hook()
+#handle = resnet50_model.register_forward_hook()
+
 #copy model without fc layer at the end,
 #output should be ftr vector with size 2048 
 model = torch.nn.Sequential(
@@ -19,4 +20,4 @@ model = torch.nn.Sequential(
     resnet50_model.avgpool
 )
 
-print(model)
+#print(model)

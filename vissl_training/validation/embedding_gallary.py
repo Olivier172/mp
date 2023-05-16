@@ -7,9 +7,11 @@ from PIL import Image
 from pathlib import Path
 from termcolor import cprint #colored prints
 from tqdm import tqdm #loading bars with heavy loops
+from collections import OrderedDict
 
 def extract_features(img_path:Path, model, verbose=False, device="cpu") -> torch.Tensor:
-    """calculates the inference of an image (from img_path) using the model given. Returns the feature vector.
+    """
+    calculates the inference of an image (from img_path) using the model given. Returns the feature vector.
     The image goes trough a resize, centercrop, totensor and normalize transformation. Subsequently inference is calculated
     and the feature vector is returned.
 
@@ -39,14 +41,15 @@ def extract_features(img_path:Path, model, verbose=False, device="cpu") -> torch
     x = pipeline(image)
     #unsqueeze adds a dim for batch size (with 1 element, the entire input tensor of the image)
     with torch.no_grad():
-        features = model(x.unsqueeze(0))[0]
-    features = features.squeeze() #squeeze out dimensions with 1 element
+        features = model(x.unsqueeze(0))[0] #the features itself are in the first element of a list
+    features = features.squeeze() #squeeze out dimensions with 1 element, because they serve no purpose anymore
     if(verbose):
         print(f"Features extracted have the shape: { features.shape }")
     return features
 
 def extract_features_tencrop(img_path:Path, model, verbose=False, device="cpu") -> torch.Tensor:
-    """calculates the inference of an image (stored at img_path) using the model given. 
+    """
+    calculates the inference of an image (stored at img_path) using the model given. 
     Test time augmentation is used, 10 crops are taken and the average embedding is returned.
     Returns the feature vector torch.size([2048]).
 
@@ -101,8 +104,9 @@ def extract_features_tencrop(img_path:Path, model, verbose=False, device="cpu") 
     return features_avg
 
 
-def make_embedding_gallary(dir:Path, model, verbose=False, exist_ok=False, device="cpu"):
-    """Generates an embedding gallary by calculating the features from all images of the CornerShop dataset with 
+def make_embedding_gallary(dir:Path, model, verbose=False, exist_ok=False, device="cpu", feature_hook_dict=None):
+    """
+    Generates an embedding gallary by calculating the features from all images of the CornerShop dataset with 
     the model provided.
 
     Args:
@@ -111,6 +115,8 @@ def make_embedding_gallary(dir:Path, model, verbose=False, exist_ok=False, devic
         verbose (bool, optional): When True, you get prints from this function. Defaults to False.
         exist_ok (bool, optional): determines wether to overwrite an existing gallary or not
         device (string or torch device): cpu of gpu for inference
+        feature_hook_dict (OrderedDict or None): a dictionary that contains the activations of intermediary layers of the model. 
+                                                 This is used to get the avg_pool activations from the img_net pretrained model
     """
     if(verbose):
         cprint("In function make_embedding_gallary()","green")
@@ -129,13 +135,27 @@ def make_embedding_gallary(dir:Path, model, verbose=False, exist_ok=False, devic
     CornerShop = Path("/home/olivier/Documents/master/mp/CornerShop/CornerShop/crops")
     #create an iterator over all jpg files in cornershop map and put elements in a list
     img_paths = list(CornerShop.glob("*/*.jpg")) #**/*.jpg to look into all subdirs for jpgs and iterate over them
-    #img_paths = img_paths[0:100] # limit amount for now
     #extract the corresponding labels (folder names)
     labels = [p.parent.stem for p in img_paths ] #stem attr, conatains foldername 
     #path.stem=filename without extension
     #path.name=filename with extension
+    
     print("Extracting features:")
-    fts_stack = torch.stack([extract_features(p,model,device=device, verbose=False) for p in tqdm(img_paths)])
+    if(feature_hook_dict != None):
+        #Extract features from the img_net pretrained model with hooks on the avg pool features
+        avg_pool_features_list = []
+        for p in tqdm(img_paths):
+            #calculate forward pass
+            _ = extract_features(p, model, device=device, verbose=False)
+            #read activations in avgpool layer from hook
+            avg_pool_features = feature_hook_dict["avgpool"].squeeze()
+            #print(f"avgpool activations have shape {avg_pool_features.shape} and look like {avg_pool_features[0:2]}")
+            avg_pool_features_list.append(avg_pool_features)
+        fts_stack = torch.stack(avg_pool_features_list)
+        
+    else:
+        #Extract features from a vissl model
+        fts_stack = torch.stack([extract_features(p,model,device=device, verbose=False) for p in tqdm(img_paths)])
           
     #NORMALIZE features in feature stack:
     fts_stack_norm = fts_stack / fts_stack.norm(dim=1,keepdim=True) 
@@ -188,35 +208,46 @@ def read_embedding_gallary(dir:Path):
             print(f"4 examples from the label list are: {labels[0:4]}", end="\n\n")
     except Exception:
         print(f"Unable to read embedding gallary, check paths (dir={dir})")
+  
+def add_feature_hooks(model: torch.nn.Module):
+    """
+    Return a dictionary that stores each layer's most recent output,
+    using the layer's name as key.
+    
+    Args:
+        model (nn.Module): The model to add the hooks to.
+    """
+    features = OrderedDict()
+
+    def build_feature_hook(child_name):
+        features.clear()
+        def feature_hook(module, input, output):
+            features[child_name] = output.detach().cpu()
+        return feature_hook
+
+    for name, module in model.named_children():
+        module.register_forward_hook(build_feature_hook(name))
+
+    return features
     
 def main():
-    #Specify the model below! Possible options are:
-    #"rotnet", "jigsaw", "moco", "simclr" and "swav"
-    options = ["rotnet", "jigsaw", "moco", "simclr", "swav", "supervised"]
+    options = ["rotnet", "jigsaw", "moco32", "moco64", "simclr", "swav", "imgnet_pretrained"]
     print(f"Choose a model to calculate embeddings. Your options are: {options}")
     model_name = input("Your Choice:")
     while model_name not in options:
         print(f"Invalid option. Your options are: {options}")
         model_name = input("Your Choice:")
     #Loading the model
-    if(model_name == "supervised"):
+    if(model_name == "imgnet_pretrained"):
         #resnet50 with imgnet pretrained weights (supervised model)
         #https://pytorch.org/vision/0.9/models.html?highlight=resnet50#torchvision.models.resnet50
-        resnet50_model = torchvision.models.resnet50(pretrained=True)
-        #copy model without fc layer at the end,
-        #output should be ftr vector with size 2048 
-        model = torch.nn.Sequential(
-            resnet50_model.conv1,
-            resnet50_model.bn1,
-            resnet50_model.relu,
-            resnet50_model.maxpool,
-            resnet50_model.layer1,
-            resnet50_model.layer2,
-            resnet50_model.layer3,
-            resnet50_model.layer4,
-            resnet50_model.avgpool
-        )
+        model = torchvision.models.resnet50(pretrained=True)
+        #place a hook on the last layer before classification (average pool)
+        #output should be ftr vector with size 2048 (activations from the avgpool layer)
+        feature_hook_dict = add_feature_hooks(model)
+        
     else:
+        feature_hook_dict=None #not needed when using vissl models
         #vissl model
         model = load_model(model_name,verbose=True)
     #Evaluation mode
@@ -229,7 +260,7 @@ def main():
     print(f"using {device} device", end="\n\n")   
     
     #creating the embedding library
-    make_embedding_gallary(Path("data/" + model_name),model, verbose=True, exist_ok=True, device=device)
+    make_embedding_gallary(Path("data/" + model_name),model, verbose=True, exist_ok=True, device=device, feature_hook_dict=feature_hook_dict)
     read_embedding_gallary(Path("data/" + model_name))
     
 if __name__ == "__main__":
