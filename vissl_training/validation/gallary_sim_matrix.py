@@ -6,7 +6,6 @@ from datetime import datetime
 from pathlib import Path
 from termcolor import cprint
 from sklearn.metrics import average_precision_score
-from sklearn.metrics import precision_recall_curve 
 
 def read_embedding_gallary(dir:Path):
     cprint("In function read_embedding_gallary()", "green")
@@ -28,8 +27,9 @@ def calc_ip_cosine_sim(fts_stack:torch.Tensor, dir:Path=None):
     """
     Calulates a simularity matrix based on the inner product / cosine simularity a metric.
     Args:
-        fts_stack (torch.Tensor): fts_stack: stack of embeddings -> inner product
-        fts_stack_norm (torch.Tensor): stack of normalized embeddings -> cosim
+        fts_stack (torch.Tensor):
+            -fts_stack: stack of embeddings -> inner product
+            -fts_stack_norm: stack of normalized embeddings -> cosim
 
     Returns:
         torch.Tensor: The simularity matrix
@@ -161,10 +161,10 @@ def log_mAP_scores(dir: Path, model_name:str, mAPs:dict):
     file.writelines(lines)
     file.close()
         
-def calc_sim_matrix(model_name:str, verbose=False, exist_ok=False, log_results=False):
+def calc_sim_matrices(model_name:str, verbose=False, exist_ok=False, log_results=False):
     """
-    Calulates the simularity matrix of the entire embedding gallary.
-    This is done using 4 different metrics of simularity. 
+    Calulates the simularity matrices of the entire embedding gallary.
+    This is done using 4 different metrics of simularity. (Generating 4 simularity matrices) 
     A mean Average Precision score is also calculated using the simularity matrix.
     
     Args:
@@ -241,37 +241,36 @@ def calc_sim_matrix(model_name:str, verbose=False, exist_ok=False, log_results=F
         print(mAPs)
         
     if(log_results):
-        log_mAP_scores(dir, model_name, mAPs)
-        
-def calc_sim_matrices(model_names:list, verbose=False, exist_ok=False, log_results=False):
-    """
-    Calulates the simularity matrices of the entire embedding gallary of multiple models (listed in model_names).
-
-    Args:
-        model_names (list): The names of the models to calculate the simularity matrices for.
-        exist_ok (Bool): Boolean switch to recalculate and overwrite sim_matrix if true.
-        verbose (Bool): Boolean switch to allow prints of this function.
-        log_results (Bool): Boolean switch to log mAP scores to a logfile.
-    """ 
-    for model_name in model_names:
-        if(verbose):
-            cprint(f" \nCalculating simularity matrix and mAP scores for model :{model_name}", "green")
-        calc_sim_matrix(model_name, verbose=True, exist_ok=False, log_results=True)
+        log_mAP_scores(dir, model_name, mAPs)      
     
 def main():
-    options = ["rotnet", "jigsaw", "moco32", "moco64", "simclr", "swav", "imgnet_pretrained", "all"]
-    print(f"Choose a model to calculate simularity with the embeddinig gallary. Your options are: {options}")
+    options = ["rotnet", "jigsaw", "moco32", "moco64", "simclr", "swav", "imgnet_pretrained", "all",
+               "rotnet_phase0", "rotnet_phase25",  "rotnet_phase50", "rotnet_phase75","rotnet_phase100",
+               "jigsaw_phase0", "jigsaw_phase25",  "jigsaw_phase50", "jigsaw_phase75","jigsaw_phase100",
+               "moco32_phase0", "moco32_phase25",  "moco32_phase50", "moco32_phase75",
+               "simclr_phase0", "simclr_phase25",  "simclr_phase50", "simclr_phase75"]
+    print(f"Choose a model to calculate simularity matrices from with it's embedding gallary. Your options are: {options}")
     model_name = input("Your Choice:")
     while model_name not in options:
         print(f"Invalid option. Your options are: {options}")
         model_name = input("Your Choice:") 
     
     if(model_name == "all"):
-        #all available models will be used:
-        model_names = ["rotnet", "jigsaw", "moco32", "simclr", "imgnet_pretrained"]
-        calc_sim_matrices(model_names, verbose=True, exist_ok=True, log_results=True)
+        #Calculate simularity matrix for all models
+        choice = input("At every checkpoint for all models? (y/N): ")
+        if( choice != "y"):
+            targets = ["rotnet", "jigsaw", "moco32", "simclr"]
+        else:
+            targets = ["rotnet", "rotnet_phase0", "rotnet_phase25",  "rotnet_phase50", "rotnet_phase75","rotnet_phase100", 
+                       "jigsaw", "jigsaw_phase0", "jigsaw_phase25",  "jigsaw_phase50", "jigsaw_phase75","jigsaw_phase100",
+                       "moco32", "moco32_phase0", "moco32_phase25",  "moco32_phase50", "moco32_phase75",
+                       "simclr", "simclr_phase0", "simclr_phase25",  "simclr_phase50", "simclr_phase75" ]
+        for target in targets:
+            cprint(f" \nCalculating simularity matrix and mAP scores for model :{target}", "red")
+            calc_sim_matrices(target, verbose=True, exist_ok=False, log_results=True)    
+ 
     else:
-        calc_sim_matrix(model_name, verbose=True, exist_ok=False, log_results=True)
+        calc_sim_matrices(model_name, verbose=True, exist_ok=False, log_results=True)
         
 if __name__ == "__main__":
     main()

@@ -231,37 +231,62 @@ def add_feature_hooks(model: torch.nn.Module):
     return features
     
 def main():
-    options = ["rotnet", "jigsaw", "moco32", "moco64", "simclr", "swav", "imgnet_pretrained"]
+    options = ["rotnet", "jigsaw", "moco32", "moco64", "simclr", "swav", "imgnet_pretrained", "all",
+               "rotnet_phase0", "rotnet_phase25",  "rotnet_phase50", "rotnet_phase75","rotnet_phase100",
+               "jigsaw_phase0", "jigsaw_phase25",  "jigsaw_phase50", "jigsaw_phase75","jigsaw_phase100",
+               "moco32_phase0", "moco32_phase25",  "moco32_phase50", "moco32_phase75",
+               "simclr_phase0", "simclr_phase25",  "simclr_phase50", "simclr_phase75"]
     print(f"Choose a model to calculate embeddings. Your options are: {options}")
     model_name = input("Your Choice:")
     while model_name not in options:
         print(f"Invalid option. Your options are: {options}")
         model_name = input("Your Choice:")
-    #Loading the model
-    if(model_name == "imgnet_pretrained"):
-        #resnet50 with imgnet pretrained weights (supervised model)
-        #https://pytorch.org/vision/0.9/models.html?highlight=resnet50#torchvision.models.resnet50
-        model = torchvision.models.resnet50(pretrained=True)
-        #place a hook on the last layer before classification (average pool)
-        #output should be ftr vector with size 2048 (activations from the avgpool layer)
-        feature_hook_dict = add_feature_hooks(model)
         
+    #Loading the model
+    if(model_name == "all"):
+        #Calculate embedding gallary for all models
+        choice = input("At every checkpoint for all models? (y/N): ")
+        if( choice != "y"):
+            targets = ["rotnet", "jigsaw", "moco32", "simclr"]
+        else:
+            targets = ["rotnet", "rotnet_phase0", "rotnet_phase25",  "rotnet_phase50", "rotnet_phase75","rotnet_phase100", 
+                       "jigsaw", "jigsaw_phase0", "jigsaw_phase25",  "jigsaw_phase50", "jigsaw_phase75","jigsaw_phase100",
+                       "moco32", "moco32_phase0", "moco32_phase25",  "moco32_phase50", "moco32_phase75",
+                       "simclr", "simclr_phase0", "simclr_phase25",  "simclr_phase50", "simclr_phase75" ]
+            
+        for target in targets:
+            cprint(f"Calculating embedding gallary for target {target}\n", "red")
+            model = load_model(target, verbose=True)
+            #Evaluation mode
+            model = model.eval()
+            #creating the embedding library
+            make_embedding_gallary(Path("data/" + target), model, verbose=False, exist_ok=False, device="cpu", feature_hook_dict=None)
+            #read_embedding_gallary(Path("data/" + target))
     else:
-        feature_hook_dict=None #not needed when using vissl models
-        #vissl model
-        model = load_model(model_name,verbose=True)
-    #Evaluation mode
-    model = model.eval()
-    #Checking for GPU device
-    device = "cpu"
-    # if(torch.cuda.is_available()):
-    #     device = torch.device("cuda")
-    #     model.to(device) #move model to gpu
-    print(f"using {device} device", end="\n\n")   
-    
-    #creating the embedding library
-    make_embedding_gallary(Path("data/" + model_name),model, verbose=True, exist_ok=True, device=device, feature_hook_dict=feature_hook_dict)
-    read_embedding_gallary(Path("data/" + model_name))
+        #Calculate embedding gallary for one model
+        if(model_name == "imgnet_pretrained"):
+            #resnet50 with imgnet pretrained weights (supervised model)
+            #https://pytorch.org/vision/0.9/models.html?highlight=resnet50#torchvision.models.resnet50
+            model = torchvision.models.resnet50(pretrained=True)
+            #place a hook on the last layer before classification (average pool)
+            #output should be ftr vector with size 2048 (activations from the avgpool layer)
+            feature_hook_dict = add_feature_hooks(model)
+        else:
+            feature_hook_dict=None #not needed when using vissl models
+            #vissl model
+            model = load_model(model_name, verbose=True)
+        #Evaluation mode
+        model = model.eval()
+        #Checking for GPU device
+        device = "cpu"
+        # if(torch.cuda.is_available()):
+        #     device = torch.device("cuda")
+        #     model.to(device) #move model to gpu
+        print(f"using {device} device", end="\n\n")   
+        
+        #creating the embedding library
+        make_embedding_gallary(Path("data/" + model_name),model, verbose=True, exist_ok=True, device=device, feature_hook_dict=feature_hook_dict)
+        read_embedding_gallary(Path("data/" + model_name))
     
 if __name__ == "__main__":
     main()

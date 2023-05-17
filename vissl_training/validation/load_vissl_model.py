@@ -43,7 +43,102 @@ def load_model(model_name:str, verbose=False):
         {
             "train_config": "validation/swav_full/train_config.yaml",
             "weights": "/home/olivier/Documents/master/mp/checkpoints/sku110k/swav_full/model_final_checkpoint_phase"
-        }    
+        },  
+        #Models from different checkpoints:
+        #ROTNET
+        "rotnet_phase0":
+        {
+            "train_config": "validation/rotnet_full/train_config.yaml", 
+            "weights": "/home/olivier/Documents/master/mp/checkpoints/sku110k/rotnet_full/model_phase0.torch",
+        },
+        "rotnet_phase25":
+        {
+            "train_config": "validation/rotnet_full/train_config.yaml", 
+            "weights": "/home/olivier/Documents/master/mp/checkpoints/sku110k/rotnet_full/model_phase25.torch",
+        },
+        "rotnet_phase50":
+        {
+            "train_config": "validation/rotnet_full/train_config.yaml", 
+            "weights": "/home/olivier/Documents/master/mp/checkpoints/sku110k/rotnet_full/model_phase50.torch",
+        },
+        "rotnet_phase75":
+        {
+            "train_config": "validation/rotnet_full/train_config.yaml", 
+            "weights": "/home/olivier/Documents/master/mp/checkpoints/sku110k/rotnet_full/model_phase75.torch",
+        },
+        "rotnet_phase100":
+        {
+            "train_config": "validation/rotnet_full/train_config.yaml", 
+            "weights": "/home/olivier/Documents/master/mp/checkpoints/sku110k/rotnet_full/model_phase100.torch",
+        },
+        #JIGSAW
+        "jigsaw_phase0":
+        {
+            "train_config": "validation/jigsaw_full/train_config.yaml",
+            "weights": "/home/olivier/Documents/master/mp/checkpoints/sku110k/jigsaw_full/model_phase0.torch"
+        },
+        "jigsaw_phase25":
+        {
+            "train_config": "validation/jigsaw_full/train_config.yaml",
+            "weights": "/home/olivier/Documents/master/mp/checkpoints/sku110k/jigsaw_full/model_phase25.torch"
+        },
+        "jigsaw_phase50":
+        {
+            "train_config": "validation/jigsaw_full/train_config.yaml",
+            "weights": "/home/olivier/Documents/master/mp/checkpoints/sku110k/jigsaw_full/model_phase50.torch"
+        },
+        "jigsaw_phase75":
+        {
+            "train_config": "validation/jigsaw_full/train_config.yaml",
+            "weights": "/home/olivier/Documents/master/mp/checkpoints/sku110k/jigsaw_full/model_phase75.torch"
+        },
+        "jigsaw_phase100":
+        {
+            "train_config": "validation/jigsaw_full/train_config.yaml",
+            "weights": "/home/olivier/Documents/master/mp/checkpoints/sku110k/jigsaw_full/model_phase100.torch"
+        },
+        #MOCO32
+        "moco32_phase0":
+        {
+            "train_config": "validation/moco_full_32/train_config.yaml",
+            "weights": "/home/olivier/Documents/master/mp/checkpoints/sku110k/moco_full_32/model_phase0.torch"
+        },
+        "moco32_phase25":
+        {
+            "train_config": "validation/moco_full_32/train_config.yaml",
+            "weights": "/home/olivier/Documents/master/mp/checkpoints/sku110k/moco_full_32/model_phase25.torch"
+        },
+        "moco32_phase50":
+        {
+            "train_config": "validation/moco_full_32/train_config.yaml",
+            "weights": "/home/olivier/Documents/master/mp/checkpoints/sku110k/moco_full_32/model_phase50.torch"
+        },
+        "moco32_phase75":
+        {
+            "train_config": "validation/moco_full_32/train_config.yaml",
+            "weights": "/home/olivier/Documents/master/mp/checkpoints/sku110k/moco_full_32/model_phase75.torch"
+        },
+        #SIMCLR
+        "simclr_phase0":
+        {
+            "train_config": "validation/simclr_full/train_config.yaml",
+            "weights": "/home/olivier/Documents/master/mp/checkpoints/sku110k/simclr_full/model_phase0.torch"
+        },
+        "simclr_phase25":
+        {
+            "train_config": "validation/simclr_full/train_config.yaml",
+            "weights": "/home/olivier/Documents/master/mp/checkpoints/sku110k/simclr_full/model_phase25.torch"
+        },
+        "simclr_phase50":
+        {
+            "train_config": "validation/simclr_full/train_config.yaml",
+            "weights": "/home/olivier/Documents/master/mp/checkpoints/sku110k/simclr_full/model_phase50.torch"
+        },
+        "simclr_phase75":
+        {
+            "train_config": "validation/simclr_full/train_config.yaml",
+            "weights": "/home/olivier/Documents/master/mp/checkpoints/sku110k/simclr_full/model_phase75.torch"
+        }
     }
     if(model_name not in PATHS.keys()):
         print(f"The model you tried to load ({model_name}) is not available")
@@ -54,7 +149,7 @@ def load_model(model_name:str, verbose=False):
     weights_file = PATHS[model_name]["weights"]
     if(verbose):
         print('Train config at (relative path from vissl/...):\n' + train_config)
-        print('SSL pretrained weights at:\n' + weights_file)
+        print('SSL pretrained weights at:\n' + weights_file + "\n")
     
     # 1. Checkpoint config is located at vissl/configs/config/validation/*/train_config.yaml.
     # 2. weights are located at /home/olivier/Documents/master/mp/checkpoints/sku110k/*
