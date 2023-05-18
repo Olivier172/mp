@@ -96,48 +96,66 @@ def calc_eucl_dist_sim(query_stack:torch.Tensor, embedding_gallary:torch.Tensor,
         print(f"std: {torch.std(sim_matrix)}")
     return sim_matrix
     
-def calc_mAP(sim_matrix:torch.Tensor, labels:list, verbose=False):
+def calc_mAP(sim_matrix:torch.Tensor, gallary_labels:list , query_labels:list, embedding_gallary_name:str, verbose=False):
     """
     Function to calculate the mean Average Precision of a simularity matrix
 
     Args:
         sim_matrix (torch.Tensor): The simularity matrix to calculate the mAP of.
-        labels (list): list of labels containing the GT for every row in the simularity matrix
+        gallary_labels (list): list of labels containing the class of every column in the simularity matrix 
+                               (every class of the embedding gallary)
+        query_labels (list): list of labels containing the ground truth classification label for every row in 
+                             the simularity matrix (and each row contains the simularity scores for a query). 
         verbose (bool, optional): Boolean switch to enable prints. Defaults to False.
 
     Returns:
         mAP (float): The mAP score.
     """
     cprint("In function calc_mAP()", "green")
+    #Convert everything to numpy
     sim_matrix_np = sim_matrix.numpy()
-    labels_np = np.array(labels)
+    gallary_labels_np = np.array(gallary_labels)
+    query_labels_np = np.array(query_labels)
     if(verbose):
         print(f"sim_matrix_np shape {sim_matrix_np.shape}")
-        print(f"labels shape {labels_np.shape}")
+        print(f"gallary_labels shape {gallary_labels_np.shape}")
+        print(f"query_labels shape {query_labels_np.shape}")
         print(f"len sim_matrix_np {len(sim_matrix_np)}")
     
     
     #return indicis of all unique class labels
-    classes = list(np.unique(labels_np))
+    classes = list(np.unique(gallary_labels_np))
     if(verbose):
         print(f"amount of classes {len(classes)}")
+        
     #dictionary to store average precisions for every query
     AP_queries = {}
-    for cls in classes:
-        #init every class key with an empty list
-        AP_queries[cls]=[]
-
     #calculate AP for every query in the sim_matrix
     for i in range(len(sim_matrix_np)):
         #y_true contains the ground truth for classification (True if label of query is the same)
-        #gallary labels == query label (query is on the diagonal so the i th element of the i th row)
-        query_label = labels_np[i]
-        y_true = labels_np == query_label #find all matches for the label of the current query (boolean np array)
+        #gallary labels == query label 
+        query_label = query_labels_np[i]
+        y_true = gallary_labels_np == query_label #find all matches for the label of the current query (boolean np array)
         y_score = sim_matrix_np[i] 
+        if(embedding_gallary_name == "embedding_gallary"):
+            #in this case, the query embedding has a perfect match in the gallary
+            #we need to remove this one before evaluating AP to prevent "easy match"
+            y_true[i] = False #Remove perfect match
+            y_score[i]= -99999.0 #large negative number to indicate no match
+        #skip queries who have no positives:
+        if(y_true.sum() == 0): #y_true.sum() counts the amount of True's
+            continue
         #compute AP
         AP_query = average_precision_score(y_true=y_true, y_score=y_score)
+        #if the class of this query is not registered in AP_queries, register the key and init with empty list
+        if(query_label not in AP_queries.keys()):
+            #init every class key with an empty list
+            AP_queries[query_label]=[]
         AP_queries[query_label].append(AP_query) #save average precision for this label with the results of it's class
     
+    if(verbose):
+        print(f"amount of classes where an AP could be calculated {len(AP_queries)}")
+        
     #AP is average precision of a class with different threshods (poisitions in the PR curve)    
     #calculate the AP for every class:
     AP = {}
@@ -207,11 +225,24 @@ def calc_sim_matrices(model_name:str, embedding_gallary_name:str, verbose=False,
         cprint("In function calc_sim_matrix()", "green")
     embedding_gallary:torch.Tensor
     embedding_gallary_norm:torch.Tensor
-    labels:list
+    gallary_labels:list
+    query_labels:list
     
-    #Directory to find gallaries for this model
-    dir = Path("data/" + model_name)
-    embedding_gallary, embedding_gallary_norm, labels = read_embedding_gallary(dir, embedding_gallary_name)
+    #Reading in the embedding gallary
+    dir = Path("data/" + model_name) #Directory to find gallaries for this model
+    embedding_gallary, embedding_gallary_norm, gallary_labels = read_embedding_gallary(dir, embedding_gallary_name)
+    
+    #Reading in the query stack
+    if(embedding_gallary_name == "embedding_gallary"):
+        #in this case we query all the embeddings from the embedding gallary itself as a test set (the entire cornershop dataset embeddings)
+        query_stack = embedding_gallary.clone().detach()
+        query_stack_norm = embedding_gallary_norm.clone().detach()
+        query_labels = gallary_labels.copy()
+    else: #embedding_gallary_name == embedding_gallary_avg
+        #in this case we query all the embeddings from the cornershop dataset (which are stored in the standard embedding gallary)
+        #but the embedding gallary itself contains different embeddings (averages per class)
+        query_stack, query_stack_norm, query_labels = read_embedding_gallary(dir, "embedding_gallary")
+        
     #Dictionary to save mAP scores for each metric
     mAPs = {
         "ip": 0.0, "cosim": 0.0, "eucl_dist": 0.0, "eucl_dist_norm": 0.0 
@@ -229,9 +260,15 @@ def calc_sim_matrices(model_name:str, embedding_gallary_name:str, verbose=False,
     else:
         if(verbose):
             cprint("sim_mat doesn't exist yet or exist_ok=true, calulating...", "yellow")
-        sim_mat = calc_ip_cosim(query_stack=embedding_gallary, embedding_gallary=embedding_gallary, verbose=verbose)
+        sim_mat = calc_ip_cosim(query_stack=query_stack, embedding_gallary=embedding_gallary, verbose=verbose)
         torch.save(sim_mat, p)
-    mAPs["ip"] = calc_mAP(sim_matrix=sim_mat, labels=labels, verbose=verbose) 
+    mAPs["ip"] = calc_mAP(
+        sim_matrix=sim_mat, 
+        gallary_labels=gallary_labels, 
+        query_labels=query_labels, 
+        embedding_gallary_name=embedding_gallary_name,
+        verbose=verbose
+    ) 
     
     ### COSINE SIMULARITY AS A SIMULARITY METRIC ###
     if(verbose):
@@ -245,9 +282,15 @@ def calc_sim_matrices(model_name:str, embedding_gallary_name:str, verbose=False,
     else:
         if(verbose):
             cprint("sim_mat doesn't exist yet or exist_ok=true, calulating...", "yellow")
-        sim_mat = calc_ip_cosim(query_stack=embedding_gallary_norm, embedding_gallary=embedding_gallary_norm)
+        sim_mat = calc_ip_cosim(query_stack=query_stack_norm, embedding_gallary=embedding_gallary_norm)
         torch.save(sim_mat, p)
-    mAPs["cosim"] = calc_mAP(sim_matrix=sim_mat, labels=labels, verbose=verbose) 
+    mAPs["cosim"] = calc_mAP(
+        sim_matrix=sim_mat, 
+        gallary_labels=gallary_labels, 
+        query_labels=query_labels,
+        embedding_gallary_name=embedding_gallary_name,
+        verbose=verbose
+    ) 
        
     ### EUCIDIAN DISTANCE AS A SIMULARITY METRIC ###
     if(verbose):
@@ -261,11 +304,17 @@ def calc_sim_matrices(model_name:str, embedding_gallary_name:str, verbose=False,
     else:
         if(verbose):
             cprint("sim_mat doesn't exist yet or exist_ok=true, calulating...", "yellow")
-        sim_mat = calc_eucl_dist_sim(query_stack=embedding_gallary, embedding_gallary=embedding_gallary)
+        sim_mat = calc_eucl_dist_sim(query_stack=query_stack, embedding_gallary=embedding_gallary)
         torch.save(sim_mat, p)
     #reverse scores in simularity matrix for mAP calculation (low euclidian distance = high score and vice versa)
     sim_mat = sim_mat*-1
-    mAPs["eucl_dist"] = calc_mAP(sim_matrix=sim_mat, labels=labels, verbose=verbose) 
+    mAPs["eucl_dist"] = calc_mAP(
+        sim_matrix=sim_mat, 
+        gallary_labels=gallary_labels, 
+        query_labels=query_labels,
+        embedding_gallary_name=embedding_gallary_name,
+        verbose=verbose
+    )
     
     ### EUCLIDIAN DISTANCE (NORMALIZED FEATURES) AS A SIMULARITY METRIC ###
     if(verbose):
@@ -279,11 +328,17 @@ def calc_sim_matrices(model_name:str, embedding_gallary_name:str, verbose=False,
     else:
         if(verbose):
             cprint("sim_mat doesn't exist yet or exist_ok=true, calulating...", "yellow")
-        sim_mat = calc_eucl_dist_sim(query_stack=embedding_gallary_norm, embedding_gallary=embedding_gallary_norm)
+        sim_mat = calc_eucl_dist_sim(query_stack=query_stack_norm, embedding_gallary=embedding_gallary_norm)
         torch.save(sim_mat, p)
     #reverse scores in simularity matrix for mAP calculation (low euclidian distance = high score and vice versa)
     sim_mat = sim_mat*-1
-    mAPs["eucl_dist_norm"] = calc_mAP(sim_matrix=sim_mat, labels=labels, verbose=verbose) 
+    mAPs["eucl_dist_norm"] = calc_mAP(
+        sim_matrix=sim_mat, 
+        gallary_labels=gallary_labels, 
+        query_labels=query_labels,
+        embedding_gallary_name=embedding_gallary_name,
+        verbose=verbose
+    )
     
     if(verbose):
         print(mAPs)
@@ -327,7 +382,7 @@ def main():
             calc_sim_matrices(target, gallary_name,verbose=True, exist_ok=False, log_results=True)    
  
     else:
-        calc_sim_matrices(model_name, gallary_name, verbose=True, exist_ok=False, log_results=True)
+        calc_sim_matrices(model_name, gallary_name, verbose=True, exist_ok=True, log_results=True)
         
 if __name__ == "__main__":
     main()
