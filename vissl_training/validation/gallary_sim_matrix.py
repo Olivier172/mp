@@ -1,63 +1,86 @@
 import torch 
-import torchvision
-import torchvision.transforms as transforms
 import numpy as np
 from datetime import datetime
 from pathlib import Path
 from termcolor import cprint
 from sklearn.metrics import average_precision_score
 
-def read_embedding_gallary(dir:Path):
-    cprint("In function read_embedding_gallary()", "green")
-    try:
-        fts_stack = torch.load(dir / "embedding_gallary.torch")
-        print(f"fts_stack has shape {fts_stack.shape}")
-        fts_stack_norm = torch.load(dir / "embedding_gallary_norm.torch")
-        print(f"fts_stack_norm has shape {fts_stack_norm.shape}")
-        labels = list()
-        with open(dir / "embedding_gallary_labels.txt", "r") as f:
-            labels = f.read().splitlines()
-            print(f"labels list has length "+ str(len(labels)))
-    except Exception:
-        cprint(f"Unable to read embedding gallary, check paths (dir={dir})", "red")
-        
-    return fts_stack, fts_stack_norm, labels
-
-def calc_ip_cosine_sim(fts_stack:torch.Tensor, dir:Path=None):
+def read_embedding_gallary(dir:Path, embedding_gallary_name:str):
     """
-    Calulates a simularity matrix based on the inner product / cosine simularity a metric.
+    Reads in the embedding gallary from disk.
+
     Args:
-        fts_stack (torch.Tensor):
-            -fts_stack: stack of embeddings -> inner product
-            -fts_stack_norm: stack of normalized embeddings -> cosim
+        dir (Path): Path to the directory where the gallary is saved.
+        embedding_gallary_name (str): The name of the embedding gallary used. 
+                                      This can be "embedding_gallary" or "embedding_gallary_avg" 
 
     Returns:
-        torch.Tensor: The simularity matrix
+        embedding_gallary: The embedding gallary contains a stack of embeddings for which the label is known.
+        embedding_gallary_norm: Gallary with normalized embeddings.
+        labels: Ground turth labels for every row (embedding) in the embedding gallary.
     """
-    #Calculate simularity from each embedding with every other embedding by doing a matrix product:
-    sim_matrix = fts_stack.matmul(fts_stack.T)
-    #statistics
-    #print statistics data
-    print(f"Max: {sim_matrix.max()}")
-    print(f"Min: {sim_matrix.min()}")
-    print(f"mean: {torch.mean(sim_matrix)}")
-    print(f"std: {torch.std(sim_matrix)}")
+    cprint("In function read_embedding_gallary()", "green")
+    
+    file_name = embedding_gallary_name + ".torch" 
+    embedding_gallary = torch.load(dir / file_name)
+    print(f"fts_stack has shape {embedding_gallary.shape}")
+    
+    file_name = embedding_gallary_name + "_norm.torch"
+    embedding_gallary_norm = torch.load(dir / file_name)
+    print(f"fts_stack_norm has shape {embedding_gallary_norm.shape}")
+    labels = list()
+    
+    file_name = embedding_gallary_name + "_labels.txt"
+    with open(dir / file_name, "r") as f:
+        labels = f.read().splitlines()
+        print(f"labels list has length "+ str(len(labels)))
+     
+    return embedding_gallary, embedding_gallary_norm, labels
+
+def calc_ip_cosim(query_stack:torch.Tensor, embedding_gallary:torch.Tensor, verbose=False):
+    """
+    Calulates a simularity matrix based on the inner product / cosine simularity as a metric.
+        -If you use normalized features/embeddings for the query_stack and embedding gallary, the cosine simularity (cosim) matrix 
+        is calculated.
+        -If you use unnormalized features/embeddings for the query_stack and embedding gallary, the inner product (ip) matrix 
+        is calculated.
+        
+    Args:
+        query_stack (torch.Tensor): This is a stack of all query embeddings to match to the embedding gallary.
+        embedding_gallary (torch.Tensor): This is the embedding gallary itself. Each row consist of one embedding
+        for which the label (ground truth) is known. The query embeddings are matched to these gallary embeddings.
+
+    Returns:
+        sim_matrix (torch.Tensor): The simularity matrix. This matrix has in each row simularity scores for one query
+        from the query stack to all embeddings in the embedding gallary.
+    """
+    #Calculate simularity from each embedding of the query_stack with every embedding from the embedding gallary by doing a matrix product:
+    sim_matrix = query_stack.matmul(embedding_gallary.T)
+    if(verbose):
+        #statistics
+        print(f"Max: {sim_matrix.max()}")
+        print(f"Min: {sim_matrix.min()}")
+        print(f"mean: {torch.mean(sim_matrix)}")
+        print(f"std: {torch.std(sim_matrix)}")
     return sim_matrix
 
-def calc_eucl_dist_sim(fts_stack:torch.Tensor, dir:Path=None):
+def calc_eucl_dist_sim(query_stack:torch.Tensor, embedding_gallary:torch.Tensor, verbose=False) -> torch.Tensor:
     """
     Calulates a simularity matrix based on the euclidian distance as a metric.
 
     Args:
-        fts_stack (torch.Tensor): A torch stack with all the embeddings (normalized or not)
+        query_stack (torch.Tensor): This is a stack of all query embeddings to match to the embedding gallary.
+        embedding_gallary (torch.Tensor): This is the embedding gallary itself. Each row consist of one embedding
+        for which the label (ground truth) is known. The query embeddings are matched to these gallary embeddings.
 
     Returns:
-        torch.Tensor: The simularity matrix
+        sim_matrix (torch.Tensor): The simularity matrix. This matrix has in each row simularity scores for one query
+        from the query stack to all embeddings in the embedding gallary.
     """
     eucl_dists = [] 
-    for tensor in fts_stack:
+    for tensor in query_stack:
         d = [] #store all distances from this tensor to all the other tensors
-        for other_tensor in fts_stack:
+        for other_tensor in embedding_gallary:
             d_to = (tensor - other_tensor).pow(2).sum().sqrt() #d(tensor, other_tensor)=euclid distance
             d.append(d_to)
         d = torch.tensor(d)
@@ -65,14 +88,15 @@ def calc_eucl_dist_sim(fts_stack:torch.Tensor, dir:Path=None):
         #add tensor to euclidian distances 
         eucl_dists.append(d)
     sim_matrix = torch.stack(eucl_dists)
-    #statistics
-    print(f"Max: {sim_matrix.max()}")
-    print(f"Min: {sim_matrix.min()}")
-    print(f"mean: {torch.mean(sim_matrix)}")
-    print(f"std: {torch.std(sim_matrix)}")
+    if(verbose):
+        #statistics
+        print(f"Max: {sim_matrix.max()}")
+        print(f"Min: {sim_matrix.min()}")
+        print(f"mean: {torch.mean(sim_matrix)}")
+        print(f"std: {torch.std(sim_matrix)}")
     return sim_matrix
     
-def calc_mAP(sim_matrix:torch.Tensor, labels, verbose=False):
+def calc_mAP(sim_matrix:torch.Tensor, labels:list, verbose=False):
     """
     Function to calculate the mean Average Precision of a simularity matrix
 
@@ -82,7 +106,7 @@ def calc_mAP(sim_matrix:torch.Tensor, labels, verbose=False):
         verbose (bool, optional): Boolean switch to enable prints. Defaults to False.
 
     Returns:
-        float: The mAP score.
+        mAP (float): The mAP score.
     """
     cprint("In function calc_mAP()", "green")
     sim_matrix_np = sim_matrix.numpy()
@@ -129,16 +153,19 @@ def calc_mAP(sim_matrix:torch.Tensor, labels, verbose=False):
         
     return mAP
     
-def log_mAP_scores(dir: Path, model_name:str, mAPs:dict):
+def log_mAP_scores(dir: Path, model_name:str, embedding_gallary_name:str, mAPs:dict):
     """
     Function to log mAP scores to a file. Results are appended to dir/mAP_scores.txt
     
     Args:
         dir (Path): directory to place logfile.
         model_name (str): name of the model used.
+        embedding_gallary_name (str): The name of the embedding gallary used. 
+                                      This can be "embedding_gallary" or "embedding_gallary_avg" 
         mAPs: dictionary with mAP scores.
     """  
-    p = dir / "mAP_scores.txt"
+    file_name = embedding_gallary_name + "_mAP_scores.txt"
+    p = dir / file_name
     cprint(f"Logging mAP scores to a file on path : {p}", "green")
     file = open(p, "a")
     lines = [] 
@@ -161,7 +188,7 @@ def log_mAP_scores(dir: Path, model_name:str, mAPs:dict):
     file.writelines(lines)
     file.close()
         
-def calc_sim_matrices(model_name:str, verbose=False, exist_ok=False, log_results=False):
+def calc_sim_matrices(model_name:str, embedding_gallary_name:str, verbose=False, exist_ok=False, log_results=False):
     """
     Calulates the simularity matrices of the entire embedding gallary.
     This is done using 4 different metrics of simularity. (Generating 4 simularity matrices) 
@@ -170,68 +197,89 @@ def calc_sim_matrices(model_name:str, verbose=False, exist_ok=False, log_results
     Args:
         model_name (str): The name of the model to calculate the simularity matrix for based on the 
                           embedding gallary for this model.
+        embedding_gallary_name (str): The name of the embedding gallary used. 
+                                      This can be "embedding_gallary" or "embedding_gallary_avg" 
         exist_ok (Bool): Boolean switch to recalculate and overwrite sim_matrix if true.
         verbose (Bool): Boolean switch to allow prints of this function.
         log_results (Bool): Boolean switch to log mAP scores to a logfile.
     """
-    cprint("In function calc_sim_matrix()", "green")
-    fts_stack:torch.Tensor
-    fts_stack_norm:torch.Tensor
-    #read input gallary for this model
+    if(verbose):
+        cprint("In function calc_sim_matrix()", "green")
+    embedding_gallary:torch.Tensor
+    embedding_gallary_norm:torch.Tensor
+    labels:list
+    
+    #Directory to find gallaries for this model
     dir = Path("data/" + model_name)
-    fts_stack, fts_stack_norm, labels = read_embedding_gallary(dir)
-    #dictionary to save mAP scores for each metric
+    embedding_gallary, embedding_gallary_norm, labels = read_embedding_gallary(dir, embedding_gallary_name)
+    #Dictionary to save mAP scores for each metric
     mAPs = {
         "ip": 0.0, "cosim": 0.0, "eucl_dist": 0.0, "eucl_dist_norm": 0.0 
     }
     
     ### INNER PRODUCT AS A SIMULARITY METRIC ###
-    cprint("\ninner product", "cyan")
-    p = dir / "sim_mat_ip.torch"
+    if(verbose):
+        cprint("\ninner product", "cyan")
+    file_name = embedding_gallary_name + "_sim_mat_ip.torch"
+    p = dir / file_name
     if( p.exists() and not(exist_ok)):
-        cprint("sim_mat already exists","green")
+        if(verbose):
+            cprint("sim_mat already exists","green")
         sim_mat = torch.load(p)
     else:
-        cprint("sim_mat doesn't exist yet or exist_ok=true, calulating...", "yellow")
-        sim_mat = calc_ip_cosine_sim(fts_stack=fts_stack)
+        if(verbose):
+            cprint("sim_mat doesn't exist yet or exist_ok=true, calulating...", "yellow")
+        sim_mat = calc_ip_cosim(query_stack=embedding_gallary, embedding_gallary=embedding_gallary, verbose=verbose)
         torch.save(sim_mat, p)
     mAPs["ip"] = calc_mAP(sim_matrix=sim_mat, labels=labels, verbose=verbose) 
     
     ### COSINE SIMULARITY AS A SIMULARITY METRIC ###
-    cprint("\ncosine simularity", "cyan")
-    p = dir / "sim_mat_cosim.torch"
+    if(verbose):
+        cprint("\ncosine simularity", "cyan")
+    file_name = embedding_gallary_name + "_sim_mat_cosim.torch"
+    p = dir / file_name
     if( p.exists() and not(exist_ok)):
-        cprint("sim_mat already exists","green")
+        if(verbose):
+            cprint("sim_mat already exists","green")
         sim_mat = torch.load(p)
     else:
-        cprint("sim_mat doesn't exist yet or exist_ok=true, calulating...", "yellow")
-        sim_mat = calc_ip_cosine_sim(fts_stack=fts_stack_norm)
+        if(verbose):
+            cprint("sim_mat doesn't exist yet or exist_ok=true, calulating...", "yellow")
+        sim_mat = calc_ip_cosim(query_stack=embedding_gallary_norm, embedding_gallary=embedding_gallary_norm)
         torch.save(sim_mat, p)
     mAPs["cosim"] = calc_mAP(sim_matrix=sim_mat, labels=labels, verbose=verbose) 
        
     ### EUCIDIAN DISTANCE AS A SIMULARITY METRIC ###
-    cprint("\neuclidian distance", "cyan")
-    p = dir / "sim_mat_eucl_dist.torch"
+    if(verbose):
+        cprint("\neuclidian distance", "cyan")
+    file_name = embedding_gallary_name + "_sim_mat_eucl_dist.torch"
+    p = dir / file_name
     if( p.exists() and not(exist_ok)):
-        cprint("sim_mat already exists","green")
+        if(verbose):
+            cprint("sim_mat already exists","green")
         sim_mat = torch.load(p)
     else:
-        cprint("sim_mat doesn't exist yet or exist_ok=true, calulating...", "yellow")
-        sim_mat = calc_eucl_dist_sim(fts_stack=fts_stack)
+        if(verbose):
+            cprint("sim_mat doesn't exist yet or exist_ok=true, calulating...", "yellow")
+        sim_mat = calc_eucl_dist_sim(query_stack=embedding_gallary, embedding_gallary=embedding_gallary)
         torch.save(sim_mat, p)
     #reverse scores in simularity matrix for mAP calculation (low euclidian distance = high score and vice versa)
     sim_mat = sim_mat*-1
     mAPs["eucl_dist"] = calc_mAP(sim_matrix=sim_mat, labels=labels, verbose=verbose) 
     
     ### EUCLIDIAN DISTANCE (NORMALIZED FEATURES) AS A SIMULARITY METRIC ###
-    cprint("\neuclidian distance with normalized features", "cyan")
-    p = dir / "sim_mat_eucl_dist_norm.torch"
+    if(verbose):
+        cprint("\neuclidian distance with normalized features", "cyan")
+    file_name = embedding_gallary_name + "_sim_mat_eucl_dist_norm.torch"
+    p = dir / file_name
     if( p.exists() and not(exist_ok)):
-        cprint("sim_mat already exists","green")
+        if(verbose):
+            cprint("sim_mat already exists","green")
         sim_mat = torch.load(p)
     else:
-        cprint("sim_mat doesn't exist yet or exist_ok=true, calulating...", "yellow")
-        sim_mat = calc_eucl_dist_sim(fts_stack=fts_stack_norm)
+        if(verbose):
+            cprint("sim_mat doesn't exist yet or exist_ok=true, calulating...", "yellow")
+        sim_mat = calc_eucl_dist_sim(query_stack=embedding_gallary_norm, embedding_gallary=embedding_gallary_norm)
         torch.save(sim_mat, p)
     #reverse scores in simularity matrix for mAP calculation (low euclidian distance = high score and vice versa)
     sim_mat = sim_mat*-1
@@ -241,9 +289,18 @@ def calc_sim_matrices(model_name:str, verbose=False, exist_ok=False, log_results
         print(mAPs)
         
     if(log_results):
-        log_mAP_scores(dir, model_name, mAPs)      
+        log_mAP_scores(dir, model_name, embedding_gallary_name, mAPs)      
     
 def main():
+    #choose an embedding gallary
+    options = ["embedding_gallary", "embedding_gallary_avg"]
+    print(f"Choose an embedding gallary to use. Your options are: {options}")
+    gallary_name = input("Your choice: ")
+    while gallary_name not in options:
+        print(f"Invalid option. Your options are: {options}")
+        gallary_name = input("Your Choice:") 
+        
+    #choose a model
     options = ["rotnet", "jigsaw", "moco32", "moco64", "simclr", "swav", "imgnet_pretrained", "all",
                "rotnet_phase0", "rotnet_phase25",  "rotnet_phase50", "rotnet_phase75","rotnet_phase100",
                "jigsaw_phase0", "jigsaw_phase25",  "jigsaw_phase50", "jigsaw_phase75","jigsaw_phase100",
@@ -267,10 +324,10 @@ def main():
                        "simclr", "simclr_phase0", "simclr_phase25",  "simclr_phase50", "simclr_phase75" ]
         for target in targets:
             cprint(f" \nCalculating simularity matrix and mAP scores for model :{target}", "red")
-            calc_sim_matrices(target, verbose=True, exist_ok=False, log_results=True)    
+            calc_sim_matrices(target, gallary_name,verbose=True, exist_ok=False, log_results=True)    
  
     else:
-        calc_sim_matrices(model_name, verbose=True, exist_ok=False, log_results=True)
+        calc_sim_matrices(model_name, gallary_name, verbose=True, exist_ok=False, log_results=True)
         
 if __name__ == "__main__":
     main()
