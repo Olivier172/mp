@@ -128,13 +128,17 @@ def make_embedding_gallary(dir:Path, model, kind:str="embedding_gallary", verbos
     if(os.path.isdir(dir)):
         file_name = kind + ".torch"
         p = dir / file_name
-        if( p.exists() and not(exist_ok) ):
-            cprint(f"Gallary already exists, but exist_ok={exist_ok} so abort","yellow")
-            return #dont overwrite if exist_ok=false
-        cprint(f"Gallary already exists, but exist_ok={exist_ok} so overwriting","yellow")
-        #exist_ok=True, the gallary will be recalculated and overwritten...
+        if( p.exists()):
+            if(exist_ok):
+                cprint(f"Gallary already exists, but exist_ok={exist_ok} so overwriting","yellow")
+                #exist_ok=True, the gallary will be recalculated and overwritten...
+            else:  
+                cprint(f"Gallary already exists, but exist_ok={exist_ok} so abort","yellow")
+                return #dont overwrite if exist_ok=false
+        else:
+           cprint(f"Gallary doesn't exist yet, creating one at {p}","magenta") 
     else:
-        cprint(f"Gallary doesn't exist yet, creating one at {dir}","magenta")
+        cprint(f"No gallary for this model exists yet, creating one at {dir}","magenta")
         dir.mkdir()
         
     CornerShop = Path("/home/olivier/Documents/master/mp/CornerShop/CornerShop/crops")
@@ -159,13 +163,20 @@ def make_embedding_gallary(dir:Path, model, kind:str="embedding_gallary", verbos
         fts_stack = torch.stack(avg_pool_features_list)
         
     else:
-        #Extract features from a vissl model
-        fts_stack = torch.stack([extract_features(p,model,device=device, verbose=False) for p in tqdm(img_paths)])
-          
-    #NORMALIZE features in feature stack:
-    fts_stack_norm = fts_stack / fts_stack.norm(dim=1,keepdim=True) 
+        p = dir / "embedding_gallary.torch"
+        if( kind == "embedding_gallary_avg" and os.path.isfile(p)):
+            cprint("Info: Standard embedding gallary already exists. Reading from disk and calculating embedding gallary average from there.", "yellow")
+            #If the standard embedding gallary already exists, don't recalculate the features but read them from disk:
+            fts_stack, fts_stack_norm, labels = read_embedding_gallary(dir, kind="embedding_gallary")
+        else:
+            #Extract features from a vissl model
+            fts_stack = torch.stack([extract_features(p,model,device=device, verbose=False) for p in tqdm(img_paths)])
+            #NORMALIZE features in feature stack:
+            fts_stack_norm = fts_stack / fts_stack.norm(dim=1,keepdim=True) 
     
+     
     if( kind == "embedding_gallary_avg"): 
+        #Calculating average embedding gallary based on the standard embedding gallary.
         if(verbose):
             cprint("Calculating an embedding_gallary_avg", "red")
         #dictionary to summarize embedding gallary per class
@@ -217,6 +228,11 @@ def read_embedding_gallary(dir:Path, kind:str="embedding_gallary"):
         kind (str, optional): which embedding gallary to read in. 
                              -"embedding_gallary": the standard embedding gallary containing all embeddings of cornershop images
                              -"embedding_gallary_avg": an embedding gallary containing an average embedding for every class.
+                             
+    Returns:
+        embedding_gallary: The embedding gallary contains a stack of embeddings for which the label is known.
+        embedding_gallary_norm: Gallary with normalized embeddings.
+        labels: Ground turth labels for every row (embedding) in the embedding gallary.
     """
 
     cprint("In function read_embedding_gallary()","green")
@@ -239,6 +255,7 @@ def read_embedding_gallary(dir:Path, kind:str="embedding_gallary"):
         labels = f.read().splitlines()
         print(f"labels list has length "+ str(len(labels)))
         print(f"4 examples from the label list are: {labels[0:4]}", end="\n\n")
+    return embedding_gallary, embedding_gallary_norm, labels
   
 def add_feature_hooks(model: torch.nn.Module):
     """
@@ -262,6 +279,13 @@ def add_feature_hooks(model: torch.nn.Module):
     return features
     
 def main():
+    #Check if data folder already exists
+    data_folder = Path("data")
+    if(not os.path.isdir(data_folder)):
+        cprint("Info: creating data folder in the current directory to store embedding gallaries", "yellow")
+        #If not making a folder to store embedding gallaries
+        data_folder.mkdir()
+        
     #choose a kind of embedding gallary to make
     options = ["embedding_gallary", "embedding_gallary_avg"]
     print(f"Choose an embedding gallary to use. Your options are: {options}")
@@ -304,7 +328,7 @@ def main():
                 Path("data/" + target), 
                 model, 
                 kind=gallary_name,
-                verbose=False, 
+                verbose=True, 
                 exist_ok=False, 
                 device="cpu", 
                 feature_hook_dict=None
