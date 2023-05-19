@@ -338,7 +338,7 @@ def main():
             model, 
             kind=gallary_name,
             verbose=True, 
-            exist_ok=False, 
+            exist_ok=True, 
             device=device, 
             feature_hook_dict=feature_hook_dict
         )
