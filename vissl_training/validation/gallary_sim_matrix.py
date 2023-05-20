@@ -1,5 +1,6 @@
 import torch 
 import numpy as np
+import os
 from datetime import datetime
 from pathlib import Path
 from termcolor import cprint
@@ -36,6 +37,26 @@ def read_embedding_gallary(dir:Path, embedding_gallary_name:str):
         print(f"labels list has length "+ str(len(labels)))
      
     return embedding_gallary, embedding_gallary_norm, labels
+
+def read_blacklist(file_path:Path) -> list:
+    """
+    Reads in the blacklist for class labels not to use when evaluating mAP scores of embedding_gallary_avg.
+    Because these classes contain only one element in the CornerShop dataset and would be an "easy match".
+
+    Args:
+        file_path (Path): path to the blacklist file.
+
+    Returns:
+        blacklist (list): list of strings containing the blacklisted classes. 
+    """
+    if(not os.path.isfile):
+        cprint(f"Warning: blacklist file for embedding_gallary_avg doesn't exist at {file_path}", "red")
+        return []
+    
+    with open(file_path, "r") as f:
+        blacklist = f.read().splitlines()
+        cprint(f"Blacklist file succesfully read. There are  "+ str(len(blacklist)) + " classes blacklisted.", "green")
+    return blacklist
 
 def calc_ip_cosim(query_stack:torch.Tensor, embedding_gallary:torch.Tensor, verbose=False):
     """
@@ -127,7 +148,11 @@ def calc_mAP(sim_matrix:torch.Tensor, gallary_labels:list , query_labels:list, e
     classes = list(np.unique(gallary_labels_np))
     if(verbose):
         print(f"amount of classes {len(classes)}")
-        
+      
+    #Read in blacklist for fair evaluation of embedding_gallary_avg
+    if(embedding_gallary_name == "embedding_gallary_avg"):
+          blacklist = read_blacklist(Path("data/blacklist.txt"))  
+          
     #dictionary to store average precisions for every query
     AP_queries = {}
     #calculate AP for every query in the sim_matrix
@@ -142,11 +167,17 @@ def calc_mAP(sim_matrix:torch.Tensor, gallary_labels:list , query_labels:list, e
             #we need to remove this one before evaluating AP to prevent "easy match"
             y_true[i] = False #Remove perfect match
             y_score[i]= -99999.0 #large negative number to indicate no match
+        elif(embedding_gallary_name == "embedding_gallary_avg"):
+            #skip queries of blacklisted classes for embedding_gallary_avg to prevent easy matches
+            if(query_label in blacklist):
+                continue
         #skip queries who have no positives:
         if(y_true.sum() == 0): #y_true.sum() counts the amount of True's
             continue
+        
         #compute AP
         AP_query = average_precision_score(y_true=y_true, y_score=y_score)
+        
         #if the class of this query is not registered in AP_queries, register the key and init with empty list
         if(query_label not in AP_queries.keys()):
             #init every class key with an empty list
@@ -282,7 +313,7 @@ def calc_sim_matrices(model_name:str, embedding_gallary_name:str, verbose=False,
     else:
         if(verbose):
             cprint("sim_mat doesn't exist yet or exist_ok=true, calulating...", "yellow")
-        sim_mat = calc_ip_cosim(query_stack=query_stack_norm, embedding_gallary=embedding_gallary_norm)
+        sim_mat = calc_ip_cosim(query_stack=query_stack_norm, embedding_gallary=embedding_gallary_norm, verbose=verbose)
         torch.save(sim_mat, p)
     mAPs["cosim"] = calc_mAP(
         sim_matrix=sim_mat, 
@@ -304,7 +335,7 @@ def calc_sim_matrices(model_name:str, embedding_gallary_name:str, verbose=False,
     else:
         if(verbose):
             cprint("sim_mat doesn't exist yet or exist_ok=true, calulating...", "yellow")
-        sim_mat = calc_eucl_dist_sim(query_stack=query_stack, embedding_gallary=embedding_gallary)
+        sim_mat = calc_eucl_dist_sim(query_stack=query_stack, embedding_gallary=embedding_gallary, verbose=verbose)
         torch.save(sim_mat, p)
     #reverse scores in simularity matrix for mAP calculation (low euclidian distance = high score and vice versa)
     sim_mat = sim_mat*-1
@@ -328,7 +359,7 @@ def calc_sim_matrices(model_name:str, embedding_gallary_name:str, verbose=False,
     else:
         if(verbose):
             cprint("sim_mat doesn't exist yet or exist_ok=true, calulating...", "yellow")
-        sim_mat = calc_eucl_dist_sim(query_stack=query_stack_norm, embedding_gallary=embedding_gallary_norm)
+        sim_mat = calc_eucl_dist_sim(query_stack=query_stack_norm, embedding_gallary=embedding_gallary_norm, verbose=verbose)
         torch.save(sim_mat, p)
     #reverse scores in simularity matrix for mAP calculation (low euclidian distance = high score and vice versa)
     sim_mat = sim_mat*-1
@@ -371,18 +402,19 @@ def main():
         #Calculate simularity matrix for all models
         choice = input("At every checkpoint for all models? (y/N): ")
         if( choice != "y"):
-            targets = ["rotnet", "jigsaw", "moco32", "simclr"]
+            targets = ["rotnet", "jigsaw", "moco32", "simclr", "imgnet_pretrained"]
         else:
             targets = ["rotnet", "rotnet_phase0", "rotnet_phase25",  "rotnet_phase50", "rotnet_phase75","rotnet_phase100", 
                        "jigsaw", "jigsaw_phase0", "jigsaw_phase25",  "jigsaw_phase50", "jigsaw_phase75","jigsaw_phase100",
                        "moco32", "moco32_phase0", "moco32_phase25",  "moco32_phase50", "moco32_phase75",
-                       "simclr", "simclr_phase0", "simclr_phase25",  "simclr_phase50", "simclr_phase75" ]
+                       "simclr", "simclr_phase0", "simclr_phase25",  "simclr_phase50", "simclr_phase75",
+                       "imgnet_pretrained"]
         for target in targets:
             cprint(f" \nCalculating simularity matrix and mAP scores for model :{target}", "red")
             calc_sim_matrices(target, gallary_name,verbose=True, exist_ok=False, log_results=True)    
  
     else:
-        calc_sim_matrices(model_name, gallary_name, verbose=True, exist_ok=True, log_results=True)
+        calc_sim_matrices(model_name, gallary_name, verbose=True, exist_ok=False, log_results=True)
         
 if __name__ == "__main__":
     main()
