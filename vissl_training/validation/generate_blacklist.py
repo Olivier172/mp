@@ -7,18 +7,18 @@ import json
 def generate_blacklist(label_file:Path, blacklist_file:Path, verbose=False, generate_occurence_json=False):
     """
     Read in the label_file that represents all the labels that were used to create
-    the embedding_gallary_avg. Classes that have only one image/label are put on the blacklist.
-    This is done to prevent "easy matches" when evaluating mAP scores with embedding_gallary_avg.
+    the embedding_gallery_avg. Classes that have only one image/label are put on the blacklist.
+    This is done to prevent "easy matches" when evaluating mAP scores with embedding_gallery_avg.
 
     Args:
-        label_file (Path): path to the label file of all the embeddings that were used to calculated an embedding_gallary_avg.
+        label_file (Path): path to the label file of all the embeddings that were used to calculated an embedding_gallery_avg.
         blacklist_file (Path): file path to save the blacklist to.
         verbose (bool, optional): Controls prints.
     """
     if(not os.path.isfile(label_file)):
         cprint(f"label_file doesn't exist on path {label_file}", "red")
     
-    #Read labels from file that contains all labels used in the embedding_gallary_avg  
+    #Read labels from file that contains all labels used in the embedding_gallery_avg  
     with open(label_file, "r") as f:
         labels = f.read().splitlines()
         
@@ -50,7 +50,7 @@ def generate_blacklist(label_file:Path, blacklist_file:Path, verbose=False, gene
             json.dump(class_occurences, f)
         
 def main():
-    label_file = Path("data/rotnet/embedding_gallary_labels.txt")
+    label_file = Path("data/rotnet/embedding_gallery_labels.txt")
     blacklist_file = Path("data/blacklist.txt")
     generate_blacklist(label_file=label_file, blacklist_file=blacklist_file, verbose=False, generate_occurence_json=True)
     

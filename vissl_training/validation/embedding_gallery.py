@@ -104,25 +104,25 @@ def extract_features_tencrop(img_path:Path, model, verbose=False, device="cpu") 
     return features_avg
 
 
-def make_embedding_gallary(dir:Path, model, kind:str="embedding_gallary", verbose=False, exist_ok=False, device="cpu", feature_hook_dict=None):
+def make_embedding_gallery(dir:Path, model, kind:str="embedding_gallery", verbose=False, exist_ok=False, device="cpu", feature_hook_dict=None):
     """
-    Generates an embedding gallary by calculating the features from all images of the CornerShop dataset with 
+    Generates an embedding gallery by calculating the features from all images of the CornerShop dataset with 
     the model provided.
 
     Args:
-        dir (Path): Directory to save the gallary to.
+        dir (Path): Directory to save the gallery to.
         model (vissl model): Vissl model to use for inference.
-        kind (str, optional): the kind of embedding gallary to make
-                             -"embedding_gallary": the standard embedding gallary containing all embeddings of cornershop images
-                             -"embedding_gallary_avg": an embedding gallary containing an average embedding for every class.
+        kind (str, optional): the kind of embedding gallery to make
+                             -"embedding_gallery": the standard embedding gallery containing all embeddings of cornershop images
+                             -"embedding_gallery_avg": an embedding gallery containing an average embedding for every class.
         verbose (bool, optional): When True, you get prints from this function. Defaults to False.
-        exist_ok (bool, optional): determines wether to overwrite an existing gallary or not
+        exist_ok (bool, optional): determines wether to overwrite an existing gallery or not
         device (string or torch device): cpu of gpu for inference
         feature_hook_dict (OrderedDict or None): a dictionary that contains the activations of intermediary layers of the model. 
                                                  This is used to get the avg_pool activations from the img_net pretrained model
     """
     if(verbose):
-        cprint("In function make_embedding_gallary()","green")
+        cprint("In function make_embedding_gallery()","green")
         
     #check if saving dir exists, otherwise make it
     if(os.path.isdir(dir)):
@@ -130,15 +130,15 @@ def make_embedding_gallary(dir:Path, model, kind:str="embedding_gallary", verbos
         p = dir / file_name
         if( p.exists()):
             if(exist_ok):
-                cprint(f"Gallary already exists, but exist_ok={exist_ok} so overwriting","yellow")
-                #exist_ok=True, the gallary will be recalculated and overwritten...
+                cprint(f"gallery already exists, but exist_ok={exist_ok} so overwriting","yellow")
+                #exist_ok=True, the gallery will be recalculated and overwritten...
             else:  
-                cprint(f"Gallary already exists, but exist_ok={exist_ok} so abort","yellow")
+                cprint(f"gallery already exists, but exist_ok={exist_ok} so abort","yellow")
                 return #dont overwrite if exist_ok=false
         else:
-           cprint(f"Gallary doesn't exist yet, creating one at {p}","magenta") 
+           cprint(f"gallery doesn't exist yet, creating one at {p}","magenta") 
     else:
-        cprint(f"No gallary for this model exists yet, creating one at {dir}","magenta")
+        cprint(f"No gallery for this model exists yet, creating one at {dir}","magenta")
         dir.mkdir()
         
     CornerShop = Path("/home/olivier/Documents/master/mp/CornerShop/CornerShop/crops")
@@ -163,11 +163,11 @@ def make_embedding_gallary(dir:Path, model, kind:str="embedding_gallary", verbos
         fts_stack = torch.stack(avg_pool_features_list)
         
     else:
-        p = dir / "embedding_gallary.torch"
-        if( kind == "embedding_gallary_avg" and os.path.isfile(p)):
-            cprint("Info: Standard embedding gallary already exists. Reading from disk and calculating embedding gallary average from there.", "yellow")
-            #If the standard embedding gallary already exists, don't recalculate the features but read them from disk:
-            fts_stack, fts_stack_norm, labels = read_embedding_gallary(dir, kind="embedding_gallary")
+        p = dir / "embedding_gallery.torch"
+        if( kind == "embedding_gallery_avg" and os.path.isfile(p)):
+            cprint("Info: Standard embedding gallery already exists. Reading from disk and calculating embedding gallery average from there.", "yellow")
+            #If the standard embedding gallery already exists, don't recalculate the features but read them from disk:
+            fts_stack, fts_stack_norm, labels = read_embedding_gallery(dir, kind="embedding_gallery")
         else:
             #Extract features from a vissl model
             fts_stack = torch.stack([extract_features(p,model,device=device, verbose=False) for p in tqdm(img_paths)])
@@ -175,11 +175,11 @@ def make_embedding_gallary(dir:Path, model, kind:str="embedding_gallary", verbos
             fts_stack_norm = fts_stack / fts_stack.norm(dim=1,keepdim=True) 
     
      
-    if( kind == "embedding_gallary_avg"): 
-        #Calculating average embedding gallary based on the standard embedding gallary.
+    if( kind == "embedding_gallery_avg"): 
+        #Calculating average embedding gallery based on the standard embedding gallery.
         if(verbose):
-            cprint("Calculating an embedding_gallary_avg", "red")
-        #dictionary to summarize embedding gallary per class
+            cprint("Calculating an embedding_gallery_avg", "red")
+        #dictionary to summarize embedding gallery per class
         class_embeddings = {}
         #collect all embeddings per class and list them up in the dict:
         for idx, embedding in enumerate(fts_stack):
@@ -189,17 +189,17 @@ def make_embedding_gallary(dir:Path, model, kind:str="embedding_gallary", verbos
                 class_embeddings[class_name]=[]
             #add embedding to the list of embeddings of this class:
             class_embeddings[class_name].append(embedding)
-        #calculate the embedding_gallary_avg by averaging the tensors (embeddings) of every class:
+        #calculate the embedding_gallery_avg by averaging the tensors (embeddings) of every class:
         class_labels = list(class_embeddings.keys())
-        embedding_gallary_avg = [torch.mean(torch.stack(class_embeddings[class_name]), dim=0) for class_name in class_labels]
-        #Save the calculated embedding_gallary_avg to the variables we are writing to a file
-        fts_stack = torch.stack(embedding_gallary_avg) 
+        embedding_gallery_avg = [torch.mean(torch.stack(class_embeddings[class_name]), dim=0) for class_name in class_labels]
+        #Save the calculated embedding_gallery_avg to the variables we are writing to a file
+        fts_stack = torch.stack(embedding_gallery_avg) 
         fts_stack_norm = fts_stack / fts_stack.norm(dim=1,keepdim=True)
         labels = class_labels.copy()       
             
     #saving the calulated results   
     if(verbose):
-        print("Saving embedding gallary")
+        print("Saving embedding gallery")
         
         print(f"fts_stack has shape {fts_stack.shape}")
         print(f"Minimum value {fts_stack.min()}\nMaximum value {fts_stack.max()}")
@@ -220,34 +220,34 @@ def make_embedding_gallary(dir:Path, model, kind:str="embedding_gallary", verbos
         f.writelines("\n".join(labels))
 
     
-def read_embedding_gallary(dir:Path, kind:str="embedding_gallary"):
+def read_embedding_gallery(dir:Path, kind:str="embedding_gallery"):
     """Reads and displays some characteritics about the embedding galary saved in the dir provided.
 
     Args:
-        dir (Path): Path to the embedding gallary.
-        kind (str, optional): which embedding gallary to read in. 
-                             -"embedding_gallary": the standard embedding gallary containing all embeddings of cornershop images
-                             -"embedding_gallary_avg": an embedding gallary containing an average embedding for every class.
+        dir (Path): Path to the embedding gallery.
+        kind (str, optional): which embedding gallery to read in. 
+                             -"embedding_gallery": the standard embedding gallery containing all embeddings of cornershop images
+                             -"embedding_gallery_avg": an embedding gallery containing an average embedding for every class.
                              
     Returns:
-        embedding_gallary: The embedding gallary contains a stack of embeddings for which the label is known.
-        embedding_gallary_norm: Gallary with normalized embeddings.
-        labels: Ground turth labels for every row (embedding) in the embedding gallary.
+        embedding_gallery: The embedding gallery contains a stack of embeddings for which the label is known.
+        embedding_gallery_norm: gallery with normalized embeddings.
+        labels: Ground turth labels for every row (embedding) in the embedding gallery.
     """
 
-    cprint("In function read_embedding_gallary()","green")
+    cprint("In function read_embedding_gallery()","green")
     
     file_name = kind + ".torch"
-    embedding_gallary = torch.load(dir / file_name)
-    print(f"fts_stack has shape {embedding_gallary.shape}")
-    print(f"Minimum value {embedding_gallary.min()}\nMaximum value {embedding_gallary.max()}")
-    print(f"4 example tensors from this stack:\n{embedding_gallary[0:5]}")
+    embedding_gallery = torch.load(dir / file_name)
+    print(f"fts_stack has shape {embedding_gallery.shape}")
+    print(f"Minimum value {embedding_gallery.min()}\nMaximum value {embedding_gallery.max()}")
+    print(f"4 example tensors from this stack:\n{embedding_gallery[0:5]}")
     
     file_name = kind + "_norm.torch"
-    embedding_gallary_norm = torch.load(dir / file_name)
-    print(f"fts_stack_norm has shape {embedding_gallary_norm.shape}")
-    print(f"Minimum value {embedding_gallary_norm.min()}\nMaximum value {embedding_gallary_norm.max()}")
-    print(f"4 example tensors from this stack:\n{embedding_gallary_norm[0:5]}")
+    embedding_gallery_norm = torch.load(dir / file_name)
+    print(f"fts_stack_norm has shape {embedding_gallery_norm.shape}")
+    print(f"Minimum value {embedding_gallery_norm.min()}\nMaximum value {embedding_gallery_norm.max()}")
+    print(f"4 example tensors from this stack:\n{embedding_gallery_norm[0:5]}")
     
     labels = list()
     file_name = kind + "_labels.txt"
@@ -255,7 +255,7 @@ def read_embedding_gallary(dir:Path, kind:str="embedding_gallary"):
         labels = f.read().splitlines()
         print(f"labels list has length "+ str(len(labels)))
         print(f"4 examples from the label list are: {labels[0:4]}", end="\n\n")
-    return embedding_gallary, embedding_gallary_norm, labels
+    return embedding_gallery, embedding_gallery_norm, labels
   
 def add_feature_hooks(model: torch.nn.Module):
     """
@@ -286,13 +286,13 @@ def main():
         #If not making a folder to store embedding gallaries
         data_folder.mkdir()
         
-    #choose a kind of embedding gallary to make
-    options = ["embedding_gallary", "embedding_gallary_avg"]
-    print(f"Choose an embedding gallary to use. Your options are: {options}")
-    gallary_name = input("Your choice: ")
-    while gallary_name not in options:
+    #choose a kind of embedding gallery to make
+    options = ["embedding_gallery", "embedding_gallery_avg"]
+    print(f"Choose an embedding gallery to use. Your options are: {options}")
+    gallery_name = input("Your choice: ")
+    while gallery_name not in options:
         print(f"Invalid option. Your options are: {options}")
-        gallary_name = input("Your Choice:") 
+        gallery_name = input("Your Choice:") 
     
     #choose a model
     options = ["rotnet", "jigsaw", "moco32", "moco64", "simclr", "swav", "imgnet_pretrained", "all",
@@ -308,7 +308,7 @@ def main():
         
     #Loading the model
     if(model_name == "all"):
-        #Calculate embedding gallary for all models
+        #Calculate embedding gallery for all models
         choice = input("At every checkpoint for all models? (y/N): ")
         if( choice != "y"):
             targets = ["rotnet", "jigsaw", "moco32", "simclr"]
@@ -319,23 +319,23 @@ def main():
                        "simclr", "simclr_phase0", "simclr_phase25",  "simclr_phase50", "simclr_phase75" ]
             
         for target in targets:
-            cprint(f"Calculating embedding gallary for target {target}\n", "red")
+            cprint(f"Calculating embedding gallery for target {target}\n", "red")
             model = load_model(target, verbose=True)
             #Evaluation mode
             model = model.eval()
             #creating the embedding library
-            make_embedding_gallary(
+            make_embedding_gallery(
                 Path("data/" + target), 
                 model, 
-                kind=gallary_name,
+                kind=gallery_name,
                 verbose=True, 
                 exist_ok=False, 
                 device="cpu", 
                 feature_hook_dict=None
             )
-            #read_embedding_gallary(Path("data/" + target), kind=gallary_name)
+            #read_embedding_gallery(Path("data/" + target), kind=gallery_name)
     else:
-        #Calculate embedding gallary for one model
+        #Calculate embedding gallery for one model
         if(model_name == "imgnet_pretrained"):
             #resnet50 with imgnet pretrained weights (supervised model)
             #https://pytorch.org/vision/0.9/models.html?highlight=resnet50#torchvision.models.resnet50
@@ -357,16 +357,16 @@ def main():
         print(f"using {device} device", end="\n\n")   
         
         #creating the embedding library
-        make_embedding_gallary(
+        make_embedding_gallery(
             Path("data/" + model_name),
             model, 
-            kind=gallary_name,
+            kind=gallery_name,
             verbose=True, 
-            exist_ok=True, 
+            exist_ok=False, 
             device=device, 
             feature_hook_dict=feature_hook_dict
         )
-        read_embedding_gallary(Path("data/" + model_name), kind=gallary_name)
+        read_embedding_gallery(Path("data/" + model_name), kind=gallery_name)
     
 if __name__ == "__main__":
     main()

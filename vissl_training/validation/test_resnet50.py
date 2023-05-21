@@ -157,7 +157,7 @@ PATHS = {
 
 print(PATHS["rotnet"]["weights"])
 
-#sanity check for avg embedding gallary
+#sanity check for avg embedding gallery
 tensor = torch.Tensor([
     [1,2,3,4],
     [1,2,3,4],
