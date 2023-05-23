@@ -1,4 +1,5 @@
 from pathlib import Path
+from termcolor import cprint
 import json
 
 def determine_query_origin(dataset_folder:Path):
@@ -137,21 +138,44 @@ def check_eligibility_strict_testing(query_orgins: dict):
             train_set, test_set = train_test_split(queries)
             #save train test split:
             strict_train_test[cls] = {
-                "train": train_set, # test_slice untill the end of queries is the training set
-                "test": test_set #the 0 to test_slice is the testing set
+                "train": train_set, 
+                "test": test_set 
             }
             #cprint(f"Info: class {cls} is eligible for strict testing with {amt_origin_imgs} distinct origin images", "yellow")
     return strict_train_test
+
+def output_file_exists(output_file:Path):
+    """
+    Check if outputfile already exisits. 
+    If so, no need to recalculate.
+
+    Args:
+        outputfile (Path): path to the output json file.
+    """
+    if(output_file.is_file()):
+        cprint(f"Info: json file already exisits at {output_file} so aborting", "yellow")
+        return True
+    else:
+        return False
         
 def main():
+    #input
+    #The CornerShop dataset:
     cornershop = Path("/home/olivier/Documents/master/mp/CornerShop/CornerShop/crops")
+    
+    #output 
+    #Json file that determines the strict train_test_split
+    output_file = Path("data/strict_train_test.json")
+    
+    if(output_file_exists(output_file)):
+        exit()
+        
     qo = determine_query_origin(cornershop)
     strict_train_test = check_eligibility_strict_testing(qo)
-    #print(strict_train_test)
     print(f"there are {len(strict_train_test.keys())} classes eligible for strict testing")   
     
-    p = Path("data/strict_train_test.json")
-    with open(p, "w") as f:
+    #save output
+    with open(output_file, "w") as f:
         json.dump(strict_train_test, f)
      
     
