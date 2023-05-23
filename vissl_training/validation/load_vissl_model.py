@@ -121,6 +121,27 @@ def load_model(model_name:str, verbose=False):
             "train_config": "validation/moco_full_32/train_config.yaml",
             "weights": BASE_DIR_WEIGHTS + "sku110k/moco_full_32/model_phase75.torch"
         },
+        #MOCO64
+        "moco64_phase0":
+        {
+            "train_config": "validation/moco_full_64/train_config.yaml",
+            "weights": BASE_DIR_WEIGHTS + "sku110k/moco_full_64/model_phase0.torch"
+        },
+        "moco64_phase25":
+        {
+            "train_config": "validation/moco_full_64/train_config.yaml",
+            "weights": BASE_DIR_WEIGHTS + "sku110k/moco_full_64/model_phase25.torch"
+        },
+        "moco64_phase50":
+        {
+            "train_config": "validation/moco_full_64/train_config.yaml",
+            "weights": BASE_DIR_WEIGHTS + "sku110k/moco_full_64/model_phase50.torch"
+        },
+        "moco64_phase75":
+        {
+            "train_config": "validation/moco_full_64/train_config.yaml",
+            "weights": BASE_DIR_WEIGHTS + "sku110k/moco_full_64/model_phase75.torch"
+        },
         #SIMCLR
         "simclr_phase0":
         {
