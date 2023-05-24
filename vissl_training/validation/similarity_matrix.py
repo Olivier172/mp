@@ -337,11 +337,11 @@ def calc_sim_matrices(model_name:str, embedding_gallery_name:str, verbose=False,
     p = dir / file_name
     if( p.exists() and not(exist_ok)):
         if(verbose):
-            cprint("sim_mat already exists","green")
+            cprint("Info: sim_mat already exists","green")
         sim_mat = torch.load(p)
     else:
         if(verbose):
-            cprint("sim_mat doesn't exist yet or exist_ok=true, calulating...", "yellow")
+            cprint("Info: sim_mat doesn't exist yet or exist_ok=true, calulating...", "yellow")
         sim_mat = calc_eucl_dist_sim(query_stack=query_stack, embedding_gallery=embedding_gallery, verbose=verbose)
         torch.save(sim_mat, p)
     #reverse scores in similarity matrix for mAP calculation (low euclidian distance = high score and vice versa)
@@ -386,15 +386,16 @@ def calc_sim_matrices(model_name:str, embedding_gallery_name:str, verbose=False,
     if(log_results):
         log_mAP_scores(dir, model_name, embedding_gallery_name, mAPs)      
     
-def main():
-    #choose an embedding gallery
-    options = ["embedding_gallery", "embedding_gallery_avg"]
-    print(f"Choose an embedding gallery to use. Your options are: {options}")
-    gallery_name = input("Your choice: ")
-    while gallery_name not in options:
-        print(f"Invalid option. Your options are: {options}")
-        gallery_name = input("Your Choice:") 
-        
+def get_targets(prompt:str="Choose a model"):
+    """
+    Get the target models to use the galleries of those models for cross validation.
+    
+    Args:
+        prompt(str, optional): the prompt to display when choosing models
+    
+    Returns:
+        targets(list<str>): a list of model names to use
+    """
     #choose a model
     options = ["rotnet", "jigsaw", "moco32", "moco64", "simclr", "swav", "imgnet_pretrained", "all",
                "rotnet_phase0", "rotnet_phase25",  "rotnet_phase50", "rotnet_phase75","rotnet_phase100",
@@ -402,14 +403,14 @@ def main():
                "moco32_phase0", "moco32_phase25",  "moco32_phase50", "moco32_phase75",
                "moco64_phase0", "moco64_phase25",  "moco64_phase50", "moco64_phase75",
                "simclr_phase0", "simclr_phase25",  "simclr_phase50", "simclr_phase75"]
-    print(f"Choose a model to calculate similarity matrices from with it's embedding gallery. Your options are: {options}")
+    print(f"{prompt}. Your options are: {options}")
     model_name = input("Your Choice:")
     while model_name not in options:
         print(f"Invalid option. Your options are: {options}")
-        model_name = input("Your Choice:") 
-    
+        model_name = input("Your Choice:")
+        
     if(model_name == "all"):
-        #Calculate similarity matrix for all models
+        #all models
         choice = input("At every checkpoint for all models? (y/N): ")
         if( choice != "y"):
             targets = ["rotnet", "jigsaw", "moco32", "moco64", "simclr", "imgnet_pretrained"]
@@ -420,12 +421,30 @@ def main():
                        "moco64", "moco64_phase0", "moco64_phase25",  "moco64_phase50", "moco64_phase75",
                        "simclr", "simclr_phase0", "simclr_phase25",  "simclr_phase50", "simclr_phase75",
                        "imgnet_pretrained"]
-        for target in targets:
-            cprint(f" \nCalculating similarity matrix and mAP scores for model :{target}", "red")
-            calc_sim_matrices(target, gallery_name,verbose=True, exist_ok=False, log_results=True)    
- 
     else:
-        calc_sim_matrices(model_name, gallery_name, verbose=True, exist_ok=False, log_results=True)
+        #one model
+        targets = [model_name]
+    return targets
+
+def main():
+    #choose an embedding gallery
+    options = ["embedding_gallery", "embedding_gallery_avg"]
+    print(f"Choose an embedding gallery to use. Your options are: {options}")
+    gallery_name = input("Your choice: ")
+    while gallery_name not in options:
+        print(f"Invalid option. Your options are: {options}")
+        gallery_name = input("Your Choice:") 
+        
+    #choose a model
+    targets = get_targets("Choose a model to calculate similarity matrices from with it's embedding gallery")
+    for target in targets:
+        cprint(f" \nCalculating similarity matrix and mAP scores for model :{target}", "red")
+        calc_sim_matrices(
+            target, 
+            gallery_name,verbose=True, 
+            exist_ok=False, 
+            log_results=True
+        )    
         
 if __name__ == "__main__":
     main()
