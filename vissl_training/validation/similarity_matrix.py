@@ -229,7 +229,7 @@ def log_mAP_scores(dir: Path, model_name:str, embedding_gallery_name:str, mAPs:d
     time_string = current_time.strftime('%H:%M:%S')
     lines.append("-"*90 + "\n")
     lines.append(f"mAP Logging results on {date_string} @ {time_string}.\n")
-    lines.append(f"Embedding library of model {model_name} was used to calculated these scores.\n")
+    lines.append(f"Embedding gallery of model {model_name} was used to calculated these scores.\n")
     lines.append(f"In total there where {mAPs['amt_classes']} distinct classes in the test set of which {mAPs['amt_classes_AP_calc']} classes could be used for mAP calcuation.\n")
     lines.append(f"mAP={mAPs['ip']} for inner product (ip) as a similarity metric.\n")
     lines.append(f"mAP={mAPs['cosim']} for cosine similarity (cosim) as a similarity metric.\n")

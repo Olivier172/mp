@@ -7,9 +7,8 @@ from termcolor import cprint
 from sklearn.model_selection import GridSearchCV, StratifiedKFold, train_test_split
 from sklearn.svm import SVC
 from sklearn.neural_network import MLPClassifier
-from tqdm import tqdm
-from similarity_matrix import get_targets
 
+from similarity_matrix import get_targets
 from embedding_gallery import read_embedding_gallery
 
 def search_best_hyperparam(param_grid, classifier,train_data, train_labels, test_data, test_labels):
@@ -54,17 +53,25 @@ def search_best_hyperparam(param_grid, classifier,train_data, train_labels, test
 def search_best_hyperparam_svm(train_data, train_labels, test_data, test_labels):
     
     # Define the parameter grid
-    param_grid = {
-        'kernel': ['linear', 'rbf'],
-        'C': [0.1, 1, 10],
-        'gamma': [0.1, 0.01]
-    }
+    param_grids = [
+        #eval diff kernels and regularization params c
+        {
+            "kernel": ["linear", "rbf"],
+            "C": [0.1, 1, 10, 20, 30, 50, 100]
+        },
+        #eval different degrees of polynomials
+        {
+            "kernel": ["poly"],
+            "degree" : [2, 3, 4, 5, 10],
+            'C': [0.1, 1, 10, 20, 30, 50, 100]
+        }
+    ]
     
     # Create the SVM model
     svm = SVC()
     
     #search the best hyperparams
-    best_params, test_score = search_best_hyperparam(param_grid, svm, train_data, train_labels, test_data, test_labels)
+    best_params, test_score = search_best_hyperparam(param_grids, svm, train_data, train_labels, test_data, test_labels)
     
     return best_params, test_score
 
@@ -72,13 +79,12 @@ def search_best_hyperparam_mlp(train_data, train_labels, test_data, test_labels)
     
     # Define the parameter grid
     param_grid = {
-        'hidden_layer_sizes': [(50,), (100,), (50, 50)],
-        'activation': ['relu', 'tanh'],
-        'alpha': [0.0001, 0.001, 0.01]
+        "hidden_layer_sizes": [(64), (128), (256,64), (512,256)],
+        "solver": ["lbfgs", "sgd", "adam"],
     }
 
     # Create the MLP classifier
-    mlp = MLPClassifier()
+    mlp = MLPClassifier(max_iter=10_000)
     
     #search the best hyperparams
     best_params, test_score = search_best_hyperparam(param_grid, mlp, train_data, train_labels, test_data, test_labels)
@@ -161,12 +167,84 @@ def get_train_test_sets(data, labels, strict=False, verbose=False):
     return train_set, train_labels, test_set, test_labels
 
 
-def log_results(file_path:Path, best_params, test_score):
-    lines = []
-    lines.append("")  
+def log_results(output_file:Path, model_name:str, best_params:dict, test_score):
+    """
+    Logs cross validation results for this model with svm and mlp classifier
+
+    Args:
+        output_file (Path): path to output file
+        model_name (str): name of the model used
+        best_params (dict): dict with best params
+        test_score: the test score for best params
+    """
+    #Creating message (lines)
+    lines = [] 
+    # Get the current date and time
+    current_datetime = datetime.now()
+    # Extract the date and time components
+    current_date = current_datetime.date()
+    current_time = current_datetime.time()
+    # Convert to string format
+    date_string = current_date.strftime('%Y-%m-%d')
+    time_string = current_time.strftime('%H:%M:%S')
+    lines.append("-"*90 + "\n")
+    lines.append(f"cross validation logging results on {date_string} @ {time_string}.\n")
+    lines.append(f"Embedding gallery of model {model_name} was used to calculated these scores.\n")
+    #log results
+    lines.append(f"best params {best_params}\n")
+    lines.append(f"test score {test_score}\n")
+    lines.append("-"*90 + "\n\n")
     
-def main():
-    model_name:str
+    #log results to file
+    cprint(f"Logging cross validation results to a file on path : {output_file}", "green")
+    with open(output_file, "w") as f:
+        f.writelines(lines)
+    #save best params in json format to use during testing phase
+    json_file = output_file.parent / (output_file.stem  + "_best_params.json")  
+    cprint(f"Logging best params to a file on path : {json_file}", "green")
+    with open(json_file, "w") as f:
+        json.dump(best_params, f)
+        
+def compile_total_log(output_file_name:str, dir:Path, targets:list, file_names:list):
+    output = []
+    # Get the current date and time
+    current_datetime = datetime.now()
+    # Extract the date and time components
+    current_date = current_datetime.date()
+    current_time = current_datetime.time()
+    # Convert to string format
+    date_string = current_date.strftime('%Y-%m-%d')
+    time_string = current_time.strftime('%H:%M:%S')
+    output.append(f"Total log compiled at {date_string} @ {time_string}.\n")
+    #gather all seperate logs
+    for target in targets:
+        output.append(f"\nResults for {target}\n")
+        for file in file_names:
+            p:Path
+            p = dir / target / file
+            if(p.is_file()):
+                output.append(f"origin_file: {p}\n")
+                with open(p, "r") as f:
+                    data = f.readlines()
+                    output.extend(data)
+                    output.append("\n")
+            else:
+                cprint(f"Warning file {p} not found to compile total log and will not be included", "red")
+    #write the compiled version to a file
+    output_file = dir / output_file_name
+    cprint(f"Logging all cross validation results to a file on path : {output_file}", "green")
+    with open(output_file, "w") as f:
+        f.writelines(output)
+    
+def cross_validate(verbose=False, exist_ok=False):
+    """
+    Function to perform cross validation to tune hyperparameters of svm or mlp.
+
+    Args:
+        verbose (bool, optional): print control. Defaults to False.
+        exist_ok (bool, optional): Wether to recalculate optimal hyperparams
+                                   and overwrite previouse logfiles. Defaults to False.
+    """
     gallery:torch.Tensor
     gallery_norm:torch.Tensor
     labels:list
@@ -174,24 +252,51 @@ def main():
     #get the models to calculate cross validation for
     targets = get_targets()
     
-    for target in tqdm(targets):
+    #select which classifier to optimize hyperparams for
+    classifier = input("please select a classifier to search optimal hyperparams for: (SVM/mlp)")
+    if(classifier != "mlp"):
+        classifier = "svm"
+    else:
+        classifier = "mlp"
+        
+    #determine output file names
+    file_names = [f"cross_val_{classifier}.txt", f"cross_val_strict_{classifier}.txt"]    
+         
+    for target in targets:
         cprint(f"Calculating cross validation for target {target}", "red")
-        p = Path("data/" + target)
+        p = Path(f"data/{target}")
         gallery, gallery_norm, labels = read_embedding_gallery(p)
         #Convert our data into numpy arrays
         data = gallery_norm.numpy()
         labels = np.array(labels)
         
-        logfiles = [p.joinpath("cross_val.txt"), p.joinpath("cross_val_strict.txt")]
+        logfiles = [p.joinpath(fn) for fn in file_names]
         for logfile in logfiles:
+            if(logfile.is_file() and not(exist_ok)):
+                cprint(f"Info: logfile for this cross validation already exists at {logfile}, skip calculation", "yellow")
+                continue
             #train test split
-            if(logfile.name == "cross_val.txt"):
-                train_set, train_labels, test_set, test_labels = get_train_test_sets(data, labels, strict=False, verbose=True)
-            elif(logfile.name == "cross_val_strict.txt"):
-                train_set, train_labels, test_set, test_labels = get_train_test_sets(data, labels, strict=True, verbose=True)
+            if(logfile.name == f"cross_val_{classifier}.txt"):
+                train_set, train_labels, test_set, test_labels = get_train_test_sets(data, labels, strict=False, verbose=verbose)
+            elif(logfile.name == f"cross_val_strict_{classifier}.txt"):
+                train_set, train_labels, test_set, test_labels = get_train_test_sets(data, labels, strict=True, verbose=verbose)
             
-            best_params_svm, test_score_svm = search_best_hyperparam_svm(train_set, train_labels, test_set, test_labels)
-            best_params_mlp, test_score_mlp = search_best_hyperparam_mlp(train_set, train_labels, test_set, test_labels)
+            if(classifier == "svm"):
+                best_params, test_score= search_best_hyperparam_svm(train_set, train_labels, test_set, test_labels)
+            elif(classifier == "mlp"):
+                best_params, test_score = search_best_hyperparam_mlp(train_set, train_labels, test_set, test_labels)
+
+            log_results(logfile, target, best_params, test_score)
+            
+    compile_total_log(
+        output_file_name=f"total_cross_val_log_{classifier}.txt", 
+        dir=Path("data"),
+        targets=targets,
+        file_names = file_names
+    )
+    
+def main():
+    cross_validate(verbose=True, exist_ok=True)
     
 
 if __name__ == "__main__":
