@@ -102,10 +102,10 @@ def get_train_test_sets(data, labels, strict=False, verbose=False):
         verbose (bool, optional): switch to allow prints. Defaults to False.
 
     Returns:
-        train_set: training data.
-        train_labels: labels for training data.
-        test_set: testing data.
-        test_labels: labels for testing data.
+        train_set (np.ndarray): training data.
+        train_labels (np.ndarray): labels for training data.
+        test_set (np.ndarray): testing data.
+        test_labels (np.ndarray): labels for testing data.
     """
     if(strict):
         json_file = Path("data/strict_train_test.json")
@@ -144,7 +144,10 @@ def get_train_test_sets(data, labels, strict=False, verbose=False):
                 test_labels.append(test_label)
         #convert to np arrays
         train_set = np.array(train_set)
+        train_labels = np.array(train_labels)
         test_set = np.array(test_set)
+        test_labels = np.array(test_labels)
+        
         
     else:
         if(verbose):

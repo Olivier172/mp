@@ -111,7 +111,8 @@ def calc_mAP(sim_matrix:torch.Tensor, gallery_labels:list , query_labels:list, v
         amt_classes (int): amount of distinct classes in the labels of the gallery.
         amt_classes_AP (int): amount of distinct classes used for mAP calculation.
     """
-    cprint("In function calc_mAP()", "green")
+    if(verbose):
+        cprint("In function calc_mAP()", "green")
     #Convert everything to numpy
     sim_matrix_np = sim_matrix.numpy()
     gallery_labels_np = np.array(gallery_labels)
@@ -159,7 +160,7 @@ def calc_mAP(sim_matrix:torch.Tensor, gallery_labels:list , query_labels:list, v
     if(verbose):
         print(f"amount of classes where an AP could be calculated {amt_classes_AP_calc}")
         
-    #AP is average precision of a class with different threshods (poisitions in the PR curve)    
+    #AP is average precision of a class with different threshods (positions in the PR curve)    
     #calculate the AP for every class:
     AP = {}
     for k in AP_queries.keys():
@@ -220,7 +221,15 @@ def generate_blacklist(gallery_labels:list, verbose=False):
             
     return blacklist
 
-def calc_embedding_gallery_avg(output_file:Path, dir:Path, model_name:str, embedding_gallery:torch.Tensor, embedding_gallery_norm:torch.Tensor, gallery_labels:list, verbose=False):
+def calc_embedding_gallery_avg(
+    output_file:Path, 
+    dir:Path, model_name:str, 
+    embedding_gallery:torch.Tensor, 
+    embedding_gallery_norm:torch.Tensor, 
+    gallery_labels:list, 
+    verbose=False, 
+    exist_ok=False
+):
     """
     Calculating average embedding gallery based on the standard embedding gallery.
 
@@ -236,7 +245,7 @@ def calc_embedding_gallery_avg(output_file:Path, dir:Path, model_name:str, embed
     if(verbose):
         print("In function calc_embedding_gallery_avg", "yellow")
     #Check if calc is necessary
-    if(output_file.is_file()):
+    if(output_file.is_file() and not(exist_ok)):
         cprint(f"Info: {output_file} aready exists, skip calculation", "yellow")
         return
     
@@ -519,7 +528,8 @@ def calc_sim_matrices(model_name:str, verbose=False, exist_ok=False, log_results
             embedding_gallery=embedding_gallery,
             embedding_gallery_norm=embedding_gallery_norm,
             gallery_labels=gallery_labels,
-            verbose=verbose
+            verbose=verbose,
+            exist_ok=exist_ok
         )
         
             
@@ -547,10 +557,10 @@ def log_mAP_scores(output_file:Path, model_name:str, mAPs:dict, optional_trunk:s
     lines.append(f"mAP Logging results on {date_string} @ {time_string}.\n")
     lines.append(f"Embedding gallery of model {model_name} was used to calculated these scores.\n")
     lines.append(f"In total there where {mAPs['amt_classes']} distinct classes in the test set of which {mAPs['amt_classes_AP_calc']} classes could be used for mAP calcuation.\n")
-    lines.append(f"mAP={mAPs['ip']} for inner product (ip) as a similarity metric.\n")
-    lines.append(f"mAP={mAPs['cosim']} for cosine similarity (cosim) as a similarity metric.\n")
-    lines.append(f"mAP={mAPs['eucl_dist']} for euclidian distance (eucl_dist) as a similarity metric.\n")
-    lines.append(f"mAP={mAPs['eucl_dist_norm']} for euclidian distance with normalized features (eucl_dist_norm) as a similarity metric.\n")
+    lines.append(f"mAP={mAPs['ip']*100}% for inner product (ip) as a similarity metric.\n")
+    lines.append(f"mAP={mAPs['cosim']*100}% for cosine similarity (cosim) as a similarity metric.\n")
+    lines.append(f"mAP={mAPs['eucl_dist']*100}% for euclidian distance (eucl_dist) as a similarity metric.\n")
+    lines.append(f"mAP={mAPs['eucl_dist_norm']*100}% for euclidian distance with normalized features (eucl_dist_norm) as a similarity metric.\n")
     if(optional_trunk != None):
         lines.append(optional_trunk)
     lines.append("-"*90 + "\n\n")
@@ -649,7 +659,7 @@ def main():
         calc_sim_matrices(
             target, 
             verbose=True, 
-            exist_ok=False, 
+            exist_ok=True, 
             log_results=True
         ) 
     
