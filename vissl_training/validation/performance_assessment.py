@@ -137,11 +137,18 @@ def performane_assesment(verbose:bool=False, exist_ok:bool=False):
             
             if(classifier == "svm"):
                 #Create SVM estimator with the best hyperparams from cross validation
-                svm = SVC(
-                    C = best_params["C"],
-                    kernel = best_params["kernel"],
-                    degree = best_params["degree"] #if kernel is not poly, this param is ignored
-                )
+                if("degree" in best_params.keys()):
+                    #degree is only in best_params if kernel was poly
+                    svm = SVC(
+                        C = best_params["C"],
+                        kernel = best_params["kernel"],
+                        degree = best_params["degree"] 
+                    )
+                else:
+                    svm = SVC(
+                        C = best_params["C"],
+                        kernel = best_params["kernel"]
+                    )
                 acc, cm = eval_performance(svm, train_set, train_labels, test_set, test_labels)
             elif(classifier == "mlp"):
                 #Create MLP estimator
@@ -162,7 +169,7 @@ def performane_assesment(verbose:bool=False, exist_ok:bool=False):
     )
 
 def main():
-    performane_assesment(verbose=True)
+    performane_assesment(verbose=True, exist_ok=False)
     
 if __name__ == "__main__":
     main()

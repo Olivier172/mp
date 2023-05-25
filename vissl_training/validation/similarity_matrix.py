@@ -1,50 +1,23 @@
 import torch 
 import numpy as np
 import os
+import json
+from collections import Counter
 from datetime import datetime
 from pathlib import Path
 from termcolor import cprint
 from sklearn.metrics import average_precision_score
 
-def read_embedding_gallery(dir:Path, embedding_gallery_name:str):
-    """
-    Reads in the embedding gallery from disk.
+from embedding_gallery import read_embedding_gallery
 
-    Args:
-        dir (Path): Path to the directory where the gallery is saved.
-        embedding_gallery_name (str): The name of the embedding gallery used. 
-                                      This can be "embedding_gallery" or "embedding_gallery_avg" 
-
-    Returns:
-        embedding_gallery: The embedding gallery contains a stack of embeddings for which the label is known.
-        embedding_gallery_norm: gallery with normalized embeddings.
-        labels: Ground turth labels for every row (embedding) in the embedding gallery.
-    """
-    cprint("In function read_embedding_gallery()", "green")
-    
-    file_name = embedding_gallery_name + ".torch" 
-    embedding_gallery = torch.load(dir / file_name)
-    print(f"fts_stack has shape {embedding_gallery.shape}")
-    
-    file_name = embedding_gallery_name + "_norm.torch"
-    embedding_gallery_norm = torch.load(dir / file_name)
-    print(f"fts_stack_norm has shape {embedding_gallery_norm.shape}")
-    labels = list()
-    
-    file_name = embedding_gallery_name + "_labels.txt"
-    with open(dir / file_name, "r") as f:
-        labels = f.read().splitlines()
-        print(f"labels list has length "+ str(len(labels)))
-     
-    return embedding_gallery, embedding_gallery_norm, labels
-
-def read_blacklist(file_path:Path) -> list:
+def read_blacklist(file_path:Path, verbose=False) -> list:
     """
     Reads in the blacklist for class labels not to use when evaluating mAP scores of embedding_gallery_avg.
     Because these classes contain only one element in the CornerShop dataset and would be an "easy match".
 
     Args:
         file_path (Path): path to the blacklist file.
+        verbose (bool, optional): print switch.
 
     Returns:
         blacklist (list): list of strings containing the blacklisted classes. 
@@ -55,7 +28,8 @@ def read_blacklist(file_path:Path) -> list:
     
     with open(file_path, "r") as f:
         blacklist = f.read().splitlines()
-        cprint(f"Blacklist file succesfully read. There are  "+ str(len(blacklist)) + " classes blacklisted.", "green")
+        if(verbose):
+            cprint(f"Blacklist file succesfully read. There are  "+ str(len(blacklist)) + " classes blacklisted.", "green")
     return blacklist
 
 def calc_ip_cosim(query_stack:torch.Tensor, embedding_gallery:torch.Tensor, verbose=False):
@@ -117,7 +91,7 @@ def calc_eucl_dist_sim(query_stack:torch.Tensor, embedding_gallery:torch.Tensor,
         print(f"std: {torch.std(sim_matrix)}")
     return sim_matrix
     
-def calc_mAP(sim_matrix:torch.Tensor, gallery_labels:list , query_labels:list, embedding_gallery_name:str, verbose=False):
+def calc_mAP(sim_matrix:torch.Tensor, gallery_labels:list , query_labels:list, verbose=False, mask_diagonal=False):
     """
     Function to calculate the mean Average Precision of a similarity matrix
 
@@ -128,6 +102,9 @@ def calc_mAP(sim_matrix:torch.Tensor, gallery_labels:list , query_labels:list, e
         query_labels (list): list of labels containing the ground truth classification label for every row in 
                              the similarity matrix (and each row contains the similarity scores for a query). 
         verbose (bool, optional): Boolean switch to enable prints. Defaults to False.
+        mask_diagonal (bool, optional): Wether to mask confidence scores at the diagonal of sim_matrix for AP score calc. 
+                                        This is necessary for the standard embedding gallery as there is a perfect match for every query. 
+                                        We have to mask this value to not cosider this match in AP calculation. Defaults to False.
 
     Returns:
         mAP (float): The mAP score.
@@ -145,16 +122,11 @@ def calc_mAP(sim_matrix:torch.Tensor, gallery_labels:list , query_labels:list, e
         print(f"query_labels shape {query_labels_np.shape}")
         print(f"len sim_matrix_np {len(sim_matrix_np)}")
     
-    
     #return indicis of all unique class labels
     classes = list(np.unique(gallery_labels_np))
     amt_classes = len(classes)
     if(verbose):
         print(f"amount of classes {amt_classes}")
-      
-    #Read in blacklist for fair evaluation of embedding_gallery_avg
-    if(embedding_gallery_name == "embedding_gallery_avg"):
-          blacklist = read_blacklist(Path("data/blacklist.txt"))  
           
     #dictionary to store average precisions for every query
     AP_queries = {}
@@ -165,15 +137,11 @@ def calc_mAP(sim_matrix:torch.Tensor, gallery_labels:list , query_labels:list, e
         query_label = query_labels_np[i]
         y_true = gallery_labels_np == query_label #find all matches for the label of the current query (boolean np array)
         y_score = sim_matrix_np[i] 
-        if(embedding_gallery_name == "embedding_gallery"):
+        if(mask_diagonal):
             #in this case, the query embedding has a perfect match in the gallery
             #we need to remove this one before evaluating AP to prevent "easy match"
             y_true[i] = False #Remove perfect match
             y_score[i]= -99999.0 #large negative number to indicate no match
-        elif(embedding_gallery_name == "embedding_gallery_avg"):
-            #skip queries of blacklisted classes for embedding_gallery_avg to prevent easy matches
-            if(query_label in blacklist):
-                continue
         #skip queries who have no positives:
         if(y_true.sum() == 0): #y_true.sum() counts the amount of True's
             continue
@@ -205,17 +173,365 @@ def calc_mAP(sim_matrix:torch.Tensor, gallery_labels:list , query_labels:list, e
         cprint(f"mAP of this model is: {mAP}","magenta")
         
     return mAP, amt_classes, amt_classes_AP_calc
+        
+def generate_blacklist(gallery_labels:list, verbose=False):
+    """
+    Check how many occurences all the classes in gallery_labels have. Less then 3 means not eligible
+    for use in embedding_gallery_avg, so they are added to the blacklist.
+    class occurences will be saved to "data/class_occurences.json".
+    blacklist will be saved to data/blacklist.txt".
+
+    Args:
+        gallery_labels (list): list of all the labels in the embedding_gallery.
+        verbose (bool, optional): Controls prints.
+        
+    Returns:
+        blacklist (list): a list containing all the class names that are not eligable for use in embedding_gallery_avg.
+    """
+    if(verbose):
+        cprint("in function generate_blacklist()", "green")
+    #Lets count how many times each label occurs
+    counter = Counter(gallery_labels)
+    #list to store all elements that occur only once
+    blacklist = list()
+    #store the amount of occurences per class
+    class_occurences = {} 
+    for item, count in counter.items():
+        class_occurences[item] = count
+        if(count < 3):
+            blacklist.append(item)
+            
+    if(verbose):
+        cprint(f"Info: {len(blacklist)} items were added to the blacklist", "red")
+                
+    #save blacklist to output file
+    blacklist_file = Path("data/blacklist.txt")
+    if(not(blacklist_file.is_file())):
+        with open(blacklist_file, "w") as f:
+            cprint(f"Saving blacklist to file {blacklist_file}", "green")
+            f.writelines("\n".join(blacklist))
+        
+    #save class occurences 
+    occurence_json_file = Path("data/class_occurences.json")
+    if(not(occurence_json_file.is_file())):
+        with open(occurence_json_file, "w") as f:
+            cprint(f"Saving class occurences to file {occurence_json_file}", "green")
+            json.dump(class_occurences, f)
+            
+    return blacklist
+
+def calc_embedding_gallery_avg(output_file:Path, dir:Path, model_name:str, embedding_gallery:torch.Tensor, embedding_gallery_norm:torch.Tensor, gallery_labels:list, verbose=False):
+    """
+    Calculating average embedding gallery based on the standard embedding gallery.
+
+    Args:
+        output_file (Path): file to log results to.
+        dir (Path): folder to log results to.
+        model_name (str): name of model used to calc embedding_gallery.
+        embedding_gallery (torch.Tensor): standard embedding gallery.
+        embedding_gallery_norm (torch.Tensor): normalized standard embedding gallery.
+        gallery_labels (list): ground truth labels for embeddings in embedding_gallery
+        verbose (bool, optional): switch to control prints. Defaults to False.
+    """
+    if(verbose):
+        print("In function calc_embedding_gallery_avg", "yellow")
+    #Check if calc is necessary
+    if(output_file.is_file()):
+        cprint(f"Info: {output_file} aready exists, skip calculation", "yellow")
+        return
     
-def log_mAP_scores(dir: Path, model_name:str, embedding_gallery_name:str, mAPs:dict):
+    if(verbose):
+        cprint("Calculating an embedding_gallery_avg", "red")
+        
+    #get blacklist to exclude all uneligible for the caculation of the avg embedding gallery
+    blacklist = generate_blacklist(gallery_labels=gallery_labels, verbose=verbose)
+    #dictionary to summarize embedding gallery per class
+    class_embeddings = {}
+    #collect all embeddings per class and list them up in the dict:
+    for idx, embedding in enumerate(embedding_gallery):
+        class_name = gallery_labels[idx]
+        #skip uneligible classes
+        if(class_name in  blacklist):
+            continue
+        if(class_name not in class_embeddings.keys()):
+            #register class in dict
+            class_embeddings[class_name]=[]
+        #add embedding to the list of embeddings of this class:
+        class_embeddings[class_name].append(embedding)
+    
+    #calculate the embedding_gallery_avg and query stack
+    class_labels = list(class_embeddings.keys())
+    if(verbose):
+        print(f"Calculating avg embedding gallery with {len(class_labels)} classes")
+    #gallery
+    embedding_gallery_avg = []
+    gallery_avg_labels = []
+    #query stack (test set)
+    query_stack = []
+    query_labels = []
+    for class_name in class_labels:
+        #first embedding of the class is the test query for this class
+        query = class_embeddings[class_name][0]
+        query_stack.append(query)
+        query_labels.append(class_name)
+        
+        #caculate the avg embedding of this class with the remaining embeddings
+        embeddings = class_embeddings[class_name][1:] #remaining embeddings
+        embedding_avg = torch.mean(torch.stack(embeddings), dim=0) #averaging the tensors (embeddings) of this class
+        embedding_gallery_avg.append(embedding_avg)
+        gallery_avg_labels.append(class_name)
+    #convert to tensors
+    embedding_gallery_avg = torch.stack(embedding_gallery_avg)
+    embedding_gallery_avg_norm = embedding_gallery_avg / embedding_gallery_avg.norm(dim=1,keepdim=True) 
+    query_stack = torch.stack(query_stack)
+    query_stack_norm = query_stack / query_stack.norm(dim=1,keepdim=True) 
+    
+    
+    #Dictionary to save mAP scores for each metric
+    mAPs = {
+        "ip": 0.0, "cosim": 0.0, "eucl_dist": 0.0, "eucl_dist_norm": 0.0 
+    }
+    
+    ### INNER PRODUCT AS A similarity METRIC ###
+    if(verbose):
+        cprint("\ninner product", "cyan")
+        
+    sim_mat = calc_ip_cosim(
+        query_stack=query_stack, 
+        embedding_gallery=embedding_gallery_avg, 
+        verbose=verbose
+    ) 
+    mAPs["ip"], amt_classes, amt_classes_AP_calc = calc_mAP(
+        sim_matrix=sim_mat, 
+        gallery_labels=gallery_avg_labels, 
+        query_labels=query_labels, 
+        verbose=verbose,
+        mask_diagonal=False
+    ) 
+    
+    ### COSINE similarity AS A similarity METRIC ###
+    if(verbose):
+        cprint("\ncosine similarity", "cyan")
+
+    sim_mat = calc_ip_cosim(
+        query_stack=query_stack_norm, 
+        embedding_gallery=embedding_gallery_avg_norm, 
+        verbose=verbose
+    )   
+    mAPs["cosim"], amt_classes, amt_classes_AP_calc = calc_mAP(
+        sim_matrix=sim_mat, 
+        gallery_labels=gallery_avg_labels, 
+        query_labels=query_labels,
+        verbose=verbose,
+        mask_diagonal=False
+    ) 
+       
+    ### EUCIDIAN DISTANCE AS A similarity METRIC ###
+    if(verbose):
+        cprint("\neuclidian distance", "cyan")
+        
+    sim_mat = calc_eucl_dist_sim(
+        query_stack=query_stack, 
+        embedding_gallery=embedding_gallery_avg, 
+        verbose=verbose
+    )   
+    #reverse scores in similarity matrix for mAP calculation (low euclidian distance = high score and vice versa)
+    sim_mat = sim_mat*-1
+    mAPs["eucl_dist"], amt_classes, amt_classes_AP_calc = calc_mAP(
+        sim_matrix=sim_mat, 
+        gallery_labels=gallery_avg_labels, 
+        query_labels=query_labels,
+        verbose=verbose,
+        mask_diagonal=False
+    )
+    
+    ### EUCLIDIAN DISTANCE (NORMALIZED FEATURES) AS A similarity METRIC ###
+    if(verbose):
+        cprint("\neuclidian distance with normalized features", "cyan")
+
+    sim_mat = calc_eucl_dist_sim(
+        query_stack=query_stack_norm, 
+        embedding_gallery=embedding_gallery_avg_norm, 
+        verbose=verbose
+    )
+    #reverse scores in similarity matrix for mAP calculation (low euclidian distance = high score and vice versa)
+    sim_mat = sim_mat*-1
+    mAPs["eucl_dist_norm"], amt_classes, amt_classes_AP_calc= calc_mAP(
+        sim_matrix=sim_mat, 
+        gallery_labels=gallery_avg_labels, 
+        query_labels=query_labels,
+        verbose=verbose,
+        mask_diagonal=False
+    )
+    mAPs["amt_classes"] = amt_classes
+    mAPs["amt_classes_AP_calc"] = amt_classes_AP_calc
+    
+    if(verbose):
+        print(mAPs)
+        
+    #log results standard embedding gallery
+    output_file = dir / "embedding_gallery_avg_mAP_scores.txt"
+    msg = f"avg embedding gallery calculated with {len(class_labels)} classes\n"
+    log_mAP_scores(output_file=output_file, model_name=model_name, mAPs=mAPs, optional_trunk=msg) 
+    
+    
+def calc_sim_matrices(model_name:str, verbose=False, exist_ok=False, log_results=False):
+    """
+    Calulates the similarity matrices of the entire embedding gallery.
+    This is done using 4 different metrics of similarity. (Generating 4 similarity matrices) 
+    A mean Average Precision score is also calculated using the similarity matrix.
+    
+    Args:
+        model_name (str): The name of the model to calculate the similarity matrix for based on the 
+                          embedding gallery for this model.
+        exist_ok (Bool): Boolean switch to recalculate and overwrite sim_matrix if true.
+        verbose (Bool): Boolean switch to allow prints of this function.
+        log_results (Bool): Boolean switch to log mAP scores to a logfile.
+    """
+    if(verbose):
+        cprint("In function calc_sim_matrix()", "green")
+    embedding_gallery:torch.Tensor
+    embedding_gallery_norm:torch.Tensor
+    gallery_labels:list
+    query_labels:list
+    
+    #Reading in the embedding gallery
+    dir = Path("data/" + model_name) #Directory to find gallaries for this model
+    embedding_gallery, embedding_gallery_norm, gallery_labels = read_embedding_gallery(dir, verbose=verbose)
+    
+    #Acquiring query stack
+    query_stack = embedding_gallery.clone().detach()
+    query_stack_norm = embedding_gallery_norm.clone().detach()
+    query_labels = gallery_labels.copy()
+    
+    #Dictionary to save mAP scores for each metric
+    mAPs = {
+        "ip": 0.0, "cosim": 0.0, "eucl_dist": 0.0, "eucl_dist_norm": 0.0 
+    }
+    
+    ### INNER PRODUCT AS A similarity METRIC ###
+    if(verbose):
+        cprint("\ninner product", "cyan")
+    p = dir / "embedding_gallery_sim_mat_ip.torch"
+    if( p.exists() and not(exist_ok)):
+        if(verbose):
+            cprint("sim_mat already exists","green")
+        sim_mat = torch.load(p)
+    else:
+        if(verbose):
+            cprint("sim_mat doesn't exist yet or exist_ok=true, calulating...", "yellow")
+        sim_mat = calc_ip_cosim(query_stack=query_stack, embedding_gallery=embedding_gallery, verbose=verbose)
+        torch.save(sim_mat, p)
+        
+    mAPs["ip"], amt_classes, amt_classes_AP_calc = calc_mAP(
+        sim_matrix=sim_mat, 
+        gallery_labels=gallery_labels, 
+        query_labels=query_labels, 
+        verbose=verbose,
+        mask_diagonal=True
+    ) 
+    
+    ### COSINE similarity AS A similarity METRIC ###
+    if(verbose):
+        cprint("\ncosine similarity", "cyan")
+    p = dir / "embedding_gallery_sim_mat_cosim.torch"
+    if( p.exists() and not(exist_ok)):
+        if(verbose):
+            cprint("sim_mat already exists","green")
+        sim_mat = torch.load(p)
+    else:
+        if(verbose):
+            cprint("sim_mat doesn't exist yet or exist_ok=true, calulating...", "yellow")
+        sim_mat = calc_ip_cosim(query_stack=query_stack_norm, embedding_gallery=embedding_gallery_norm, verbose=verbose)
+        torch.save(sim_mat, p)
+        
+    mAPs["cosim"], amt_classes, amt_classes_AP_calc = calc_mAP(
+        sim_matrix=sim_mat, 
+        gallery_labels=gallery_labels, 
+        query_labels=query_labels,
+        verbose=verbose,
+        mask_diagonal=True
+    ) 
+       
+    ### EUCIDIAN DISTANCE AS A similarity METRIC ###
+    if(verbose):
+        cprint("\neuclidian distance", "cyan")
+    p = dir / "embedding_gallery_sim_mat_eucl_dist.torch"
+    if( p.exists() and not(exist_ok)):
+        if(verbose):
+            cprint("Info: sim_mat already exists","green")
+        sim_mat = torch.load(p)
+    else:
+        if(verbose):
+            cprint("Info: sim_mat doesn't exist yet or exist_ok=true, calulating...", "yellow")
+        sim_mat = calc_eucl_dist_sim(query_stack=query_stack, embedding_gallery=embedding_gallery, verbose=verbose)
+        torch.save(sim_mat, p)
+        
+    #reverse scores in similarity matrix for mAP calculation (low euclidian distance = high score and vice versa)
+    sim_mat = sim_mat*-1
+    mAPs["eucl_dist"], amt_classes, amt_classes_AP_calc = calc_mAP(
+        sim_matrix=sim_mat, 
+        gallery_labels=gallery_labels, 
+        query_labels=query_labels,
+        verbose=verbose,
+        mask_diagonal=True
+    )
+    
+    ### EUCLIDIAN DISTANCE (NORMALIZED FEATURES) AS A similarity METRIC ###
+    if(verbose):
+        cprint("\neuclidian distance with normalized features", "cyan")
+    p = dir / "embedding_gallery_sim_mat_eucl_dist_norm.torch"
+    if( p.exists() and not(exist_ok)):
+        if(verbose):
+            cprint("sim_mat already exists","green")
+        sim_mat = torch.load(p)
+    else:
+        if(verbose):
+            cprint("sim_mat doesn't exist yet or exist_ok=true, calulating...", "yellow")
+        sim_mat = calc_eucl_dist_sim(query_stack=query_stack_norm, embedding_gallery=embedding_gallery_norm, verbose=verbose)
+        torch.save(sim_mat, p)
+        
+    #reverse scores in similarity matrix for mAP calculation (low euclidian distance = high score and vice versa)
+    sim_mat = sim_mat*-1
+    mAPs["eucl_dist_norm"], amt_classes, amt_classes_AP_calc= calc_mAP(
+        sim_matrix=sim_mat, 
+        gallery_labels=gallery_labels, 
+        query_labels=query_labels,
+        verbose=verbose,
+        mask_diagonal=True
+    )
+    mAPs["amt_classes"] = amt_classes
+    mAPs["amt_classes_AP_calc"] = amt_classes_AP_calc
+    
+    if(verbose):
+        print(mAPs)
+        
+    if(log_results):
+        #log results standard embedding gallery
+        output_file = dir / "embedding_gallery_mAP_scores.txt"
+        log_mAP_scores(output_file=output_file, model_name=model_name, mAPs=mAPs)  
+        #Calc and log results avg embedding gallery
+        output_file_avg = dir / "embedding_gallery_avg_mAP_scores.txt"
+        calc_embedding_gallery_avg(
+            output_file=output_file_avg,
+            dir=dir,
+            model_name=model_name,
+            embedding_gallery=embedding_gallery,
+            embedding_gallery_norm=embedding_gallery_norm,
+            gallery_labels=gallery_labels,
+            verbose=verbose
+        )
+        
+            
+def log_mAP_scores(output_file:Path, model_name:str, mAPs:dict, optional_trunk:str=None):
     """
     Function to log mAP scores to a file. Results are appended to dir/mAP_scores.txt
     
     Args:
-        dir (Path): directory to place logfile.
+        output_file (Path): path where the logfile should be stored.
         model_name (str): name of the model used.
-        embedding_gallery_name (str): The name of the embedding gallery used. 
-                                      This can be "embedding_gallery" or "embedding_gallery_avg" 
         mAPs: dictionary with mAP scores.
+        optional_trunk (str, optional): extra string to print at the end of log.
     """  
     #Creating message (lines)
     lines = [] 
@@ -235,157 +551,16 @@ def log_mAP_scores(dir: Path, model_name:str, embedding_gallery_name:str, mAPs:d
     lines.append(f"mAP={mAPs['cosim']} for cosine similarity (cosim) as a similarity metric.\n")
     lines.append(f"mAP={mAPs['eucl_dist']} for euclidian distance (eucl_dist) as a similarity metric.\n")
     lines.append(f"mAP={mAPs['eucl_dist_norm']} for euclidian distance with normalized features (eucl_dist_norm) as a similarity metric.\n")
+    if(optional_trunk != None):
+        lines.append(optional_trunk)
     lines.append("-"*90 + "\n\n")
     
     #Saving to file
-    file_name = embedding_gallery_name + "_mAP_scores.txt"
-    p = dir / file_name
-    cprint(f"Logging mAP scores to a file on path : {p}", "green")
-    with open(p, "a") as f:
+    cprint(f"Logging mAP scores to a file on path : {output_file}", "green")
+    with open(output_file, "w") as f:
         f.writelines(lines)
         
-def calc_sim_matrices(model_name:str, embedding_gallery_name:str, verbose=False, exist_ok=False, log_results=False):
-    """
-    Calulates the similarity matrices of the entire embedding gallery.
-    This is done using 4 different metrics of similarity. (Generating 4 similarity matrices) 
-    A mean Average Precision score is also calculated using the similarity matrix.
-    
-    Args:
-        model_name (str): The name of the model to calculate the similarity matrix for based on the 
-                          embedding gallery for this model.
-        embedding_gallery_name (str): The name of the embedding gallery used. 
-                                      This can be "embedding_gallery" or "embedding_gallery_avg" 
-        exist_ok (Bool): Boolean switch to recalculate and overwrite sim_matrix if true.
-        verbose (Bool): Boolean switch to allow prints of this function.
-        log_results (Bool): Boolean switch to log mAP scores to a logfile.
-    """
-    if(verbose):
-        cprint("In function calc_sim_matrix()", "green")
-    embedding_gallery:torch.Tensor
-    embedding_gallery_norm:torch.Tensor
-    gallery_labels:list
-    query_labels:list
-    
-    #Reading in the embedding gallery
-    dir = Path("data/" + model_name) #Directory to find gallaries for this model
-    embedding_gallery, embedding_gallery_norm, gallery_labels = read_embedding_gallery(dir, embedding_gallery_name)
-    
-    #Reading in the query stack
-    if(embedding_gallery_name == "embedding_gallery"):
-        #in this case we query all the embeddings from the embedding gallery itself as a test set (the entire cornershop dataset embeddings)
-        query_stack = embedding_gallery.clone().detach()
-        query_stack_norm = embedding_gallery_norm.clone().detach()
-        query_labels = gallery_labels.copy()
-    else: #embedding_gallery_name == embedding_gallery_avg
-        #in this case we query all the embeddings from the cornershop dataset (which are stored in the standard embedding gallery)
-        #but the embedding gallery itself contains different embeddings (averages per class)
-        query_stack, query_stack_norm, query_labels = read_embedding_gallery(dir, "embedding_gallery")
         
-    #Dictionary to save mAP scores for each metric
-    mAPs = {
-        "ip": 0.0, "cosim": 0.0, "eucl_dist": 0.0, "eucl_dist_norm": 0.0 
-    }
-    
-    ### INNER PRODUCT AS A similarity METRIC ###
-    if(verbose):
-        cprint("\ninner product", "cyan")
-    file_name = embedding_gallery_name + "_sim_mat_ip.torch"
-    p = dir / file_name
-    if( p.exists() and not(exist_ok)):
-        if(verbose):
-            cprint("sim_mat already exists","green")
-        sim_mat = torch.load(p)
-    else:
-        if(verbose):
-            cprint("sim_mat doesn't exist yet or exist_ok=true, calulating...", "yellow")
-        sim_mat = calc_ip_cosim(query_stack=query_stack, embedding_gallery=embedding_gallery, verbose=verbose)
-        torch.save(sim_mat, p)
-    mAPs["ip"], amt_classes, amt_classes_AP_calc = calc_mAP(
-        sim_matrix=sim_mat, 
-        gallery_labels=gallery_labels, 
-        query_labels=query_labels, 
-        embedding_gallery_name=embedding_gallery_name,
-        verbose=verbose
-    ) 
-    
-    ### COSINE similarity AS A similarity METRIC ###
-    if(verbose):
-        cprint("\ncosine similarity", "cyan")
-    file_name = embedding_gallery_name + "_sim_mat_cosim.torch"
-    p = dir / file_name
-    if( p.exists() and not(exist_ok)):
-        if(verbose):
-            cprint("sim_mat already exists","green")
-        sim_mat = torch.load(p)
-    else:
-        if(verbose):
-            cprint("sim_mat doesn't exist yet or exist_ok=true, calulating...", "yellow")
-        sim_mat = calc_ip_cosim(query_stack=query_stack_norm, embedding_gallery=embedding_gallery_norm, verbose=verbose)
-        torch.save(sim_mat, p)
-    mAPs["cosim"], amt_classes, amt_classes_AP_calc = calc_mAP(
-        sim_matrix=sim_mat, 
-        gallery_labels=gallery_labels, 
-        query_labels=query_labels,
-        embedding_gallery_name=embedding_gallery_name,
-        verbose=verbose
-    ) 
-       
-    ### EUCIDIAN DISTANCE AS A similarity METRIC ###
-    if(verbose):
-        cprint("\neuclidian distance", "cyan")
-    file_name = embedding_gallery_name + "_sim_mat_eucl_dist.torch"
-    p = dir / file_name
-    if( p.exists() and not(exist_ok)):
-        if(verbose):
-            cprint("Info: sim_mat already exists","green")
-        sim_mat = torch.load(p)
-    else:
-        if(verbose):
-            cprint("Info: sim_mat doesn't exist yet or exist_ok=true, calulating...", "yellow")
-        sim_mat = calc_eucl_dist_sim(query_stack=query_stack, embedding_gallery=embedding_gallery, verbose=verbose)
-        torch.save(sim_mat, p)
-    #reverse scores in similarity matrix for mAP calculation (low euclidian distance = high score and vice versa)
-    sim_mat = sim_mat*-1
-    mAPs["eucl_dist"], amt_classes, amt_classes_AP_calc = calc_mAP(
-        sim_matrix=sim_mat, 
-        gallery_labels=gallery_labels, 
-        query_labels=query_labels,
-        embedding_gallery_name=embedding_gallery_name,
-        verbose=verbose
-    )
-    
-    ### EUCLIDIAN DISTANCE (NORMALIZED FEATURES) AS A similarity METRIC ###
-    if(verbose):
-        cprint("\neuclidian distance with normalized features", "cyan")
-    file_name = embedding_gallery_name + "_sim_mat_eucl_dist_norm.torch"
-    p = dir / file_name
-    if( p.exists() and not(exist_ok)):
-        if(verbose):
-            cprint("sim_mat already exists","green")
-        sim_mat = torch.load(p)
-    else:
-        if(verbose):
-            cprint("sim_mat doesn't exist yet or exist_ok=true, calulating...", "yellow")
-        sim_mat = calc_eucl_dist_sim(query_stack=query_stack_norm, embedding_gallery=embedding_gallery_norm, verbose=verbose)
-        torch.save(sim_mat, p)
-    #reverse scores in similarity matrix for mAP calculation (low euclidian distance = high score and vice versa)
-    sim_mat = sim_mat*-1
-    mAPs["eucl_dist_norm"], amt_classes, amt_classes_AP_calc= calc_mAP(
-        sim_matrix=sim_mat, 
-        gallery_labels=gallery_labels, 
-        query_labels=query_labels,
-        embedding_gallery_name=embedding_gallery_name,
-        verbose=verbose
-    )
-    mAPs["amt_classes"] = amt_classes
-    mAPs["amt_classes_AP_calc"] = amt_classes_AP_calc
-    
-    if(verbose):
-        print(mAPs)
-        
-    if(log_results):
-        log_mAP_scores(dir, model_name, embedding_gallery_name, mAPs)      
-    
 def get_targets(prompt:str="Choose a model"):
     """
     Get the target models to use the galleries of those models for cross validation.
@@ -427,13 +602,6 @@ def get_targets(prompt:str="Choose a model"):
     return targets
 
 def main():
-    #choose an embedding gallery
-    options = ["embedding_gallery", "embedding_gallery_avg"]
-    print(f"Choose an embedding gallery to use. Your options are: {options}")
-    gallery_name = input("Your choice: ")
-    while gallery_name not in options:
-        print(f"Invalid option. Your options are: {options}")
-        gallery_name = input("Your Choice:") 
         
     #choose a model
     targets = get_targets("Choose a model to calculate similarity matrices from with it's embedding gallery")
@@ -441,7 +609,7 @@ def main():
         cprint(f" \nCalculating similarity matrix and mAP scores for model :{target}", "red")
         calc_sim_matrices(
             target, 
-            gallery_name,verbose=True, 
+            verbose=True, 
             exist_ok=False, 
             log_results=True
         )    
