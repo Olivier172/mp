@@ -150,8 +150,22 @@ def get_train_test_sets(data, labels, strict=False, verbose=False):
         
         
     else:
+        #the following code in comments unfortunately gave worse results, so we are not going to use it
+        #FILTER: only use data that has at least 2 occurences. (so that at least one ends up in the training set and one in the test set)
+        # unique_labels, counts = np.unique(labels, return_counts=True)# Find unique elements and their counts
+        # stratify_class_labels = unique_labels[counts >= 2]# Filter elements that appear at least twice
+        # data_valid = []
+        # labels_data_valid = []
+        # for idx, l in enumerate(labels):
+        #     if(l in stratify_class_labels):
+        #         data_valid.append(data[idx])
+        #         labels_data_valid.append(l)
+        # data_valid = np.array(data_valid)
+        # labels_data_valid = np.array(labels_data_valid)
+    
         if(verbose):
             cprint("Info: splitting data using standard sklearn train test split", "yellow")
+            
         train_set, test_set, train_labels, test_labels= train_test_split(
             data,          #data
             labels,        #targets

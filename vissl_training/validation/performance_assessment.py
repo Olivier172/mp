@@ -14,7 +14,7 @@ from cross_validation import get_train_test_sets #get train and test sets
 from embedding_gallery import read_embedding_gallery #reading in the embedding gallery for a certain model
 
 
-def calc_mAP(classifier, test_set, test_labels):
+def calc_mAP(classifier, test_set, test_labels, verbose=False):
     """
     Calculates the mean average precision (mAP) for the classifier given.
     Probability scores are calculated on the test_set with the test_labels as ground truth
@@ -24,13 +24,16 @@ def calc_mAP(classifier, test_set, test_labels):
         classifier (sklearn clf): the classifier to use (svm or mlp)
         test_set (np.ndarray): test set to use for calculating probabilities.
         test_labels (np.ndarray): ground truth classifcation labels for test set.
+        verbose (bool, optional): print control.
 
     Returns:
         mAP (float): the mAP score.
+        amt_classes (int): amount of classes there were total.
+        amt_classes_AP (int): amount of classes used for mAP calculation.
     """
     y_probas = classifier.predict_proba(test_set) #get confidence scores for each class
     y_proba_labels = classifier.classes_ #get corresponding classes 
-    
+
     #dictionary to store average precisions for every query
     AP_queries = {}
     #calculate AP for every query in the sim_matrix
@@ -38,7 +41,10 @@ def calc_mAP(classifier, test_set, test_labels):
         #y_true contains the ground truth for classification (True if label of gt_label is the same)
         gt_label = test_labels[idx] #ground truth label / class name
         y_true = y_proba_labels == gt_label #true at the position of y_proba should be the highest to classify the same label as gt_label
-        
+        #skip if there are no positives
+        if(y_true.sum() == 0):
+            #cprint("warning case with no positives", "red")
+            continue
         #compute AP for this query (with prediction score in y_proba and gt y_true)
         AP_query = average_precision_score(y_true=y_true, y_score=y_proba)
         
@@ -48,7 +54,7 @@ def calc_mAP(classifier, test_set, test_labels):
             AP_queries[gt_label]=[AP_query]
         else:
             AP_queries[gt_label].append(AP_query) #save average precision for this label with the results of it's class
-    
+            
     #AP is average precision of a class with different threshods (positions in the PR curve)    
     #calculate the AP for every class:
     AP = {}
@@ -59,7 +65,13 @@ def calc_mAP(classifier, test_set, test_labels):
     #calculate mAP, mean over all AP for each class    
     mAP = sum(AP.values()) / len(AP.values())
     
-    return mAP
+    #calc how many classes there were in total and how many were used for mAP calculation
+    amt_classes = len(y_proba_labels) #total amount of classes in the classifier
+    amt_classes_AP = len(AP) #amount of classes where an AP could be calculated
+    if(verbose):
+        print(f"There were {amt_classes_AP}/{amt_classes} classes used to calc mAP")
+        
+    return mAP, amt_classes, amt_classes_AP
 
 def eval_performance(classifier, train_set, train_labels, test_set, test_labels, verbose=False):
     """
@@ -80,10 +92,12 @@ def eval_performance(classifier, train_set, train_labels, test_set, test_labels,
     Returns:
         accuracy (float): accuracy score from predictions on test set.
         mAP (float): the mean average precision score.
+        amt_classes (int): amount of classes there were total.
+        amt_classes_AP (int): amount of classes used for mAP calculation.
         cm: The confusion matrix.
     """
     #train on training set
-    classifier.fit(train_set, train_labels) #retrain on training set
+    classifier.fit(train_set, train_labels) 
     
     #Calculate accuracy
     accuracy = classifier.score(test_set, test_labels) #calc acc score on testing set
@@ -101,14 +115,14 @@ def eval_performance(classifier, train_set, train_labels, test_set, test_labels,
     #correct classifications can be found on the diagonal
     
     #calc mean average precision score
-    mAP = calc_mAP(classifier=classifier, test_set=test_set, test_labels=test_labels)
+    mAP, amt_classes, amt_classes_AP = calc_mAP(classifier=classifier, test_set=test_set, test_labels=test_labels, verbose=verbose)
     
     if(verbose):
         print(f"mAP calculated for this classifier is {mAP}")
         
-    return accuracy, mAP, cm
+    return accuracy, mAP, amt_classes, amt_classes_AP, cm
 
-def log_results(output_file:Path, model_name:str, accuracy, mAP, cm):
+def log_results(output_file:Path, model_name:str, accuracy, mAP, amt_classes, amt_classes_AP, cm, optional_trunk:str=None):
     """
     Logs cross validation results for this model with svm and mlp classifier
 
@@ -117,7 +131,10 @@ def log_results(output_file:Path, model_name:str, accuracy, mAP, cm):
         model_name (str): name of the model used.
         accuracy (float): accuracy achieved on the testing set.
         mAP (float): mAP score achieved on the testing set.
+        amt_classes (int): amount of classes there were total.
+        amt_classes_AP (int): amount of classes used for mAP calculation.
         cm: confusion matrix representing true and predicted labels.
+        optional_trunk (str): optional part to put at the end of a log.
     """
     #Creating message (lines)
     lines = [] 
@@ -133,14 +150,16 @@ def log_results(output_file:Path, model_name:str, accuracy, mAP, cm):
     lines.append(f"performance assessment logging results on {date_string} @ {time_string}.\n")
     lines.append(f"Embedding gallery of model {model_name} was used to calculated these scores.\n")
     #log results
-    lines.append(f"acc={accuracy*100}% (accuracy on testing set)\n")
-    lines.append(f"mAP={mAP*100}% (accuracy on testing set)\n")
+    lines.append(f"acc={accuracy*100}% (accuracy calculated on testing set)\n")
+    lines.append(f"mAP={mAP*100}% (mAP calculated on testing set with {amt_classes_AP}/{amt_classes} classes)\n")
     lines.append(f"cm= {cm}\n")
+    if(optional_trunk != None):
+        lines.append(optional_trunk)
     lines.append("-"*90 + "\n\n")
     
     #Saving to file
     cprint(f"Logging performance results to a file on path : {output_file}", "green")
-    with open(output_file, "a") as f:
+    with open(output_file, "w") as f:
         f.writelines(lines)
 
 def performance_assesment(verbose:bool=False, exist_ok:bool=False):
@@ -215,7 +234,7 @@ def performance_assesment(verbose:bool=False, exist_ok:bool=False):
                         kernel = best_params["kernel"],
                         probability=True #calc class probabilities 
                     )
-                acc, mAP, cm = eval_performance(svm, train_set, train_labels, test_set, test_labels, verbose=verbose)
+                acc, mAP, amt_classes, amt_classes_AP, cm = eval_performance(svm, train_set, train_labels, test_set, test_labels, verbose=verbose)
             elif(classifier == "mlp"):
                 #Create MLP estimator
                 mlp = MLPClassifier(
@@ -223,13 +242,15 @@ def performance_assesment(verbose:bool=False, exist_ok:bool=False):
                     solver= best_params["solver"],
                     max_iter=10_000
                 )
-                acc, mAP, cm = eval_performance(mlp, train_set, train_labels, test_set, test_labels, verbose=verbose)
+                acc, mAP, amt_classes, amt_classes_AP, cm = eval_performance(mlp, train_set, train_labels, test_set, test_labels, verbose=verbose)
 
             log_results(
                 output_file=logfile, 
                 model_name=target, 
                 accuracy=acc, 
                 mAP=mAP, 
+                amt_classes=amt_classes,
+                amt_classes_AP=amt_classes_AP,
                 cm=cm
             )
             
@@ -244,7 +265,7 @@ def performance_assesment(verbose:bool=False, exist_ok:bool=False):
     )
 
 def main():
-    performance_assesment(verbose=True, exist_ok=False)
+    performance_assesment(verbose=True, exist_ok=True)
     
 if __name__ == "__main__":
     main()

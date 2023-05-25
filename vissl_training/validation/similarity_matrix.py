@@ -518,6 +518,8 @@ def calc_sim_matrices(model_name:str, verbose=False, exist_ok=False, log_results
     if(log_results):
         #log results standard embedding gallery
         output_file = dir / "embedding_gallery_mAP_scores.txt"
+        if(verbose):
+            cprint(f"Logging mAP scores from query matching to {output_file}","green")
         log_mAP_scores(output_file=output_file, model_name=model_name, mAPs=mAPs)  
         #Calc and log results avg embedding gallery
         output_file_avg = dir / "embedding_gallery_avg_mAP_scores.txt"
@@ -606,13 +608,13 @@ def compile_total_log(output_file:Path, dir:Path, targets:list, file_names:list)
                 cprint(f"Warning file {p} not found to compile total log and will not be included", "red")
                 
     #write the compiled version to a file
-    cprint(f"Logging all cross validation results to a file on path : {output_file}", "green")
+    cprint(f"Logging compiled log to {output_file}","green")
     with open(output_file, "w") as f:
         f.writelines(output)       
         
 def get_targets(prompt:str="Choose a model"):
     """
-    Get the target models to use the galleries of those models for cross validation.
+    User input function to get all target models.
     
     Args:
         prompt(str, optional): the prompt to display when choosing models
@@ -659,7 +661,7 @@ def main():
         calc_sim_matrices(
             target, 
             verbose=True, 
-            exist_ok=True, 
+            exist_ok=False, 
             log_results=True
         ) 
     
