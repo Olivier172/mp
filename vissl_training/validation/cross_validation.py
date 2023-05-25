@@ -240,7 +240,7 @@ def cross_validate(verbose=False, exist_ok=False):
     targets = get_targets()
     
     #select which classifier to optimize hyperparams for
-    classifier = input("please select a classifier to search optimal hyperparams for: (SVM/mlp)")
+    classifier = input("please select a classifier to search optimal hyperparams for (SVM/mlp): ")
     if(classifier != "mlp"):
         classifier = "svm"
     else:
