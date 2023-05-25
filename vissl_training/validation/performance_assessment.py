@@ -9,8 +9,8 @@ from sklearn.metrics import confusion_matrix
 from datetime import datetime
 
 from similarity_matrix import get_targets #getting target models for performance calc
+from similarity_matrix import compile_total_log #the compile a complete log of all the logs per model
 from cross_validation import get_train_test_sets #get train and test sets
-from cross_validation import compile_total_log #the compile a complete log of all the logs per model
 from embedding_gallery import read_embedding_gallery #reading in the embedding gallery for a certain model
 
 def eval_performance(classifier, train_set, train_labels, test_set, test_labels):
@@ -161,9 +161,12 @@ def performane_assesment(verbose:bool=False, exist_ok:bool=False):
 
             log_results(logfile, target, acc, cm)
             
+    dir = Path("data")
+    f_name = f"total_perf_eval_log_{classifier}.txt"
+    output_file = dir / f_name
     compile_total_log(
-        output_file_name=f"total_perf_eval_log_{classifier}.txt", 
-        dir=Path("data"),
+        output_file=output_file, 
+        dir=dir,
         targets=targets,
         file_names = file_names
     )

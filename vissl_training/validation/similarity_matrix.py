@@ -559,7 +559,46 @@ def log_mAP_scores(output_file:Path, model_name:str, mAPs:dict, optional_trunk:s
     cprint(f"Logging mAP scores to a file on path : {output_file}", "green")
     with open(output_file, "w") as f:
         f.writelines(lines)
-        
+ 
+def compile_total_log(output_file:Path, dir:Path, targets:list, file_names:list):
+    """
+    Compiles a total log that consists of smaller logs per target. Log is saved to output_file.
+
+    Args:
+        output_file (Path): file to save total log to.
+        dir (Path): folder to where all the targets are saved. (So that small logs can be collected there)
+        targets (list<str>): list of models to look for small logs and collect and include them in the total log.
+        file_names (list<str>): log file names that are collected per model.
+    """
+    output = []
+    # Get the current date and time
+    current_datetime = datetime.now()
+    # Extract the date and time components
+    current_date = current_datetime.date()
+    current_time = current_datetime.time()
+    # Convert to string format
+    date_string = current_date.strftime('%Y-%m-%d')
+    time_string = current_time.strftime('%H:%M:%S')
+    output.append(f"Total log compiled at {date_string} @ {time_string}.\n")
+    #gather all seperate logs
+    for target in targets:
+        output.append(f"\nResults for {target}\n")
+        for file in file_names:
+            p:Path
+            p = dir / target / file
+            if(p.is_file()):
+                output.append(f"origin_file: {p}\n")
+                with open(p, "r") as f:
+                    data = f.readlines()
+                    output.extend(data)
+                    output.append("\n")
+            else:
+                cprint(f"Warning file {p} not found to compile total log and will not be included", "red")
+                
+    #write the compiled version to a file
+    cprint(f"Logging all cross validation results to a file on path : {output_file}", "green")
+    with open(output_file, "w") as f:
+        f.writelines(output)       
         
 def get_targets(prompt:str="Choose a model"):
     """
@@ -612,7 +651,21 @@ def main():
             verbose=True, 
             exist_ok=False, 
             log_results=True
-        )    
+        ) 
+    
+    #dir to collect logs per target
+    dir = Path("data")
+    f_name = f"total_gallery_mAP_scores_log.txt"
+    #files of logs to collect
+    file_names = ["embedding_gallery_mAP_scores.txt", "embedding_gallery_avg_mAP_scores.txt"]
+    #file to save log to
+    output_file = dir / f_name
+    compile_total_log(
+        output_file=output_file,
+        dir=dir,
+        targets=targets,
+        file_names = file_names
+    )   
         
 if __name__ == "__main__":
     main()

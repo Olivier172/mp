@@ -8,7 +8,7 @@ from sklearn.model_selection import GridSearchCV, StratifiedKFold, train_test_sp
 from sklearn.svm import SVC
 from sklearn.neural_network import MLPClassifier
 
-from similarity_matrix import get_targets
+from similarity_matrix import get_targets, compile_total_log
 from embedding_gallery import read_embedding_gallery
 
 def search_best_hyperparam(param_grid, classifier,train_data, train_labels, test_data, test_labels):
@@ -205,36 +205,6 @@ def log_results(output_file:Path, model_name:str, best_params:dict, test_score):
     with open(json_file, "w") as f:
         json.dump(best_params, f)
         
-def compile_total_log(output_file_name:str, dir:Path, targets:list, file_names:list):
-    output = []
-    # Get the current date and time
-    current_datetime = datetime.now()
-    # Extract the date and time components
-    current_date = current_datetime.date()
-    current_time = current_datetime.time()
-    # Convert to string format
-    date_string = current_date.strftime('%Y-%m-%d')
-    time_string = current_time.strftime('%H:%M:%S')
-    output.append(f"Total log compiled at {date_string} @ {time_string}.\n")
-    #gather all seperate logs
-    for target in targets:
-        output.append(f"\nResults for {target}\n")
-        for file in file_names:
-            p:Path
-            p = dir / target / file
-            if(p.is_file()):
-                output.append(f"origin_file: {p}\n")
-                with open(p, "r") as f:
-                    data = f.readlines()
-                    output.extend(data)
-                    output.append("\n")
-            else:
-                cprint(f"Warning file {p} not found to compile total log and will not be included", "red")
-    #write the compiled version to a file
-    output_file = dir / output_file_name
-    cprint(f"Logging all cross validation results to a file on path : {output_file}", "green")
-    with open(output_file, "w") as f:
-        f.writelines(output)
     
 def cross_validate(verbose=False, exist_ok=False):
     """
@@ -288,15 +258,18 @@ def cross_validate(verbose=False, exist_ok=False):
 
             log_results(logfile, target, best_params, test_score)
             
+    dir = Path("data")
+    f_name = f"total_cross_val_log_{classifier}.txt"
+    output_file = dir / f_name
     compile_total_log(
-        output_file_name=f"total_cross_val_log_{classifier}.txt", 
-        dir=Path("data"),
+        output_file=output_file,
+        dir=dir,
         targets=targets,
         file_names = file_names
     )
     
 def main():
-    cross_validate(verbose=True, exist_ok=True)
+    cross_validate(verbose=True, exist_ok=False)
     
 
 if __name__ == "__main__":
