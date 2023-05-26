@@ -80,12 +80,13 @@ def search_best_hyperparam_mlp(train_data, train_labels, test_data, test_labels)
     # Define the parameter grid
     param_grid = {
         "hidden_layer_sizes": [(32), (64), (128), (128,64)],
-        "solver": ["lbfgs", "sgd", "adam"],
-        "alpha": [0.01, 0.1]
+        "solver": ["lbfgs"],
+        "alpha": [0.01, 0.1],
+        "max_iter" : [10_000]
     }
 
     # Create the MLP classifier
-    mlp = MLPClassifier(max_iter=10_000)
+    mlp = MLPClassifier()
     
     #search the best hyperparams
     best_params, test_score = search_best_hyperparam(param_grid, mlp, train_data, train_labels, test_data, test_labels)

@@ -240,7 +240,7 @@ def performance_assesment(verbose:bool=False, exist_ok:bool=False):
                 mlp = MLPClassifier(
                     hidden_layer_sizes = best_params["hidden_layer_sizes"],
                     solver= best_params["solver"],
-                    max_iter=10_000
+                    max_iter=best_params["max_iter"]
                 )
                 acc, mAP, amt_classes, amt_classes_AP, cm = eval_performance(mlp, train_set, train_labels, test_set, test_labels, verbose=verbose)
 
