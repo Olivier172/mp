@@ -143,8 +143,10 @@ def make_embedding_gallery(dir:Path, model, dataset_folder:Path, verbose=False, 
     labels = [p.parent.stem for p in img_paths ] #stem attr of parent contains foldername == class name 
     
     print("Extracting features:")
-    #First determine if we have to use hooks for the imgnet_pretrained model or not:
+    #First determine if we have to use hooks to get the activations of the embedding for a model that has a head network: (e.g. imgnet_pretrained and random)
     if(feature_hook_dict != None):
+        if(verbose):
+            cprint("Info: using hooks to get embedding activations from this model. (necessary for e.g. imgnet_pretrained and random)", "yellow")
         #Extract features from the img_net pretrained model with a hook on the avg pool layer
         avg_pool_features_list = []
         for p in tqdm(img_paths):
@@ -159,8 +161,9 @@ def make_embedding_gallery(dir:Path, model, dataset_folder:Path, verbose=False, 
     else:
         #Extract features from a vissl model
         embedding_gallery = torch.stack([extract_features(p,model,device=device, verbose=False) for p in tqdm(img_paths)])
-        #Normalize features in feature stack
-        embedding_gallery_norm = embedding_gallery / embedding_gallery.norm(dim=1,keepdim=True) 
+        
+    #Normalize features in embedding_gallery
+    embedding_gallery_norm = embedding_gallery / embedding_gallery.norm(dim=1,keepdim=True) 
             
     if(verbose):
         cprint("Saving embedding gallery", "green")
@@ -256,7 +259,7 @@ def main():
         data_folder.mkdir()
     
     #choose a model
-    options = ["rotnet", "jigsaw", "moco32", "moco64", "simclr", "swav", "imgnet_pretrained", "all",
+    options = ["rotnet", "jigsaw", "moco32", "moco64", "simclr", "swav", "imgnet_pretrained", "random", "all",
                "rotnet_phase0", "rotnet_phase25",  "rotnet_phase50", "rotnet_phase75","rotnet_phase100",
                "jigsaw_phase0", "jigsaw_phase25",  "jigsaw_phase50", "jigsaw_phase75","jigsaw_phase100",
                "moco32_phase0", "moco32_phase25",  "moco32_phase50", "moco32_phase75",
@@ -304,6 +307,11 @@ def main():
             model = torchvision.models.resnet50(pretrained=True)
             #place a hook on the last layer before classification (average pool)
             #output should be ftr vector with size 2048 (activations from the avgpool layer)
+            feature_hook_dict = add_feature_hooks(model)
+        elif(model_name == "random"):
+            #resnet50 model without pre-trained weights:
+            model = torchvision.models.resnet50(pretrained=False)
+            #place hooks to get the embeddings later on at the avg pool layer
             feature_hook_dict = add_feature_hooks(model)
         else:
             feature_hook_dict=None #not needed when using vissl models
