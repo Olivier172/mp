@@ -79,7 +79,7 @@ def search_best_hyperparam_mlp(train_data, train_labels, test_data, test_labels)
     
     # Define the parameter grid
     param_grid = {
-        "hidden_layer_sizes": [(64), (128), (256,64), (512,256)],
+        "hidden_layer_sizes": [(32), (64), (128), (256,64)],
         "solver": ["lbfgs", "sgd", "adam"],
     }
 
