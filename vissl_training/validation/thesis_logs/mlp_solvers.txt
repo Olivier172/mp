@@ -1,0 +1,10 @@
+mlp 
+    (hidden layers 128,64 ,
+    max iter 10000.
+    alpha 0.1
+    solver=?
+    )
+solver:
+    lbfgs cv: 56.5 T: 60.8
+    sgd cv: 2.4 T: 3.0
+    adam cv: 54 T: 57
