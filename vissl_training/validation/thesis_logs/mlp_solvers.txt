@@ -10,13 +10,14 @@ mlp_test = MLPClassifier(
 )
 
 experiment 1: model moco64
+accuracy scores are reported
 solver:
     lbfgs   
-        cv:     
-        T: 
+        cv: 58.4% 4min46s    
+        T: 61.4% 1min13s
     sgd     
-        cv:     
-        T: 
+        cv: 2.1% 1min53s    
+        T: 52.6% 5min38s
     adam    
-        cv:     
-        T:
+        cv: 54.9% 35min19s    
+        T: 57.8% 14min56s
