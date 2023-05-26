@@ -1,10 +1,22 @@
-mlp 
-    (hidden layers 128,64 ,
-    max iter 10000.
-    alpha 0.1
-    solver=?
-    )
+MLP SOLVER TEST:
+
+train test split 20 80 van sklearn
+
+mlp_test = MLPClassifier(
+    hidden_layer_sizes=(128, 64),
+    solver=?,
+    max_iter=10_000,
+    alpha=0.1
+)
+
+experiment 1: model moco64
 solver:
-    lbfgs cv: 56.5 T: 60.8
-    sgd cv: 2.4 T: 3.0
-    adam cv: 54 T: 57
+    lbfgs   
+        cv:     
+        T: 
+    sgd     
+        cv:     
+        T: 
+    adam    
+        cv:     
+        T:

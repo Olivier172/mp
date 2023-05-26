@@ -42,7 +42,7 @@ def search_best_hyperparam(param_grid, classifier,train_data, train_labels, test
     best_score = grid_search.best_score_
 
     # Train a final model using the best hyperparameters
-    final_model = classifier(**best_params)
+    final_model = type(classifier)(**best_params)
     final_model.fit(train_data, train_labels)
 
     # Evaluate the final model on the test set (optional)
