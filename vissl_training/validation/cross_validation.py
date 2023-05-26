@@ -17,12 +17,12 @@ def search_best_hyperparam(param_grid, classifier,train_data, train_labels, test
     train and test data.
 
     Args:
-        param_grid (dict): 
-        classifier:
-        train_data (np.ndarray): _description_
-        train_labels (np.ndarray): _description_
-        test_data (np.ndarray): _description_
-        test_labels (np.ndarray): _description_
+        param_grid (dict): dictionary or list of dictionaries that contain different hyperparams as keys and values to test in a list.
+        classifier: the classifier to search the best hyperparams for.
+        train_data (np.ndarray): training set.
+        train_labels (np.ndarray): ground truth labels for training set.
+        test_data (np.ndarray): testing set.
+        test_labels (np.ndarray): ground truth labels for testing set.
 
     Returns:
         best_params: the best svm params from the gridsearch.
@@ -79,8 +79,9 @@ def search_best_hyperparam_mlp(train_data, train_labels, test_data, test_labels)
     
     # Define the parameter grid
     param_grid = {
-        "hidden_layer_sizes": [(32), (64), (128), (256,64)],
+        "hidden_layer_sizes": [(32), (64), (128), (128,64)],
         "solver": ["lbfgs", "sgd", "adam"],
+        "alpha": [0.01, 0.1]
     }
 
     # Create the MLP classifier
