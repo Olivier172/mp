@@ -265,7 +265,7 @@ def performance_assesment(verbose:bool=False, exist_ok:bool=False):
     )
 
 def main():
-    performance_assesment(verbose=True, exist_ok=True)
+    performance_assesment(verbose=True, exist_ok=False)
     
 if __name__ == "__main__":
     main()

@@ -1,0 +1,1157 @@
+Total log compiled at 2023-05-27 @ 12:28:13.
+
+Results for rotnet
+origin_file: data/rotnet/perf_eval_svm.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-27 @ 12:25:50.
+Embedding gallery of model rotnet was used to calculated these scores.
+acc=62.31003039513677% (accuracy calculated on testing set)
+mAP=22.24908038510691% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 1 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 2 0]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/rotnet/perf_eval_strict_svm.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-27 @ 12:25:55.
+Embedding gallery of model rotnet was used to calculated these scores.
+acc=50.0% (accuracy calculated on testing set)
+mAP=24.270262952240753% (mAP calculated on testing set with 187/187 classes)
+cm= [[1 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 1 2]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+
+Results for rotnet_phase0
+origin_file: data/rotnet_phase0/perf_eval_svm.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-27 @ 12:26:07.
+Embedding gallery of model rotnet_phase0 was used to calculated these scores.
+acc=31.00303951367781% (accuracy calculated on testing set)
+mAP=14.174059271420262% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 1 0]
+ [0 0 0 ... 0 0 0]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/rotnet_phase0/perf_eval_strict_svm.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-27 @ 12:26:11.
+Embedding gallery of model rotnet_phase0 was used to calculated these scores.
+acc=22.483221476510067% (accuracy calculated on testing set)
+mAP=10.901195141752497% (mAP calculated on testing set with 187/187 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 2 0]
+ [0 0 0 ... 0 0 0]]
+------------------------------------------------------------------------------------------
+
+
+
+Results for rotnet_phase25
+origin_file: data/rotnet_phase25/perf_eval_svm.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-25 @ 22:03:20.
+Embedding gallery of model rotnet_phase25 was used to calculated these scores.
+acc=48.632218844984806% (accuracy calculated on testing set)
+mAP=18.835739761270347% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 1 0 0]
+ [0 1 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 2 0]
+ [0 0 0 ... 0 0 0]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/rotnet_phase25/perf_eval_strict_svm.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-25 @ 22:03:24.
+Embedding gallery of model rotnet_phase25 was used to calculated these scores.
+acc=36.577181208053695% (accuracy calculated on testing set)
+mAP=17.424202282074642% (mAP calculated on testing set with 187/187 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 1 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 1 1]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+
+Results for rotnet_phase50
+origin_file: data/rotnet_phase50/perf_eval_svm.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-25 @ 22:03:36.
+Embedding gallery of model rotnet_phase50 was used to calculated these scores.
+acc=59.57446808510638% (accuracy calculated on testing set)
+mAP=20.86415054853297% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 1 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 2 0]
+ [0 0 0 ... 0 0 0]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/rotnet_phase50/perf_eval_strict_svm.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-25 @ 22:03:40.
+Embedding gallery of model rotnet_phase50 was used to calculated these scores.
+acc=43.288590604026844% (accuracy calculated on testing set)
+mAP=20.27649280816108% (mAP calculated on testing set with 187/187 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 1]
+ [0 0 0 ... 0 0 0]]
+------------------------------------------------------------------------------------------
+
+
+
+Results for rotnet_phase75
+origin_file: data/rotnet_phase75/perf_eval_svm.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-25 @ 22:03:51.
+Embedding gallery of model rotnet_phase75 was used to calculated these scores.
+acc=62.31003039513677% (accuracy calculated on testing set)
+mAP=22.668526094895682% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 1 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 2 0]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/rotnet_phase75/perf_eval_strict_svm.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-25 @ 22:03:55.
+Embedding gallery of model rotnet_phase75 was used to calculated these scores.
+acc=47.651006711409394% (accuracy calculated on testing set)
+mAP=22.496047858363657% (mAP calculated on testing set with 187/187 classes)
+cm= [[1 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 1 2]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+
+Results for rotnet_phase100
+origin_file: data/rotnet_phase100/perf_eval_svm.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-25 @ 22:04:06.
+Embedding gallery of model rotnet_phase100 was used to calculated these scores.
+acc=62.91793313069909% (accuracy calculated on testing set)
+mAP=21.95895810739121% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 1 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 2 0]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/rotnet_phase100/perf_eval_strict_svm.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-25 @ 22:04:10.
+Embedding gallery of model rotnet_phase100 was used to calculated these scores.
+acc=51.006711409395976% (accuracy calculated on testing set)
+mAP=24.310786234803388% (mAP calculated on testing set with 187/187 classes)
+cm= [[1 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 1 2]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+
+Results for jigsaw
+origin_file: data/jigsaw/perf_eval_svm.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-25 @ 22:04:21.
+Embedding gallery of model jigsaw was used to calculated these scores.
+acc=53.799392097264445% (accuracy calculated on testing set)
+mAP=24.163638416026448% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 1 0]
+ [0 0 0 ... 0 1 0]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/jigsaw/perf_eval_strict_svm.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-25 @ 22:04:24.
+Embedding gallery of model jigsaw was used to calculated these scores.
+acc=33.89261744966443% (accuracy calculated on testing set)
+mAP=17.1125341961717% (mAP calculated on testing set with 187/187 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]]
+------------------------------------------------------------------------------------------
+
+
+
+Results for jigsaw_phase0
+origin_file: data/jigsaw_phase0/perf_eval_svm.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-25 @ 22:04:38.
+Embedding gallery of model jigsaw_phase0 was used to calculated these scores.
+acc=31.30699088145897% (accuracy calculated on testing set)
+mAP=14.108097239822321% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/jigsaw_phase0/perf_eval_strict_svm.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-25 @ 22:04:42.
+Embedding gallery of model jigsaw_phase0 was used to calculated these scores.
+acc=17.449664429530202% (accuracy calculated on testing set)
+mAP=10.885455746257096% (mAP calculated on testing set with 187/187 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 1]
+ [0 0 0 ... 0 0 0]]
+------------------------------------------------------------------------------------------
+
+
+
+Results for jigsaw_phase25
+origin_file: data/jigsaw_phase25/perf_eval_svm.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-25 @ 22:04:53.
+Embedding gallery of model jigsaw_phase25 was used to calculated these scores.
+acc=37.38601823708207% (accuracy calculated on testing set)
+mAP=14.525669990495896% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/jigsaw_phase25/perf_eval_strict_svm.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-25 @ 22:04:57.
+Embedding gallery of model jigsaw_phase25 was used to calculated these scores.
+acc=26.845637583892618% (accuracy calculated on testing set)
+mAP=14.46476223615033% (mAP calculated on testing set with 187/187 classes)
+cm= [[1 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 1]
+ [0 0 0 ... 0 0 0]]
+------------------------------------------------------------------------------------------
+
+
+
+Results for jigsaw_phase50
+origin_file: data/jigsaw_phase50/perf_eval_svm.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-25 @ 22:05:08.
+Embedding gallery of model jigsaw_phase50 was used to calculated these scores.
+acc=51.97568389057751% (accuracy calculated on testing set)
+mAP=20.124517564758204% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 1]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/jigsaw_phase50/perf_eval_strict_svm.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-25 @ 22:05:12.
+Embedding gallery of model jigsaw_phase50 was used to calculated these scores.
+acc=31.543624161073826% (accuracy calculated on testing set)
+mAP=18.831032487886713% (mAP calculated on testing set with 187/187 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]]
+------------------------------------------------------------------------------------------
+
+
+
+Results for jigsaw_phase75
+origin_file: data/jigsaw_phase75/perf_eval_svm.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-25 @ 22:05:22.
+Embedding gallery of model jigsaw_phase75 was used to calculated these scores.
+acc=57.14285714285714% (accuracy calculated on testing set)
+mAP=25.156952169585438% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 1 0]
+ [0 0 0 ... 0 1 0]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/jigsaw_phase75/perf_eval_strict_svm.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-25 @ 22:05:26.
+Embedding gallery of model jigsaw_phase75 was used to calculated these scores.
+acc=35.23489932885906% (accuracy calculated on testing set)
+mAP=18.816334103620964% (mAP calculated on testing set with 187/187 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 1 0]
+ [0 0 0 ... 0 0 0]]
+------------------------------------------------------------------------------------------
+
+
+
+Results for jigsaw_phase100
+origin_file: data/jigsaw_phase100/perf_eval_svm.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-25 @ 22:05:37.
+Embedding gallery of model jigsaw_phase100 was used to calculated these scores.
+acc=55.319148936170215% (accuracy calculated on testing set)
+mAP=22.37690083905572% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 1 0]
+ [0 0 0 ... 0 1 0]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/jigsaw_phase100/perf_eval_strict_svm.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-25 @ 22:05:40.
+Embedding gallery of model jigsaw_phase100 was used to calculated these scores.
+acc=33.557046979865774% (accuracy calculated on testing set)
+mAP=16.542734213364355% (mAP calculated on testing set with 187/187 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]]
+------------------------------------------------------------------------------------------
+
+
+
+Results for moco32
+origin_file: data/moco32/perf_eval_svm.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-25 @ 22:05:52.
+Embedding gallery of model moco32 was used to calculated these scores.
+acc=67.17325227963525% (accuracy calculated on testing set)
+mAP=27.73131646258122% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 1 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 2 0]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/moco32/perf_eval_strict_svm.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-25 @ 22:05:56.
+Embedding gallery of model moco32 was used to calculated these scores.
+acc=53.691275167785236% (accuracy calculated on testing set)
+mAP=28.533337089416772% (mAP calculated on testing set with 187/187 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 1 0 0]
+ [0 0 0 ... 0 2 1]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+
+Results for moco32_phase0
+origin_file: data/moco32_phase0/perf_eval_svm.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-25 @ 22:06:07.
+Embedding gallery of model moco32_phase0 was used to calculated these scores.
+acc=44.680851063829785% (accuracy calculated on testing set)
+mAP=20.160789535534303% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 1 0]
+ [0 0 0 ... 0 0 0]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/moco32_phase0/perf_eval_strict_svm.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-25 @ 22:06:10.
+Embedding gallery of model moco32_phase0 was used to calculated these scores.
+acc=31.543624161073826% (accuracy calculated on testing set)
+mAP=17.196756492560976% (mAP calculated on testing set with 187/187 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 1 0 0]
+ [0 0 0 ... 0 2 0]
+ [0 0 0 ... 0 0 0]]
+------------------------------------------------------------------------------------------
+
+
+
+Results for moco32_phase25
+origin_file: data/moco32_phase25/perf_eval_svm.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-25 @ 22:06:21.
+Embedding gallery of model moco32_phase25 was used to calculated these scores.
+acc=62.91793313069909% (accuracy calculated on testing set)
+mAP=25.210213960866927% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 1 0 ... 0 0 0]
+ [0 0 1 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 2 0]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/moco32_phase25/perf_eval_strict_svm.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-25 @ 22:06:25.
+Embedding gallery of model moco32_phase25 was used to calculated these scores.
+acc=50.0% (accuracy calculated on testing set)
+mAP=27.21512676592618% (mAP calculated on testing set with 187/187 classes)
+cm= [[1 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 1 0 0]
+ [0 0 0 ... 0 3 0]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+
+Results for moco32_phase50
+origin_file: data/moco32_phase50/perf_eval_svm.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-25 @ 22:06:36.
+Embedding gallery of model moco32_phase50 was used to calculated these scores.
+acc=65.34954407294833% (accuracy calculated on testing set)
+mAP=25.348992680676652% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 1 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 2 0]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/moco32_phase50/perf_eval_strict_svm.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-25 @ 22:06:41.
+Embedding gallery of model moco32_phase50 was used to calculated these scores.
+acc=53.02013422818792% (accuracy calculated on testing set)
+mAP=26.839131426009093% (mAP calculated on testing set with 187/187 classes)
+cm= [[1 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 1 0 0]
+ [0 0 0 ... 0 2 1]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+
+Results for moco32_phase75
+origin_file: data/moco32_phase75/perf_eval_svm.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-25 @ 22:06:52.
+Embedding gallery of model moco32_phase75 was used to calculated these scores.
+acc=67.47720364741642% (accuracy calculated on testing set)
+mAP=26.307199428537025% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 1 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 2 0]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/moco32_phase75/perf_eval_strict_svm.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-25 @ 22:06:56.
+Embedding gallery of model moco32_phase75 was used to calculated these scores.
+acc=55.033557046979865% (accuracy calculated on testing set)
+mAP=27.840490087897813% (mAP calculated on testing set with 187/187 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 1 0 0]
+ [0 0 0 ... 0 2 1]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+
+Results for moco64
+origin_file: data/moco64/perf_eval_svm.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-25 @ 22:07:07.
+Embedding gallery of model moco64 was used to calculated these scores.
+acc=70.82066869300911% (accuracy calculated on testing set)
+mAP=26.900467253600663% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 1 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 2 0]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/moco64/perf_eval_strict_svm.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-25 @ 22:07:11.
+Embedding gallery of model moco64 was used to calculated these scores.
+acc=59.06040268456376% (accuracy calculated on testing set)
+mAP=29.16581719961458% (mAP calculated on testing set with 187/187 classes)
+cm= [[1 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 1 0 0]
+ [0 0 0 ... 0 3 0]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+
+Results for moco64_phase0
+origin_file: data/moco64_phase0/perf_eval_svm.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-25 @ 22:07:22.
+Embedding gallery of model moco64_phase0 was used to calculated these scores.
+acc=53.191489361702125% (accuracy calculated on testing set)
+mAP=22.226510850051937% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 1 0]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/moco64_phase0/perf_eval_strict_svm.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-25 @ 22:07:25.
+Embedding gallery of model moco64_phase0 was used to calculated these scores.
+acc=35.23489932885906% (accuracy calculated on testing set)
+mAP=19.926319884600964% (mAP calculated on testing set with 187/187 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 1 0 0]
+ [0 0 0 ... 0 2 0]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+
+Results for moco64_phase25
+origin_file: data/moco64_phase25/perf_eval_svm.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-25 @ 22:07:36.
+Embedding gallery of model moco64_phase25 was used to calculated these scores.
+acc=65.65349544072949% (accuracy calculated on testing set)
+mAP=26.371091676248092% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 1 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 2 0]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/moco64_phase25/perf_eval_strict_svm.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-25 @ 22:07:40.
+Embedding gallery of model moco64_phase25 was used to calculated these scores.
+acc=54.36241610738255% (accuracy calculated on testing set)
+mAP=28.988688828041976% (mAP calculated on testing set with 187/187 classes)
+cm= [[1 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 1 0 0]
+ [0 0 0 ... 0 3 0]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+
+Results for moco64_phase50
+origin_file: data/moco64_phase50/perf_eval_svm.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-25 @ 22:07:51.
+Embedding gallery of model moco64_phase50 was used to calculated these scores.
+acc=67.78115501519757% (accuracy calculated on testing set)
+mAP=24.445655605181983% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 1 0 ... 0 0 0]
+ [0 0 1 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 2 0]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/moco64_phase50/perf_eval_strict_svm.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-25 @ 22:07:55.
+Embedding gallery of model moco64_phase50 was used to calculated these scores.
+acc=56.711409395973156% (accuracy calculated on testing set)
+mAP=28.602167213350505% (mAP calculated on testing set with 187/187 classes)
+cm= [[1 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 1 0 0]
+ [0 0 0 ... 0 2 1]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+
+Results for moco64_phase75
+origin_file: data/moco64_phase75/perf_eval_svm.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-25 @ 22:08:07.
+Embedding gallery of model moco64_phase75 was used to calculated these scores.
+acc=67.78115501519757% (accuracy calculated on testing set)
+mAP=29.768158409163576% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 1 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 2 0]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/moco64_phase75/perf_eval_strict_svm.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-25 @ 22:08:11.
+Embedding gallery of model moco64_phase75 was used to calculated these scores.
+acc=57.71812080536913% (accuracy calculated on testing set)
+mAP=28.355963333165633% (mAP calculated on testing set with 187/187 classes)
+cm= [[1 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 1 0 0]
+ [0 0 0 ... 0 2 1]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+
+Results for simclr
+origin_file: data/simclr/perf_eval_svm.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-25 @ 22:08:22.
+Embedding gallery of model simclr was used to calculated these scores.
+acc=65.65349544072949% (accuracy calculated on testing set)
+mAP=22.587860552200898% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 1 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 2 0]
+ [0 0 0 ... 0 1 0]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/simclr/perf_eval_strict_svm.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-25 @ 22:08:26.
+Embedding gallery of model simclr was used to calculated these scores.
+acc=46.97986577181208% (accuracy calculated on testing set)
+mAP=25.62108465582066% (mAP calculated on testing set with 187/187 classes)
+cm= [[1 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 1 0 0]
+ [0 0 0 ... 0 1 2]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+
+Results for simclr_phase0
+origin_file: data/simclr_phase0/perf_eval_svm.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-25 @ 22:08:37.
+Embedding gallery of model simclr_phase0 was used to calculated these scores.
+acc=56.53495440729483% (accuracy calculated on testing set)
+mAP=22.671298365420544% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 1 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 2 0]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/simclr_phase0/perf_eval_strict_svm.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-25 @ 22:08:40.
+Embedding gallery of model simclr_phase0 was used to calculated these scores.
+acc=43.95973154362416% (accuracy calculated on testing set)
+mAP=22.05992607251119% (mAP calculated on testing set with 187/187 classes)
+cm= [[1 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 1 0 0]
+ [0 0 0 ... 0 3 0]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+
+Results for simclr_phase25
+origin_file: data/simclr_phase25/perf_eval_svm.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-25 @ 22:08:51.
+Embedding gallery of model simclr_phase25 was used to calculated these scores.
+acc=63.525835866261396% (accuracy calculated on testing set)
+mAP=25.65823011705728% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 1 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 2 0]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/simclr_phase25/perf_eval_strict_svm.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-25 @ 22:08:55.
+Embedding gallery of model simclr_phase25 was used to calculated these scores.
+acc=45.63758389261745% (accuracy calculated on testing set)
+mAP=23.67539240778562% (mAP calculated on testing set with 187/187 classes)
+cm= [[1 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 1 0 0]
+ [0 0 0 ... 0 1 1]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+
+Results for simclr_phase50
+origin_file: data/simclr_phase50/perf_eval_svm.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-25 @ 22:09:07.
+Embedding gallery of model simclr_phase50 was used to calculated these scores.
+acc=64.13373860182371% (accuracy calculated on testing set)
+mAP=24.130318868864265% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 1 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 2 0]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/simclr_phase50/perf_eval_strict_svm.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-25 @ 22:09:11.
+Embedding gallery of model simclr_phase50 was used to calculated these scores.
+acc=49.328859060402685% (accuracy calculated on testing set)
+mAP=26.418340476755837% (mAP calculated on testing set with 187/187 classes)
+cm= [[1 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 1 0 0]
+ [0 0 0 ... 0 1 2]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+
+Results for simclr_phase75
+origin_file: data/simclr_phase75/perf_eval_svm.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-25 @ 22:09:22.
+Embedding gallery of model simclr_phase75 was used to calculated these scores.
+acc=66.56534954407294% (accuracy calculated on testing set)
+mAP=24.358803588525774% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 1 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 2 0]
+ [0 0 0 ... 0 1 0]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/simclr_phase75/perf_eval_strict_svm.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-25 @ 22:09:26.
+Embedding gallery of model simclr_phase75 was used to calculated these scores.
+acc=45.63758389261745% (accuracy calculated on testing set)
+mAP=23.108154662546116% (mAP calculated on testing set with 187/187 classes)
+cm= [[1 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 1 0 0]
+ [0 0 0 ... 0 2 1]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+
+Results for swav
+origin_file: data/swav/perf_eval_svm.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-27 @ 12:26:55.
+Embedding gallery of model swav was used to calculated these scores.
+acc=3.0395136778115504% (accuracy calculated on testing set)
+mAP=3.014881977186156% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/swav/perf_eval_strict_svm.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-27 @ 12:26:59.
+Embedding gallery of model swav was used to calculated these scores.
+acc=0.6711409395973155% (accuracy calculated on testing set)
+mAP=3.1074843291397243% (mAP calculated on testing set with 187/187 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]]
+------------------------------------------------------------------------------------------
+
+
+
+Results for swav_phase0
+origin_file: data/swav_phase0/perf_eval_svm.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-27 @ 12:27:10.
+Embedding gallery of model swav_phase0 was used to calculated these scores.
+acc=26.443768996960486% (accuracy calculated on testing set)
+mAP=10.695665584191861% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 1]
+ [0 0 0 ... 0 0 0]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/swav_phase0/perf_eval_strict_svm.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-27 @ 12:27:13.
+Embedding gallery of model swav_phase0 was used to calculated these scores.
+acc=18.456375838926174% (accuracy calculated on testing set)
+mAP=8.593047420216738% (mAP calculated on testing set with 187/187 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 1 1]
+ [0 0 0 ... 0 0 0]]
+------------------------------------------------------------------------------------------
+
+
+
+Results for swav_phase25
+origin_file: data/swav_phase25/perf_eval_svm.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-27 @ 12:27:24.
+Embedding gallery of model swav_phase25 was used to calculated these scores.
+acc=3.0395136778115504% (accuracy calculated on testing set)
+mAP=2.990138117458684% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/swav_phase25/perf_eval_strict_svm.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-27 @ 12:27:28.
+Embedding gallery of model swav_phase25 was used to calculated these scores.
+acc=0.6711409395973155% (accuracy calculated on testing set)
+mAP=3.1074843291397234% (mAP calculated on testing set with 187/187 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]]
+------------------------------------------------------------------------------------------
+
+
+
+Results for swav_phase50
+origin_file: data/swav_phase50/perf_eval_svm.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-27 @ 12:27:39.
+Embedding gallery of model swav_phase50 was used to calculated these scores.
+acc=3.0395136778115504% (accuracy calculated on testing set)
+mAP=2.9888619742592613% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/swav_phase50/perf_eval_strict_svm.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-27 @ 12:27:43.
+Embedding gallery of model swav_phase50 was used to calculated these scores.
+acc=0.6711409395973155% (accuracy calculated on testing set)
+mAP=3.107484329139724% (mAP calculated on testing set with 187/187 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]]
+------------------------------------------------------------------------------------------
+
+
+
+Results for swav_phase75
+origin_file: data/swav_phase75/perf_eval_svm.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-27 @ 12:27:54.
+Embedding gallery of model swav_phase75 was used to calculated these scores.
+acc=3.0395136778115504% (accuracy calculated on testing set)
+mAP=2.969869352392566% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/swav_phase75/perf_eval_strict_svm.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-27 @ 12:27:58.
+Embedding gallery of model swav_phase75 was used to calculated these scores.
+acc=0.6711409395973155% (accuracy calculated on testing set)
+mAP=3.107484329139725% (mAP calculated on testing set with 187/187 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]]
+------------------------------------------------------------------------------------------
+
+
+
+Results for imgnet_pretrained
+origin_file: data/imgnet_pretrained/perf_eval_svm.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-25 @ 22:09:38.
+Embedding gallery of model imgnet_pretrained was used to calculated these scores.
+acc=70.2127659574468% (accuracy calculated on testing set)
+mAP=26.414285922136948% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 1 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 2 0]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/imgnet_pretrained/perf_eval_strict_svm.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-25 @ 22:09:42.
+Embedding gallery of model imgnet_pretrained was used to calculated these scores.
+acc=61.40939597315436% (accuracy calculated on testing set)
+mAP=27.430282518424036% (mAP calculated on testing set with 187/187 classes)
+cm= [[1 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 1 0 0]
+ [0 0 0 ... 0 2 1]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+
+Results for random
+origin_file: data/random/perf_eval_svm.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-27 @ 12:28:09.
+Embedding gallery of model random was used to calculated these scores.
+acc=42.857142857142854% (accuracy calculated on testing set)
+mAP=17.113402863806765% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 2 0]
+ [0 0 0 ... 0 0 0]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/random/perf_eval_strict_svm.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-27 @ 12:28:13.
+Embedding gallery of model random was used to calculated these scores.
+acc=32.21476510067114% (accuracy calculated on testing set)
+mAP=16.42174803993907% (mAP calculated on testing set with 187/187 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 1 0 0]
+ [0 0 0 ... 0 3 0]
+ [0 0 0 ... 0 0 0]]
+------------------------------------------------------------------------------------------
+
+

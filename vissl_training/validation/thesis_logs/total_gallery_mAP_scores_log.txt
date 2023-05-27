@@ -1,0 +1,919 @@
+Total log compiled at 2023-05-27 @ 13:00:34.
+
+Results for rotnet
+origin_file: data/rotnet/embedding_gallery_mAP_scores.txt
+------------------------------------------------------------------------------------------
+mAP Logging results on 2023-05-27 @ 12:59:31.
+Embedding gallery of model rotnet was used to calculated these scores.
+In total there where 406 distinct classes in the test set of which 321 classes could be used for mAP calcuation.
+mAP=2.3819904319801504% for inner product (ip) as a similarity metric.
+mAP=43.30521840577283% for cosine similarity (cosim) as a similarity metric.
+mAP=40.751993029861154% for euclidian distance (eucl_dist) as a similarity metric.
+mAP=43.30521738203939% for euclidian distance with normalized features (eucl_dist_norm) as a similarity metric.
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/rotnet/embedding_gallery_avg_mAP_scores.txt
+------------------------------------------------------------------------------------------
+mAP Logging results on 2023-05-25 @ 18:39:54.
+Embedding gallery of model rotnet was used to calculated these scores.
+In total there where 214 distinct classes in the test set of which 214 classes could be used for mAP calcuation.
+mAP=8.863552816400906% for inner product (ip) as a similarity metric.
+mAP=66.57201086884709% for cosine similarity (cosim) as a similarity metric.
+mAP=63.66596449101155% for euclidian distance (eucl_dist) as a similarity metric.
+mAP=66.57201086884709% for euclidian distance with normalized features (eucl_dist_norm) as a similarity metric.
+avg embedding gallery calculated with 214 classes
+------------------------------------------------------------------------------------------
+
+
+
+Results for rotnet_phase0
+origin_file: data/rotnet_phase0/embedding_gallery_mAP_scores.txt
+------------------------------------------------------------------------------------------
+mAP Logging results on 2023-05-27 @ 12:59:33.
+Embedding gallery of model rotnet_phase0 was used to calculated these scores.
+In total there where 406 distinct classes in the test set of which 321 classes could be used for mAP calcuation.
+mAP=1.0195959572696658% for inner product (ip) as a similarity metric.
+mAP=16.67931284799577% for cosine similarity (cosim) as a similarity metric.
+mAP=15.093476828391362% for euclidian distance (eucl_dist) as a similarity metric.
+mAP=16.679313311221712% for euclidian distance with normalized features (eucl_dist_norm) as a similarity metric.
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/rotnet_phase0/embedding_gallery_avg_mAP_scores.txt
+------------------------------------------------------------------------------------------
+mAP Logging results on 2023-05-25 @ 18:40:33.
+Embedding gallery of model rotnet_phase0 was used to calculated these scores.
+In total there where 214 distinct classes in the test set of which 214 classes could be used for mAP calcuation.
+mAP=3.943541065034153% for inner product (ip) as a similarity metric.
+mAP=33.72436292871422% for cosine similarity (cosim) as a similarity metric.
+mAP=28.895903823113393% for euclidian distance (eucl_dist) as a similarity metric.
+mAP=33.72436292871422% for euclidian distance with normalized features (eucl_dist_norm) as a similarity metric.
+avg embedding gallery calculated with 214 classes
+------------------------------------------------------------------------------------------
+
+
+
+Results for rotnet_phase25
+origin_file: data/rotnet_phase25/embedding_gallery_mAP_scores.txt
+------------------------------------------------------------------------------------------
+mAP Logging results on 2023-05-27 @ 12:59:35.
+Embedding gallery of model rotnet_phase25 was used to calculated these scores.
+In total there where 406 distinct classes in the test set of which 321 classes could be used for mAP calcuation.
+mAP=4.120439057497354% for inner product (ip) as a similarity metric.
+mAP=33.10968759474825% for cosine similarity (cosim) as a similarity metric.
+mAP=31.22427709943499% for euclidian distance (eucl_dist) as a similarity metric.
+mAP=33.10968443745191% for euclidian distance with normalized features (eucl_dist_norm) as a similarity metric.
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/rotnet_phase25/embedding_gallery_avg_mAP_scores.txt
+------------------------------------------------------------------------------------------
+mAP Logging results on 2023-05-25 @ 18:41:12.
+Embedding gallery of model rotnet_phase25 was used to calculated these scores.
+In total there where 214 distinct classes in the test set of which 214 classes could be used for mAP calcuation.
+mAP=18.013941301324287% for inner product (ip) as a similarity metric.
+mAP=58.86237604478926% for cosine similarity (cosim) as a similarity metric.
+mAP=54.96625380577913% for euclidian distance (eucl_dist) as a similarity metric.
+mAP=58.86237604478926% for euclidian distance with normalized features (eucl_dist_norm) as a similarity metric.
+avg embedding gallery calculated with 214 classes
+------------------------------------------------------------------------------------------
+
+
+
+Results for rotnet_phase50
+origin_file: data/rotnet_phase50/embedding_gallery_mAP_scores.txt
+------------------------------------------------------------------------------------------
+mAP Logging results on 2023-05-27 @ 12:59:37.
+Embedding gallery of model rotnet_phase50 was used to calculated these scores.
+In total there where 406 distinct classes in the test set of which 321 classes could be used for mAP calcuation.
+mAP=2.6668663903486234% for inner product (ip) as a similarity metric.
+mAP=41.620818879631955% for cosine similarity (cosim) as a similarity metric.
+mAP=38.21432879787041% for euclidian distance (eucl_dist) as a similarity metric.
+mAP=41.6208199727252% for euclidian distance with normalized features (eucl_dist_norm) as a similarity metric.
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/rotnet_phase50/embedding_gallery_avg_mAP_scores.txt
+------------------------------------------------------------------------------------------
+mAP Logging results on 2023-05-25 @ 18:41:51.
+Embedding gallery of model rotnet_phase50 was used to calculated these scores.
+In total there where 214 distinct classes in the test set of which 214 classes could be used for mAP calcuation.
+mAP=12.45804673193509% for inner product (ip) as a similarity metric.
+mAP=66.8130321801388% for cosine similarity (cosim) as a similarity metric.
+mAP=62.592217183018114% for euclidian distance (eucl_dist) as a similarity metric.
+mAP=66.8130321801388% for euclidian distance with normalized features (eucl_dist_norm) as a similarity metric.
+avg embedding gallery calculated with 214 classes
+------------------------------------------------------------------------------------------
+
+
+
+Results for rotnet_phase75
+origin_file: data/rotnet_phase75/embedding_gallery_mAP_scores.txt
+------------------------------------------------------------------------------------------
+mAP Logging results on 2023-05-27 @ 12:59:39.
+Embedding gallery of model rotnet_phase75 was used to calculated these scores.
+In total there where 406 distinct classes in the test set of which 321 classes could be used for mAP calcuation.
+mAP=2.196226772546982% for inner product (ip) as a similarity metric.
+mAP=42.92594869238259% for cosine similarity (cosim) as a similarity metric.
+mAP=40.198738246373495% for euclidian distance (eucl_dist) as a similarity metric.
+mAP=42.92595039909578% for euclidian distance with normalized features (eucl_dist_norm) as a similarity metric.
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/rotnet_phase75/embedding_gallery_avg_mAP_scores.txt
+------------------------------------------------------------------------------------------
+mAP Logging results on 2023-05-25 @ 18:42:30.
+Embedding gallery of model rotnet_phase75 was used to calculated these scores.
+In total there where 214 distinct classes in the test set of which 214 classes could be used for mAP calcuation.
+mAP=8.537263833649815% for inner product (ip) as a similarity metric.
+mAP=66.95750733127194% for cosine similarity (cosim) as a similarity metric.
+mAP=63.76312417477351% for euclidian distance (eucl_dist) as a similarity metric.
+mAP=66.95750733127194% for euclidian distance with normalized features (eucl_dist_norm) as a similarity metric.
+avg embedding gallery calculated with 214 classes
+------------------------------------------------------------------------------------------
+
+
+
+Results for rotnet_phase100
+origin_file: data/rotnet_phase100/embedding_gallery_mAP_scores.txt
+------------------------------------------------------------------------------------------
+mAP Logging results on 2023-05-27 @ 12:59:41.
+Embedding gallery of model rotnet_phase100 was used to calculated these scores.
+In total there where 406 distinct classes in the test set of which 321 classes could be used for mAP calcuation.
+mAP=2.2023606729571354% for inner product (ip) as a similarity metric.
+mAP=43.345140980027274% for cosine similarity (cosim) as a similarity metric.
+mAP=41.07255426176342% for euclidian distance (eucl_dist) as a similarity metric.
+mAP=43.34514113407484% for euclidian distance with normalized features (eucl_dist_norm) as a similarity metric.
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/rotnet_phase100/embedding_gallery_avg_mAP_scores.txt
+------------------------------------------------------------------------------------------
+mAP Logging results on 2023-05-25 @ 18:43:09.
+Embedding gallery of model rotnet_phase100 was used to calculated these scores.
+In total there where 214 distinct classes in the test set of which 214 classes could be used for mAP calcuation.
+mAP=8.450946442792805% for inner product (ip) as a similarity metric.
+mAP=66.65638872010923% for cosine similarity (cosim) as a similarity metric.
+mAP=63.32263236621871% for euclidian distance (eucl_dist) as a similarity metric.
+mAP=66.65638872010923% for euclidian distance with normalized features (eucl_dist_norm) as a similarity metric.
+avg embedding gallery calculated with 214 classes
+------------------------------------------------------------------------------------------
+
+
+
+Results for jigsaw
+origin_file: data/jigsaw/embedding_gallery_mAP_scores.txt
+------------------------------------------------------------------------------------------
+mAP Logging results on 2023-05-27 @ 12:59:43.
+Embedding gallery of model jigsaw was used to calculated these scores.
+In total there where 406 distinct classes in the test set of which 321 classes could be used for mAP calcuation.
+mAP=1.7889650032998243% for inner product (ip) as a similarity metric.
+mAP=36.82660365429844% for cosine similarity (cosim) as a similarity metric.
+mAP=35.55478120115495% for euclidian distance (eucl_dist) as a similarity metric.
+mAP=36.82668084552858% for euclidian distance with normalized features (eucl_dist_norm) as a similarity metric.
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/jigsaw/embedding_gallery_avg_mAP_scores.txt
+------------------------------------------------------------------------------------------
+mAP Logging results on 2023-05-25 @ 18:43:48.
+Embedding gallery of model jigsaw was used to calculated these scores.
+In total there where 214 distinct classes in the test set of which 214 classes could be used for mAP calcuation.
+mAP=6.820477701069036% for inner product (ip) as a similarity metric.
+mAP=56.2163143180717% for cosine similarity (cosim) as a similarity metric.
+mAP=56.25713009670555% for euclidian distance (eucl_dist) as a similarity metric.
+mAP=56.2163143180717% for euclidian distance with normalized features (eucl_dist_norm) as a similarity metric.
+avg embedding gallery calculated with 214 classes
+------------------------------------------------------------------------------------------
+
+
+
+Results for jigsaw_phase0
+origin_file: data/jigsaw_phase0/embedding_gallery_mAP_scores.txt
+------------------------------------------------------------------------------------------
+mAP Logging results on 2023-05-27 @ 12:59:45.
+Embedding gallery of model jigsaw_phase0 was used to calculated these scores.
+In total there where 406 distinct classes in the test set of which 321 classes could be used for mAP calcuation.
+mAP=0.8981110359577352% for inner product (ip) as a similarity metric.
+mAP=16.66770508678875% for cosine similarity (cosim) as a similarity metric.
+mAP=15.828830703524716% for euclidian distance (eucl_dist) as a similarity metric.
+mAP=16.667727322661236% for euclidian distance with normalized features (eucl_dist_norm) as a similarity metric.
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/jigsaw_phase0/embedding_gallery_avg_mAP_scores.txt
+------------------------------------------------------------------------------------------
+mAP Logging results on 2023-05-25 @ 18:44:27.
+Embedding gallery of model jigsaw_phase0 was used to calculated these scores.
+In total there where 214 distinct classes in the test set of which 214 classes could be used for mAP calcuation.
+mAP=2.8652076013089722% for inner product (ip) as a similarity metric.
+mAP=26.005140825755944% for cosine similarity (cosim) as a similarity metric.
+mAP=25.227111612608756% for euclidian distance (eucl_dist) as a similarity metric.
+mAP=26.005140825755944% for euclidian distance with normalized features (eucl_dist_norm) as a similarity metric.
+avg embedding gallery calculated with 214 classes
+------------------------------------------------------------------------------------------
+
+
+
+Results for jigsaw_phase25
+origin_file: data/jigsaw_phase25/embedding_gallery_mAP_scores.txt
+------------------------------------------------------------------------------------------
+mAP Logging results on 2023-05-27 @ 12:59:47.
+Embedding gallery of model jigsaw_phase25 was used to calculated these scores.
+In total there where 406 distinct classes in the test set of which 321 classes could be used for mAP calcuation.
+mAP=0.8466729977807286% for inner product (ip) as a similarity metric.
+mAP=21.91044861412531% for cosine similarity (cosim) as a similarity metric.
+mAP=20.48592254723987% for euclidian distance (eucl_dist) as a similarity metric.
+mAP=21.91045090984876% for euclidian distance with normalized features (eucl_dist_norm) as a similarity metric.
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/jigsaw_phase25/embedding_gallery_avg_mAP_scores.txt
+------------------------------------------------------------------------------------------
+mAP Logging results on 2023-05-25 @ 18:45:06.
+Embedding gallery of model jigsaw_phase25 was used to calculated these scores.
+In total there where 214 distinct classes in the test set of which 214 classes could be used for mAP calcuation.
+mAP=3.2673895745088064% for inner product (ip) as a similarity metric.
+mAP=33.84081125185912% for cosine similarity (cosim) as a similarity metric.
+mAP=31.811232439124698% for euclidian distance (eucl_dist) as a similarity metric.
+mAP=33.84081125185912% for euclidian distance with normalized features (eucl_dist_norm) as a similarity metric.
+avg embedding gallery calculated with 214 classes
+------------------------------------------------------------------------------------------
+
+
+
+Results for jigsaw_phase50
+origin_file: data/jigsaw_phase50/embedding_gallery_mAP_scores.txt
+------------------------------------------------------------------------------------------
+mAP Logging results on 2023-05-27 @ 12:59:49.
+Embedding gallery of model jigsaw_phase50 was used to calculated these scores.
+In total there where 406 distinct classes in the test set of which 321 classes could be used for mAP calcuation.
+mAP=1.2516645649681855% for inner product (ip) as a similarity metric.
+mAP=32.873397331456815% for cosine similarity (cosim) as a similarity metric.
+mAP=31.781743522484707% for euclidian distance (eucl_dist) as a similarity metric.
+mAP=32.874076274780954% for euclidian distance with normalized features (eucl_dist_norm) as a similarity metric.
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/jigsaw_phase50/embedding_gallery_avg_mAP_scores.txt
+------------------------------------------------------------------------------------------
+mAP Logging results on 2023-05-25 @ 18:45:45.
+Embedding gallery of model jigsaw_phase50 was used to calculated these scores.
+In total there where 214 distinct classes in the test set of which 214 classes could be used for mAP calcuation.
+mAP=4.513083218459169% for inner product (ip) as a similarity metric.
+mAP=48.76342411713493% for cosine similarity (cosim) as a similarity metric.
+mAP=48.10290908102472% for euclidian distance (eucl_dist) as a similarity metric.
+mAP=48.76342411713493% for euclidian distance with normalized features (eucl_dist_norm) as a similarity metric.
+avg embedding gallery calculated with 214 classes
+------------------------------------------------------------------------------------------
+
+
+
+Results for jigsaw_phase75
+origin_file: data/jigsaw_phase75/embedding_gallery_mAP_scores.txt
+------------------------------------------------------------------------------------------
+mAP Logging results on 2023-05-27 @ 12:59:51.
+Embedding gallery of model jigsaw_phase75 was used to calculated these scores.
+In total there where 406 distinct classes in the test set of which 321 classes could be used for mAP calcuation.
+mAP=1.634323920661307% for inner product (ip) as a similarity metric.
+mAP=37.83940512469805% for cosine similarity (cosim) as a similarity metric.
+mAP=36.27467133969837% for euclidian distance (eucl_dist) as a similarity metric.
+mAP=37.83941453155464% for euclidian distance with normalized features (eucl_dist_norm) as a similarity metric.
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/jigsaw_phase75/embedding_gallery_avg_mAP_scores.txt
+------------------------------------------------------------------------------------------
+mAP Logging results on 2023-05-25 @ 18:46:24.
+Embedding gallery of model jigsaw_phase75 was used to calculated these scores.
+In total there where 214 distinct classes in the test set of which 214 classes could be used for mAP calcuation.
+mAP=6.414641656074155% for inner product (ip) as a similarity metric.
+mAP=59.02869735102504% for cosine similarity (cosim) as a similarity metric.
+mAP=58.46376849679509% for euclidian distance (eucl_dist) as a similarity metric.
+mAP=59.02869735102504% for euclidian distance with normalized features (eucl_dist_norm) as a similarity metric.
+avg embedding gallery calculated with 214 classes
+------------------------------------------------------------------------------------------
+
+
+
+Results for jigsaw_phase100
+origin_file: data/jigsaw_phase100/embedding_gallery_mAP_scores.txt
+------------------------------------------------------------------------------------------
+mAP Logging results on 2023-05-27 @ 12:59:53.
+Embedding gallery of model jigsaw_phase100 was used to calculated these scores.
+In total there where 406 distinct classes in the test set of which 321 classes could be used for mAP calcuation.
+mAP=1.5340819613767218% for inner product (ip) as a similarity metric.
+mAP=37.06337979367962% for cosine similarity (cosim) as a similarity metric.
+mAP=35.58125789080642% for euclidian distance (eucl_dist) as a similarity metric.
+mAP=37.063384328836094% for euclidian distance with normalized features (eucl_dist_norm) as a similarity metric.
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/jigsaw_phase100/embedding_gallery_avg_mAP_scores.txt
+------------------------------------------------------------------------------------------
+mAP Logging results on 2023-05-25 @ 18:47:02.
+Embedding gallery of model jigsaw_phase100 was used to calculated these scores.
+In total there where 214 distinct classes in the test set of which 214 classes could be used for mAP calcuation.
+mAP=5.435206614140659% for inner product (ip) as a similarity metric.
+mAP=56.02232234647302% for cosine similarity (cosim) as a similarity metric.
+mAP=55.38424903415026% for euclidian distance (eucl_dist) as a similarity metric.
+mAP=56.02232234647302% for euclidian distance with normalized features (eucl_dist_norm) as a similarity metric.
+avg embedding gallery calculated with 214 classes
+------------------------------------------------------------------------------------------
+
+
+
+Results for moco32
+origin_file: data/moco32/embedding_gallery_mAP_scores.txt
+------------------------------------------------------------------------------------------
+mAP Logging results on 2023-05-27 @ 12:59:55.
+Embedding gallery of model moco32 was used to calculated these scores.
+In total there where 406 distinct classes in the test set of which 321 classes could be used for mAP calcuation.
+mAP=16.46806365114059% for inner product (ip) as a similarity metric.
+mAP=54.03885547236479% for cosine similarity (cosim) as a similarity metric.
+mAP=53.3555145340345% for euclidian distance (eucl_dist) as a similarity metric.
+mAP=54.03885564737245% for euclidian distance with normalized features (eucl_dist_norm) as a similarity metric.
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/moco32/embedding_gallery_avg_mAP_scores.txt
+------------------------------------------------------------------------------------------
+mAP Logging results on 2023-05-25 @ 18:47:41.
+Embedding gallery of model moco32 was used to calculated these scores.
+In total there where 214 distinct classes in the test set of which 214 classes could be used for mAP calcuation.
+mAP=42.89123886995715% for inner product (ip) as a similarity metric.
+mAP=78.31691226359018% for cosine similarity (cosim) as a similarity metric.
+mAP=76.63533622448307% for euclidian distance (eucl_dist) as a similarity metric.
+mAP=78.31691226359018% for euclidian distance with normalized features (eucl_dist_norm) as a similarity metric.
+avg embedding gallery calculated with 214 classes
+------------------------------------------------------------------------------------------
+
+
+
+Results for moco32_phase0
+origin_file: data/moco32_phase0/embedding_gallery_mAP_scores.txt
+------------------------------------------------------------------------------------------
+mAP Logging results on 2023-05-27 @ 12:59:56.
+Embedding gallery of model moco32_phase0 was used to calculated these scores.
+In total there where 406 distinct classes in the test set of which 321 classes could be used for mAP calcuation.
+mAP=3.638240648719454% for inner product (ip) as a similarity metric.
+mAP=25.726063801587696% for cosine similarity (cosim) as a similarity metric.
+mAP=26.00489276887571% for euclidian distance (eucl_dist) as a similarity metric.
+mAP=25.72606341986084% for euclidian distance with normalized features (eucl_dist_norm) as a similarity metric.
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/moco32_phase0/embedding_gallery_avg_mAP_scores.txt
+------------------------------------------------------------------------------------------
+mAP Logging results on 2023-05-25 @ 18:48:20.
+Embedding gallery of model moco32_phase0 was used to calculated these scores.
+In total there where 214 distinct classes in the test set of which 214 classes could be used for mAP calcuation.
+mAP=15.346164477031799% for inner product (ip) as a similarity metric.
+mAP=49.229005374196745% for cosine similarity (cosim) as a similarity metric.
+mAP=48.355383269735256% for euclidian distance (eucl_dist) as a similarity metric.
+mAP=49.229005374196745% for euclidian distance with normalized features (eucl_dist_norm) as a similarity metric.
+avg embedding gallery calculated with 214 classes
+------------------------------------------------------------------------------------------
+
+
+
+Results for moco32_phase25
+origin_file: data/moco32_phase25/embedding_gallery_mAP_scores.txt
+------------------------------------------------------------------------------------------
+mAP Logging results on 2023-05-27 @ 12:59:58.
+Embedding gallery of model moco32_phase25 was used to calculated these scores.
+In total there where 406 distinct classes in the test set of which 321 classes could be used for mAP calcuation.
+mAP=6.616559983162398% for inner product (ip) as a similarity metric.
+mAP=49.39712978325031% for cosine similarity (cosim) as a similarity metric.
+mAP=47.65785217089131% for euclidian distance (eucl_dist) as a similarity metric.
+mAP=49.39712830539793% for euclidian distance with normalized features (eucl_dist_norm) as a similarity metric.
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/moco32_phase25/embedding_gallery_avg_mAP_scores.txt
+------------------------------------------------------------------------------------------
+mAP Logging results on 2023-05-25 @ 18:49:00.
+Embedding gallery of model moco32_phase25 was used to calculated these scores.
+In total there where 214 distinct classes in the test set of which 214 classes could be used for mAP calcuation.
+mAP=32.17701262396529% for inner product (ip) as a similarity metric.
+mAP=74.75958239331764% for cosine similarity (cosim) as a similarity metric.
+mAP=73.13481874854672% for euclidian distance (eucl_dist) as a similarity metric.
+mAP=74.75958239331764% for euclidian distance with normalized features (eucl_dist_norm) as a similarity metric.
+avg embedding gallery calculated with 214 classes
+------------------------------------------------------------------------------------------
+
+
+
+Results for moco32_phase50
+origin_file: data/moco32_phase50/embedding_gallery_mAP_scores.txt
+------------------------------------------------------------------------------------------
+mAP Logging results on 2023-05-27 @ 13:00:00.
+Embedding gallery of model moco32_phase50 was used to calculated these scores.
+In total there where 406 distinct classes in the test set of which 321 classes could be used for mAP calcuation.
+mAP=17.22005793963655% for inner product (ip) as a similarity metric.
+mAP=50.56922753642694% for cosine similarity (cosim) as a similarity metric.
+mAP=49.581523779161074% for euclidian distance (eucl_dist) as a similarity metric.
+mAP=50.569422987887926% for euclidian distance with normalized features (eucl_dist_norm) as a similarity metric.
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/moco32_phase50/embedding_gallery_avg_mAP_scores.txt
+------------------------------------------------------------------------------------------
+mAP Logging results on 2023-05-25 @ 18:49:39.
+Embedding gallery of model moco32_phase50 was used to calculated these scores.
+In total there where 214 distinct classes in the test set of which 214 classes could be used for mAP calcuation.
+mAP=45.885160090104% for inner product (ip) as a similarity metric.
+mAP=75.89843624489208% for cosine similarity (cosim) as a similarity metric.
+mAP=74.28026668093017% for euclidian distance (eucl_dist) as a similarity metric.
+mAP=75.89843624489208% for euclidian distance with normalized features (eucl_dist_norm) as a similarity metric.
+avg embedding gallery calculated with 214 classes
+------------------------------------------------------------------------------------------
+
+
+
+Results for moco32_phase75
+origin_file: data/moco32_phase75/embedding_gallery_mAP_scores.txt
+------------------------------------------------------------------------------------------
+mAP Logging results on 2023-05-27 @ 13:00:02.
+Embedding gallery of model moco32_phase75 was used to calculated these scores.
+In total there where 406 distinct classes in the test set of which 321 classes could be used for mAP calcuation.
+mAP=15.819774870286299% for inner product (ip) as a similarity metric.
+mAP=52.90578337646058% for cosine similarity (cosim) as a similarity metric.
+mAP=51.921590360032525% for euclidian distance (eucl_dist) as a similarity metric.
+mAP=52.90578412979902% for euclidian distance with normalized features (eucl_dist_norm) as a similarity metric.
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/moco32_phase75/embedding_gallery_avg_mAP_scores.txt
+------------------------------------------------------------------------------------------
+mAP Logging results on 2023-05-25 @ 18:50:19.
+Embedding gallery of model moco32_phase75 was used to calculated these scores.
+In total there where 214 distinct classes in the test set of which 214 classes could be used for mAP calcuation.
+mAP=40.12835981510257% for inner product (ip) as a similarity metric.
+mAP=76.9503683546337% for cosine similarity (cosim) as a similarity metric.
+mAP=76.89290433907819% for euclidian distance (eucl_dist) as a similarity metric.
+mAP=76.9503683546337% for euclidian distance with normalized features (eucl_dist_norm) as a similarity metric.
+avg embedding gallery calculated with 214 classes
+------------------------------------------------------------------------------------------
+
+
+
+Results for moco64
+origin_file: data/moco64/embedding_gallery_mAP_scores.txt
+------------------------------------------------------------------------------------------
+mAP Logging results on 2023-05-27 @ 13:00:04.
+Embedding gallery of model moco64 was used to calculated these scores.
+In total there where 406 distinct classes in the test set of which 321 classes could be used for mAP calcuation.
+mAP=21.624641606412% for inner product (ip) as a similarity metric.
+mAP=56.817102242933636% for cosine similarity (cosim) as a similarity metric.
+mAP=55.07830243042553% for euclidian distance (eucl_dist) as a similarity metric.
+mAP=56.81624081081049% for euclidian distance with normalized features (eucl_dist_norm) as a similarity metric.
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/moco64/embedding_gallery_avg_mAP_scores.txt
+------------------------------------------------------------------------------------------
+mAP Logging results on 2023-05-25 @ 18:50:58.
+Embedding gallery of model moco64 was used to calculated these scores.
+In total there where 214 distinct classes in the test set of which 214 classes could be used for mAP calcuation.
+mAP=45.38522512210945% for inner product (ip) as a similarity metric.
+mAP=79.32913768714913% for cosine similarity (cosim) as a similarity metric.
+mAP=79.3245866513065% for euclidian distance (eucl_dist) as a similarity metric.
+mAP=79.32913768714913% for euclidian distance with normalized features (eucl_dist_norm) as a similarity metric.
+avg embedding gallery calculated with 214 classes
+------------------------------------------------------------------------------------------
+
+
+
+Results for moco64_phase0
+origin_file: data/moco64_phase0/embedding_gallery_mAP_scores.txt
+------------------------------------------------------------------------------------------
+mAP Logging results on 2023-05-27 @ 13:00:06.
+Embedding gallery of model moco64_phase0 was used to calculated these scores.
+In total there where 406 distinct classes in the test set of which 321 classes could be used for mAP calcuation.
+mAP=3.844972517003506% for inner product (ip) as a similarity metric.
+mAP=34.099455445757016% for cosine similarity (cosim) as a similarity metric.
+mAP=32.54637393424497% for euclidian distance (eucl_dist) as a similarity metric.
+mAP=34.09966199665866% for euclidian distance with normalized features (eucl_dist_norm) as a similarity metric.
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/moco64_phase0/embedding_gallery_avg_mAP_scores.txt
+------------------------------------------------------------------------------------------
+mAP Logging results on 2023-05-25 @ 18:51:38.
+Embedding gallery of model moco64_phase0 was used to calculated these scores.
+In total there where 214 distinct classes in the test set of which 214 classes could be used for mAP calcuation.
+mAP=16.732334912986772% for inner product (ip) as a similarity metric.
+mAP=56.782646991814964% for cosine similarity (cosim) as a similarity metric.
+mAP=54.75347998704223% for euclidian distance (eucl_dist) as a similarity metric.
+mAP=56.782646991814964% for euclidian distance with normalized features (eucl_dist_norm) as a similarity metric.
+avg embedding gallery calculated with 214 classes
+------------------------------------------------------------------------------------------
+
+
+
+Results for moco64_phase25
+origin_file: data/moco64_phase25/embedding_gallery_mAP_scores.txt
+------------------------------------------------------------------------------------------
+mAP Logging results on 2023-05-27 @ 13:00:08.
+Embedding gallery of model moco64_phase25 was used to calculated these scores.
+In total there where 406 distinct classes in the test set of which 321 classes could be used for mAP calcuation.
+mAP=16.510467380812766% for inner product (ip) as a similarity metric.
+mAP=51.23839759310047% for cosine similarity (cosim) as a similarity metric.
+mAP=49.70689533373401% for euclidian distance (eucl_dist) as a similarity metric.
+mAP=51.238400421302764% for euclidian distance with normalized features (eucl_dist_norm) as a similarity metric.
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/moco64_phase25/embedding_gallery_avg_mAP_scores.txt
+------------------------------------------------------------------------------------------
+mAP Logging results on 2023-05-25 @ 18:52:18.
+Embedding gallery of model moco64_phase25 was used to calculated these scores.
+In total there where 214 distinct classes in the test set of which 214 classes could be used for mAP calcuation.
+mAP=40.466691196743874% for inner product (ip) as a similarity metric.
+mAP=75.07861031410827% for cosine similarity (cosim) as a similarity metric.
+mAP=74.56275177601931% for euclidian distance (eucl_dist) as a similarity metric.
+mAP=75.07861031410827% for euclidian distance with normalized features (eucl_dist_norm) as a similarity metric.
+avg embedding gallery calculated with 214 classes
+------------------------------------------------------------------------------------------
+
+
+
+Results for moco64_phase50
+origin_file: data/moco64_phase50/embedding_gallery_mAP_scores.txt
+------------------------------------------------------------------------------------------
+mAP Logging results on 2023-05-27 @ 13:00:10.
+Embedding gallery of model moco64_phase50 was used to calculated these scores.
+In total there where 406 distinct classes in the test set of which 321 classes could be used for mAP calcuation.
+mAP=22.652469037391224% for inner product (ip) as a similarity metric.
+mAP=52.873976580137224% for cosine similarity (cosim) as a similarity metric.
+mAP=51.03796009706536% for euclidian distance (eucl_dist) as a similarity metric.
+mAP=52.87397810020409% for euclidian distance with normalized features (eucl_dist_norm) as a similarity metric.
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/moco64_phase50/embedding_gallery_avg_mAP_scores.txt
+------------------------------------------------------------------------------------------
+mAP Logging results on 2023-05-25 @ 18:52:57.
+Embedding gallery of model moco64_phase50 was used to calculated these scores.
+In total there where 214 distinct classes in the test set of which 214 classes could be used for mAP calcuation.
+mAP=49.637547583774314% for inner product (ip) as a similarity metric.
+mAP=77.92811226600428% for cosine similarity (cosim) as a similarity metric.
+mAP=75.95344023040536% for euclidian distance (eucl_dist) as a similarity metric.
+mAP=77.92811226600428% for euclidian distance with normalized features (eucl_dist_norm) as a similarity metric.
+avg embedding gallery calculated with 214 classes
+------------------------------------------------------------------------------------------
+
+
+
+Results for moco64_phase75
+origin_file: data/moco64_phase75/embedding_gallery_mAP_scores.txt
+------------------------------------------------------------------------------------------
+mAP Logging results on 2023-05-27 @ 13:00:12.
+Embedding gallery of model moco64_phase75 was used to calculated these scores.
+In total there where 406 distinct classes in the test set of which 321 classes could be used for mAP calcuation.
+mAP=22.498564220928944% for inner product (ip) as a similarity metric.
+mAP=55.635734744480025% for cosine similarity (cosim) as a similarity metric.
+mAP=53.92726015565511% for euclidian distance (eucl_dist) as a similarity metric.
+mAP=55.63573471224031% for euclidian distance with normalized features (eucl_dist_norm) as a similarity metric.
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/moco64_phase75/embedding_gallery_avg_mAP_scores.txt
+------------------------------------------------------------------------------------------
+mAP Logging results on 2023-05-25 @ 18:53:37.
+Embedding gallery of model moco64_phase75 was used to calculated these scores.
+In total there where 214 distinct classes in the test set of which 214 classes could be used for mAP calcuation.
+mAP=50.24175457487735% for inner product (ip) as a similarity metric.
+mAP=79.27714234291884% for cosine similarity (cosim) as a similarity metric.
+mAP=78.5520178615873% for euclidian distance (eucl_dist) as a similarity metric.
+mAP=79.27714234291884% for euclidian distance with normalized features (eucl_dist_norm) as a similarity metric.
+avg embedding gallery calculated with 214 classes
+------------------------------------------------------------------------------------------
+
+
+
+Results for simclr
+origin_file: data/simclr/embedding_gallery_mAP_scores.txt
+------------------------------------------------------------------------------------------
+mAP Logging results on 2023-05-27 @ 13:00:14.
+Embedding gallery of model simclr was used to calculated these scores.
+In total there where 406 distinct classes in the test set of which 321 classes could be used for mAP calcuation.
+mAP=4.475644255542932% for inner product (ip) as a similarity metric.
+mAP=52.960473984051006% for cosine similarity (cosim) as a similarity metric.
+mAP=51.616616381677694% for euclidian distance (eucl_dist) as a similarity metric.
+mAP=52.96049274702527% for euclidian distance with normalized features (eucl_dist_norm) as a similarity metric.
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/simclr/embedding_gallery_avg_mAP_scores.txt
+------------------------------------------------------------------------------------------
+mAP Logging results on 2023-05-25 @ 18:54:17.
+Embedding gallery of model simclr was used to calculated these scores.
+In total there where 214 distinct classes in the test set of which 214 classes could be used for mAP calcuation.
+mAP=16.819971025717813% for inner product (ip) as a similarity metric.
+mAP=74.79698018454165% for cosine similarity (cosim) as a similarity metric.
+mAP=74.52782384453607% for euclidian distance (eucl_dist) as a similarity metric.
+mAP=74.79698018454165% for euclidian distance with normalized features (eucl_dist_norm) as a similarity metric.
+avg embedding gallery calculated with 214 classes
+------------------------------------------------------------------------------------------
+
+
+
+Results for simclr_phase0
+origin_file: data/simclr_phase0/embedding_gallery_mAP_scores.txt
+------------------------------------------------------------------------------------------
+mAP Logging results on 2023-05-27 @ 13:00:16.
+Embedding gallery of model simclr_phase0 was used to calculated these scores.
+In total there where 406 distinct classes in the test set of which 321 classes could be used for mAP calcuation.
+mAP=3.62833010458868% for inner product (ip) as a similarity metric.
+mAP=41.6582373939589% for cosine similarity (cosim) as a similarity metric.
+mAP=40.515246263729054% for euclidian distance (eucl_dist) as a similarity metric.
+mAP=41.6539213695618% for euclidian distance with normalized features (eucl_dist_norm) as a similarity metric.
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/simclr_phase0/embedding_gallery_avg_mAP_scores.txt
+------------------------------------------------------------------------------------------
+mAP Logging results on 2023-05-25 @ 18:54:57.
+Embedding gallery of model simclr_phase0 was used to calculated these scores.
+In total there where 214 distinct classes in the test set of which 214 classes could be used for mAP calcuation.
+mAP=9.618494177030232% for inner product (ip) as a similarity metric.
+mAP=68.52369963840881% for cosine similarity (cosim) as a similarity metric.
+mAP=67.36690681698039% for euclidian distance (eucl_dist) as a similarity metric.
+mAP=68.52369963840881% for euclidian distance with normalized features (eucl_dist_norm) as a similarity metric.
+avg embedding gallery calculated with 214 classes
+------------------------------------------------------------------------------------------
+
+
+
+Results for simclr_phase25
+origin_file: data/simclr_phase25/embedding_gallery_mAP_scores.txt
+------------------------------------------------------------------------------------------
+mAP Logging results on 2023-05-27 @ 13:00:18.
+Embedding gallery of model simclr_phase25 was used to calculated these scores.
+In total there where 406 distinct classes in the test set of which 321 classes could be used for mAP calcuation.
+mAP=2.921379324008557% for inner product (ip) as a similarity metric.
+mAP=48.132395355329% for cosine similarity (cosim) as a similarity metric.
+mAP=47.76730390649973% for euclidian distance (eucl_dist) as a similarity metric.
+mAP=48.13239207351102% for euclidian distance with normalized features (eucl_dist_norm) as a similarity metric.
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/simclr_phase25/embedding_gallery_avg_mAP_scores.txt
+------------------------------------------------------------------------------------------
+mAP Logging results on 2023-05-25 @ 18:55:37.
+Embedding gallery of model simclr_phase25 was used to calculated these scores.
+In total there where 214 distinct classes in the test set of which 214 classes could be used for mAP calcuation.
+mAP=9.233231368079602% for inner product (ip) as a similarity metric.
+mAP=73.63238642508628% for cosine similarity (cosim) as a similarity metric.
+mAP=70.9528503251501% for euclidian distance (eucl_dist) as a similarity metric.
+mAP=73.63238642508628% for euclidian distance with normalized features (eucl_dist_norm) as a similarity metric.
+avg embedding gallery calculated with 214 classes
+------------------------------------------------------------------------------------------
+
+
+
+Results for simclr_phase50
+origin_file: data/simclr_phase50/embedding_gallery_mAP_scores.txt
+------------------------------------------------------------------------------------------
+mAP Logging results on 2023-05-27 @ 13:00:20.
+Embedding gallery of model simclr_phase50 was used to calculated these scores.
+In total there where 406 distinct classes in the test set of which 321 classes could be used for mAP calcuation.
+mAP=6.32960917064857% for inner product (ip) as a similarity metric.
+mAP=52.06286311463045% for cosine similarity (cosim) as a similarity metric.
+mAP=50.75118130563998% for euclidian distance (eucl_dist) as a similarity metric.
+mAP=52.06285412134668% for euclidian distance with normalized features (eucl_dist_norm) as a similarity metric.
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/simclr_phase50/embedding_gallery_avg_mAP_scores.txt
+------------------------------------------------------------------------------------------
+mAP Logging results on 2023-05-25 @ 18:56:17.
+Embedding gallery of model simclr_phase50 was used to calculated these scores.
+In total there where 214 distinct classes in the test set of which 214 classes could be used for mAP calcuation.
+mAP=20.000811605968956% for inner product (ip) as a similarity metric.
+mAP=74.54942302468245% for cosine similarity (cosim) as a similarity metric.
+mAP=74.63144609800565% for euclidian distance (eucl_dist) as a similarity metric.
+mAP=74.54942302468245% for euclidian distance with normalized features (eucl_dist_norm) as a similarity metric.
+avg embedding gallery calculated with 214 classes
+------------------------------------------------------------------------------------------
+
+
+
+Results for simclr_phase75
+origin_file: data/simclr_phase75/embedding_gallery_mAP_scores.txt
+------------------------------------------------------------------------------------------
+mAP Logging results on 2023-05-27 @ 13:00:22.
+Embedding gallery of model simclr_phase75 was used to calculated these scores.
+In total there where 406 distinct classes in the test set of which 321 classes could be used for mAP calcuation.
+mAP=5.300899590594348% for inner product (ip) as a similarity metric.
+mAP=52.943294106429605% for cosine similarity (cosim) as a similarity metric.
+mAP=52.23424274958228% for euclidian distance (eucl_dist) as a similarity metric.
+mAP=52.94330143630903% for euclidian distance with normalized features (eucl_dist_norm) as a similarity metric.
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/simclr_phase75/embedding_gallery_avg_mAP_scores.txt
+------------------------------------------------------------------------------------------
+mAP Logging results on 2023-05-25 @ 18:56:57.
+Embedding gallery of model simclr_phase75 was used to calculated these scores.
+In total there where 214 distinct classes in the test set of which 214 classes could be used for mAP calcuation.
+mAP=19.314510824697848% for inner product (ip) as a similarity metric.
+mAP=74.63082532983702% for cosine similarity (cosim) as a similarity metric.
+mAP=74.40317702892672% for euclidian distance (eucl_dist) as a similarity metric.
+mAP=74.63082532983702% for euclidian distance with normalized features (eucl_dist_norm) as a similarity metric.
+avg embedding gallery calculated with 214 classes
+------------------------------------------------------------------------------------------
+
+
+
+Results for swav
+origin_file: data/swav/embedding_gallery_mAP_scores.txt
+------------------------------------------------------------------------------------------
+mAP Logging results on 2023-05-27 @ 13:00:23.
+Embedding gallery of model swav was used to calculated these scores.
+In total there where 406 distinct classes in the test set of which 321 classes could be used for mAP calcuation.
+mAP=0.27529902451417293% for inner product (ip) as a similarity metric.
+mAP=0.3681320919567967% for cosine similarity (cosim) as a similarity metric.
+mAP=24.2271984637036% for euclidian distance (eucl_dist) as a similarity metric.
+mAP=21.352930846803414% for euclidian distance with normalized features (eucl_dist_norm) as a similarity metric.
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/swav/embedding_gallery_avg_mAP_scores.txt
+------------------------------------------------------------------------------------------
+mAP Logging results on 2023-05-27 @ 04:04:01.
+Embedding gallery of model swav was used to calculated these scores.
+In total there where 214 distinct classes in the test set of which 214 classes could be used for mAP calcuation.
+mAP=0.588284845716912% for inner product (ip) as a similarity metric.
+mAP=0.7970157166837157% for cosine similarity (cosim) as a similarity metric.
+mAP=22.865401098754578% for euclidian distance (eucl_dist) as a similarity metric.
+mAP=21.425148088883518% for euclidian distance with normalized features (eucl_dist_norm) as a similarity metric.
+avg embedding gallery calculated with 214 classes
+------------------------------------------------------------------------------------------
+
+
+
+Results for swav_phase0
+origin_file: data/swav_phase0/embedding_gallery_mAP_scores.txt
+------------------------------------------------------------------------------------------
+mAP Logging results on 2023-05-27 @ 13:00:25.
+Embedding gallery of model swav_phase0 was used to calculated these scores.
+In total there where 406 distinct classes in the test set of which 321 classes could be used for mAP calcuation.
+mAP=1.173003557009504% for inner product (ip) as a similarity metric.
+mAP=12.125445178804801% for cosine similarity (cosim) as a similarity metric.
+mAP=10.789307527542077% for euclidian distance (eucl_dist) as a similarity metric.
+mAP=12.112372063360127% for euclidian distance with normalized features (eucl_dist_norm) as a similarity metric.
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/swav_phase0/embedding_gallery_avg_mAP_scores.txt
+------------------------------------------------------------------------------------------
+mAP Logging results on 2023-05-27 @ 04:04:40.
+Embedding gallery of model swav_phase0 was used to calculated these scores.
+In total there where 214 distinct classes in the test set of which 214 classes could be used for mAP calcuation.
+mAP=4.125433793761879% for inner product (ip) as a similarity metric.
+mAP=18.16855914574229% for cosine similarity (cosim) as a similarity metric.
+mAP=15.721980292701318% for euclidian distance (eucl_dist) as a similarity metric.
+mAP=18.170784334883365% for euclidian distance with normalized features (eucl_dist_norm) as a similarity metric.
+avg embedding gallery calculated with 214 classes
+------------------------------------------------------------------------------------------
+
+
+
+Results for swav_phase25
+origin_file: data/swav_phase25/embedding_gallery_mAP_scores.txt
+------------------------------------------------------------------------------------------
+mAP Logging results on 2023-05-27 @ 13:00:27.
+Embedding gallery of model swav_phase25 was used to calculated these scores.
+In total there where 406 distinct classes in the test set of which 321 classes could be used for mAP calcuation.
+mAP=0.2728752771767964% for inner product (ip) as a similarity metric.
+mAP=0.3977915575743055% for cosine similarity (cosim) as a similarity metric.
+mAP=24.795863028865035% for euclidian distance (eucl_dist) as a similarity metric.
+mAP=21.65915236710877% for euclidian distance with normalized features (eucl_dist_norm) as a similarity metric.
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/swav_phase25/embedding_gallery_avg_mAP_scores.txt
+------------------------------------------------------------------------------------------
+mAP Logging results on 2023-05-27 @ 04:05:18.
+Embedding gallery of model swav_phase25 was used to calculated these scores.
+In total there where 214 distinct classes in the test set of which 214 classes could be used for mAP calcuation.
+mAP=0.5867618012763368% for inner product (ip) as a similarity metric.
+mAP=0.7815582118647484% for cosine similarity (cosim) as a similarity metric.
+mAP=24.356937328846463% for euclidian distance (eucl_dist) as a similarity metric.
+mAP=22.39318373434344% for euclidian distance with normalized features (eucl_dist_norm) as a similarity metric.
+avg embedding gallery calculated with 214 classes
+------------------------------------------------------------------------------------------
+
+
+
+Results for swav_phase50
+origin_file: data/swav_phase50/embedding_gallery_mAP_scores.txt
+------------------------------------------------------------------------------------------
+mAP Logging results on 2023-05-27 @ 13:00:29.
+Embedding gallery of model swav_phase50 was used to calculated these scores.
+In total there where 406 distinct classes in the test set of which 321 classes could be used for mAP calcuation.
+mAP=0.2761071033527514% for inner product (ip) as a similarity metric.
+mAP=0.396383276283429% for cosine similarity (cosim) as a similarity metric.
+mAP=24.292582304404124% for euclidian distance (eucl_dist) as a similarity metric.
+mAP=21.75858295084509% for euclidian distance with normalized features (eucl_dist_norm) as a similarity metric.
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/swav_phase50/embedding_gallery_avg_mAP_scores.txt
+------------------------------------------------------------------------------------------
+mAP Logging results on 2023-05-27 @ 04:05:57.
+Embedding gallery of model swav_phase50 was used to calculated these scores.
+In total there where 214 distinct classes in the test set of which 214 classes could be used for mAP calcuation.
+mAP=0.5752966527042419% for inner product (ip) as a similarity metric.
+mAP=0.8111619184683555% for cosine similarity (cosim) as a similarity metric.
+mAP=24.690272396518814% for euclidian distance (eucl_dist) as a similarity metric.
+mAP=22.9471150926921% for euclidian distance with normalized features (eucl_dist_norm) as a similarity metric.
+avg embedding gallery calculated with 214 classes
+------------------------------------------------------------------------------------------
+
+
+
+Results for swav_phase75
+origin_file: data/swav_phase75/embedding_gallery_mAP_scores.txt
+------------------------------------------------------------------------------------------
+mAP Logging results on 2023-05-27 @ 13:00:30.
+Embedding gallery of model swav_phase75 was used to calculated these scores.
+In total there where 406 distinct classes in the test set of which 321 classes could be used for mAP calcuation.
+mAP=0.27897987167469585% for inner product (ip) as a similarity metric.
+mAP=0.40355072806404985% for cosine similarity (cosim) as a similarity metric.
+mAP=23.40128096759072% for euclidian distance (eucl_dist) as a similarity metric.
+mAP=21.228010196620254% for euclidian distance with normalized features (eucl_dist_norm) as a similarity metric.
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/swav_phase75/embedding_gallery_avg_mAP_scores.txt
+------------------------------------------------------------------------------------------
+mAP Logging results on 2023-05-27 @ 04:06:36.
+Embedding gallery of model swav_phase75 was used to calculated these scores.
+In total there where 214 distinct classes in the test set of which 214 classes could be used for mAP calcuation.
+mAP=0.5800493022261018% for inner product (ip) as a similarity metric.
+mAP=0.7740214188063078% for cosine similarity (cosim) as a similarity metric.
+mAP=24.031942406623905% for euclidian distance (eucl_dist) as a similarity metric.
+mAP=21.82899960944665% for euclidian distance with normalized features (eucl_dist_norm) as a similarity metric.
+avg embedding gallery calculated with 214 classes
+------------------------------------------------------------------------------------------
+
+
+
+Results for imgnet_pretrained
+origin_file: data/imgnet_pretrained/embedding_gallery_mAP_scores.txt
+------------------------------------------------------------------------------------------
+mAP Logging results on 2023-05-27 @ 13:00:32.
+Embedding gallery of model imgnet_pretrained was used to calculated these scores.
+In total there where 406 distinct classes in the test set of which 321 classes could be used for mAP calcuation.
+mAP=11.642385839593231% for inner product (ip) as a similarity metric.
+mAP=56.560276770069606% for cosine similarity (cosim) as a similarity metric.
+mAP=53.907332345648044% for euclidian distance (eucl_dist) as a similarity metric.
+mAP=56.560260669419414% for euclidian distance with normalized features (eucl_dist_norm) as a similarity metric.
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/imgnet_pretrained/embedding_gallery_avg_mAP_scores.txt
+------------------------------------------------------------------------------------------
+mAP Logging results on 2023-05-25 @ 18:57:36.
+Embedding gallery of model imgnet_pretrained was used to calculated these scores.
+In total there where 214 distinct classes in the test set of which 214 classes could be used for mAP calcuation.
+mAP=22.656325586781627% for inner product (ip) as a similarity metric.
+mAP=81.40934143010611% for cosine similarity (cosim) as a similarity metric.
+mAP=79.29868822930676% for euclidian distance (eucl_dist) as a similarity metric.
+mAP=81.40934143010611% for euclidian distance with normalized features (eucl_dist_norm) as a similarity metric.
+avg embedding gallery calculated with 214 classes
+------------------------------------------------------------------------------------------
+
+
+
+Results for random
+origin_file: data/random/embedding_gallery_mAP_scores.txt
+------------------------------------------------------------------------------------------
+mAP Logging results on 2023-05-27 @ 13:00:34.
+Embedding gallery of model random was used to calculated these scores.
+In total there where 406 distinct classes in the test set of which 321 classes could be used for mAP calcuation.
+mAP=0.848737531866965% for inner product (ip) as a similarity metric.
+mAP=22.37983425109923% for cosine similarity (cosim) as a similarity metric.
+mAP=8.940280592631442% for euclidian distance (eucl_dist) as a similarity metric.
+mAP=22.35504252209386% for euclidian distance with normalized features (eucl_dist_norm) as a similarity metric.
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/random/embedding_gallery_avg_mAP_scores.txt
+------------------------------------------------------------------------------------------
+mAP Logging results on 2023-05-26 @ 09:43:25.
+Embedding gallery of model random was used to calculated these scores.
+In total there where 214 distinct classes in the test set of which 214 classes could be used for mAP calcuation.
+mAP=2.7831129464050828% for inner product (ip) as a similarity metric.
+mAP=41.62004023360453% for cosine similarity (cosim) as a similarity metric.
+mAP=18.46714688132004% for euclidian distance (eucl_dist) as a similarity metric.
+mAP=41.76660203149842% for euclidian distance with normalized features (eucl_dist_norm) as a similarity metric.
+avg embedding gallery calculated with 214 classes
+------------------------------------------------------------------------------------------
+
+
