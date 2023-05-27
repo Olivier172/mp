@@ -264,7 +264,8 @@ def main():
                "jigsaw_phase0", "jigsaw_phase25",  "jigsaw_phase50", "jigsaw_phase75","jigsaw_phase100",
                "moco32_phase0", "moco32_phase25",  "moco32_phase50", "moco32_phase75",
                "moco64_phase0", "moco64_phase25",  "moco64_phase50", "moco64_phase75",
-               "simclr_phase0", "simclr_phase25",  "simclr_phase50", "simclr_phase75"]
+               "simclr_phase0", "simclr_phase25",  "simclr_phase50", "simclr_phase75",
+               "swav_phase0", "swav_phase25",  "swav_phase50", "swav_phase75"]
     print(f"Choose a model to calculate embeddings. Your options are: {options}")
     model_name = input("Your Choice:")
     while model_name not in options:
@@ -276,13 +277,14 @@ def main():
         #Calculate embedding gallery for all models
         choice = input("At every checkpoint for all models? (y/N): ")
         if( choice != "y"):
-            targets = ["rotnet", "jigsaw", "moco32", "moco64", "simclr"]
+            targets = ["rotnet", "jigsaw", "moco32", "moco64", "simclr", "swav"]
         else:
             targets = ["rotnet", "rotnet_phase0", "rotnet_phase25",  "rotnet_phase50", "rotnet_phase75","rotnet_phase100", 
                        "jigsaw", "jigsaw_phase0", "jigsaw_phase25",  "jigsaw_phase50", "jigsaw_phase75","jigsaw_phase100",
                        "moco32", "moco32_phase0", "moco32_phase25",  "moco32_phase50", "moco32_phase75",
                        "moco64", "moco64_phase0", "moco64_phase25",  "moco64_phase50", "moco64_phase75",
-                       "simclr", "simclr_phase0", "simclr_phase25",  "simclr_phase50", "simclr_phase75" ]
+                       "simclr", "simclr_phase0", "simclr_phase25",  "simclr_phase50", "simclr_phase75" ,
+                       "swav", "swav_phase0", "swav_phase25",  "swav_phase50", "swav_phase75"]
             
         for target in targets:
             cprint(f"Calculating embedding gallery for target {target}\n", "red")

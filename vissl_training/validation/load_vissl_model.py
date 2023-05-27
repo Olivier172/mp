@@ -45,7 +45,7 @@ def load_model(model_name:str, verbose=False):
         "swav":
         {
             "train_config": "validation/swav_full/train_config.yaml",
-            "weights": BASE_DIR_WEIGHTS + "sku110k/swav_full/model_final_checkpoint_phase"
+            "weights": BASE_DIR_WEIGHTS + "sku110k/swav_full/model_final_checkpoint_phase99.torch"
         },  
         #Models from different checkpoints:
         #ROTNET
@@ -162,7 +162,28 @@ def load_model(model_name:str, verbose=False):
         {
             "train_config": "validation/simclr_full/train_config.yaml",
             "weights": BASE_DIR_WEIGHTS + "sku110k/simclr_full/model_phase75.torch"
-        }
+        },
+        #SWAV
+        "swav_phase0":
+        {
+            "train_config": "validation/swav_full/train_config.yaml",
+            "weights": BASE_DIR_WEIGHTS + "sku110k/swav_full/model_phase0.torch"
+        },  
+        "swav_phase25":
+        {
+            "train_config": "validation/swav_full/train_config.yaml",
+            "weights": BASE_DIR_WEIGHTS + "sku110k/swav_full/model_phase25.torch"
+        },  
+        "swav_phase50":
+        {
+            "train_config": "validation/swav_full/train_config.yaml",
+            "weights": BASE_DIR_WEIGHTS + "sku110k/swav_full/model_phase50.torch"
+        },  
+        "swav_phase75":
+        {
+            "train_config": "validation/swav_full/train_config.yaml",
+            "weights": BASE_DIR_WEIGHTS + "sku110k/swav_full/model_phase75.torch"
+        }  
     }
     if(model_name not in PATHS.keys()):
         print(f"The model you tried to load ({model_name}) is not available")

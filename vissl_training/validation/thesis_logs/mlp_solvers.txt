@@ -9,7 +9,33 @@ mlp_test = MLPClassifier(
     alpha=0.1
 )
 
-experiment 1: model moco64
+experiment : model rotnet
+accuracy scores are reported
+solver:
+    lbfgs   
+        cv: 47.7% 10min16s     
+        T: 52.3% 2min 44s
+    sgd     
+        cv: 2.3% 2min29s    
+        T: 3.0% 32.7s
+    adam    
+        cv: 41.9% 44min29s    
+        T: 49.2% 17min 9s
+
+experiment : model jigsaw
+accuracy scores are reported
+solver:
+    lbfgs   
+        cv:     
+        T: 
+    sgd     
+        cv:     
+        T: 
+    adam    
+        cv:    
+        T: 
+
+experiment : model moco64
 accuracy scores are reported
 solver:
     lbfgs   
@@ -21,3 +47,29 @@ solver:
     adam    
         cv: 54.9% 35min19s    
         T: 57.8% 14min56s
+
+experiment : model simclr
+accuracy scores are reported
+solver:
+    lbfgs   
+        cv:     
+        T: 
+    sgd     
+        cv:     
+        T: 
+    adam    
+        cv:    
+        T: 
+
+experiment : model imgnet_pretrained
+accuracy scores are reported
+solver:
+    lbfgs   
+        cv:     
+        T: 
+    sgd     
+        cv:     
+        T: 
+    adam    
+        cv:    
+        T: 

@@ -628,7 +628,9 @@ def get_targets(prompt:str="Choose a model"):
                "jigsaw_phase0", "jigsaw_phase25",  "jigsaw_phase50", "jigsaw_phase75","jigsaw_phase100",
                "moco32_phase0", "moco32_phase25",  "moco32_phase50", "moco32_phase75",
                "moco64_phase0", "moco64_phase25",  "moco64_phase50", "moco64_phase75",
-               "simclr_phase0", "simclr_phase25",  "simclr_phase50", "simclr_phase75"]
+               "simclr_phase0", "simclr_phase25",  "simclr_phase50", "simclr_phase75",
+               "swav_phase0", "swav_phase25",  "swav_phase50", "swav_phase75"]
+    
     print(f"{prompt}. Your options are: {options}")
     model_name = input("Your Choice:")
     while model_name not in options:
@@ -639,13 +641,14 @@ def get_targets(prompt:str="Choose a model"):
         #all models
         choice = input("At every checkpoint for all models? (y/N): ")
         if( choice != "y"):
-            targets = ["rotnet", "jigsaw", "moco32", "moco64", "simclr", "imgnet_pretrained", "random"]
+            targets = ["rotnet", "jigsaw", "moco32", "moco64", "simclr", "swav", "imgnet_pretrained", "random"]
         else:
             targets = ["rotnet", "rotnet_phase0", "rotnet_phase25",  "rotnet_phase50", "rotnet_phase75","rotnet_phase100", 
                        "jigsaw", "jigsaw_phase0", "jigsaw_phase25",  "jigsaw_phase50", "jigsaw_phase75","jigsaw_phase100",
                        "moco32", "moco32_phase0", "moco32_phase25",  "moco32_phase50", "moco32_phase75",
                        "moco64", "moco64_phase0", "moco64_phase25",  "moco64_phase50", "moco64_phase75",
                        "simclr", "simclr_phase0", "simclr_phase25",  "simclr_phase50", "simclr_phase75",
+                       "swav", "swav_phase0", "swav_phase25",  "swav_phase50", "swav_phase75",
                        "imgnet_pretrained", "random"]
     else:
         #one model
