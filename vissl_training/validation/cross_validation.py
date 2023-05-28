@@ -57,13 +57,13 @@ def search_best_hyperparam_svm(train_data, train_labels, test_data, test_labels)
         #eval diff kernels and regularization params c
         {
             "kernel": ["linear", "rbf"],
-            "C": [0.1, 1, 10, 20, 30, 50, 100]
+            "C": [0.1, 0.5, 1, 5, 10]
         },
         #eval different degrees of polynomials
         {
             "kernel": ["poly"],
             "degree" : [2, 3, 4, 5, 10],
-            'C': [0.1, 1, 10, 20, 30, 50, 100]
+            "C": [0.1, 0.5, 1, 5, 10]
         }
     ]
     
