@@ -1,0 +1,273 @@
+Total log compiled at 2023-05-28 @ 12:12:44.
+
+Results for rotnet
+origin_file: data/rotnet/perf_eval_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-28 @ 11:49:28.
+Embedding gallery of model rotnet was used to calculated these scores.
+acc=60.182370820668694% (accuracy calculated on testing set)
+mAP=70.84594490980017% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 2 0]
+ [0 0 0 ... 0 0 0]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/rotnet/perf_eval_strict_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-28 @ 11:49:39.
+Embedding gallery of model rotnet was used to calculated these scores.
+acc=45.302013422818796% (accuracy calculated on testing set)
+mAP=50.9970020989979% (mAP calculated on testing set with 187/187 classes)
+cm= [[1 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 1 2]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+
+Results for jigsaw
+origin_file: data/jigsaw/perf_eval_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-28 @ 11:54:57.
+Embedding gallery of model jigsaw was used to calculated these scores.
+acc=53.49544072948328% (accuracy calculated on testing set)
+mAP=64.41414885255098% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 1 0]
+ [0 0 0 ... 0 1 0]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/jigsaw/perf_eval_strict_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-28 @ 11:55:19.
+Embedding gallery of model jigsaw was used to calculated these scores.
+acc=31.543624161073826% (accuracy calculated on testing set)
+mAP=39.767784162476% (mAP calculated on testing set with 187/187 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]]
+------------------------------------------------------------------------------------------
+
+
+
+Results for moco32
+origin_file: data/moco32/perf_eval_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-28 @ 11:55:35.
+Embedding gallery of model moco32 was used to calculated these scores.
+acc=63.525835866261396% (accuracy calculated on testing set)
+mAP=75.7501354697955% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 1 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 2 0]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/moco32/perf_eval_strict_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-28 @ 11:55:47.
+Embedding gallery of model moco32 was used to calculated these scores.
+acc=45.97315436241611% (accuracy calculated on testing set)
+mAP=57.315473532592044% (mAP calculated on testing set with 187/187 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 1 0 0]
+ [0 0 0 ... 0 2 1]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+
+Results for moco64
+origin_file: data/moco64/perf_eval_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-28 @ 11:56:10.
+Embedding gallery of model moco64 was used to calculated these scores.
+acc=67.47720364741642% (accuracy calculated on testing set)
+mAP=79.42602991832278% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 1 0 ... 0 0 0]
+ [0 0 1 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 2 0]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/moco64/perf_eval_strict_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-28 @ 11:56:21.
+Embedding gallery of model moco64 was used to calculated these scores.
+acc=49.664429530201346% (accuracy calculated on testing set)
+mAP=60.89830023385109% (mAP calculated on testing set with 187/187 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 1 0 0]
+ [0 0 0 ... 0 2 1]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+
+Results for simclr
+origin_file: data/simclr/perf_eval_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-28 @ 11:56:45.
+Embedding gallery of model simclr was used to calculated these scores.
+acc=60.790273556231% (accuracy calculated on testing set)
+mAP=74.14955492812038% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 1 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 1 1]
+ [0 0 0 ... 0 1 0]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/simclr/perf_eval_strict_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-28 @ 11:57:03.
+Embedding gallery of model simclr was used to calculated these scores.
+acc=43.288590604026844% (accuracy calculated on testing set)
+mAP=53.981843423820706% (mAP calculated on testing set with 187/187 classes)
+cm= [[1 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 1 0 0]
+ [0 0 0 ... 0 1 1]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+
+Results for swav
+origin_file: data/swav/perf_eval_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-28 @ 11:57:04.
+Embedding gallery of model swav was used to calculated these scores.
+acc=3.0395136778115504% (accuracy calculated on testing set)
+mAP=3.003534840776222% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/swav/perf_eval_strict_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-28 @ 11:57:05.
+Embedding gallery of model swav was used to calculated these scores.
+acc=0.6711409395973155% (accuracy calculated on testing set)
+mAP=3.107484329139724% (mAP calculated on testing set with 187/187 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]]
+------------------------------------------------------------------------------------------
+
+
+
+Results for imgnet_pretrained
+origin_file: data/imgnet_pretrained/perf_eval_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-28 @ 11:57:22.
+Embedding gallery of model imgnet_pretrained was used to calculated these scores.
+acc=67.17325227963525% (accuracy calculated on testing set)
+mAP=80.45792700799319% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 1 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 2 0]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/imgnet_pretrained/perf_eval_strict_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-28 @ 11:57:33.
+Embedding gallery of model imgnet_pretrained was used to calculated these scores.
+acc=59.73154362416108% (accuracy calculated on testing set)
+mAP=64.60502280956642% (mAP calculated on testing set with 187/187 classes)
+cm= [[1 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 1 0 0]
+ [0 0 0 ... 0 2 0]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+
+Results for random
+origin_file: data/random/perf_eval_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-28 @ 12:08:25.
+Embedding gallery of model random was used to calculated these scores.
+acc=39.81762917933131% (accuracy calculated on testing set)
+mAP=50.66459421890137% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 2 0]
+ [0 0 0 ... 0 0 0]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/random/perf_eval_strict_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-28 @ 12:12:44.
+Embedding gallery of model random was used to calculated these scores.
+acc=29.53020134228188% (accuracy calculated on testing set)
+mAP=34.43181015781603% (mAP calculated on testing set with 187/187 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 1 0 0]
+ [0 0 0 ... 0 3 0]
+ [0 0 0 ... 0 0 0]]
+------------------------------------------------------------------------------------------
+
+

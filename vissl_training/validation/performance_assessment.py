@@ -122,7 +122,7 @@ def eval_performance(classifier, train_set, train_labels, test_set, test_labels,
         
     return accuracy, mAP, amt_classes, amt_classes_AP, cm
 
-def log_results(output_file:Path, model_name:str, accuracy, mAP, amt_classes, amt_classes_AP, cm, optional_trunk:str=None):
+def log_results(output_file:Path, model_name:str, accuracy, mAP, amt_classes, amt_classes_AP, cm, best_params:dict, optional_trunk:str=None):
     """
     Logs cross validation results for this model with svm and mlp classifier
 
@@ -134,6 +134,7 @@ def log_results(output_file:Path, model_name:str, accuracy, mAP, amt_classes, am
         amt_classes (int): amount of classes there were total.
         amt_classes_AP (int): amount of classes used for mAP calculation.
         cm: confusion matrix representing true and predicted labels.
+        best_params (dict): dictionary with the best_params from cross validation.
         optional_trunk (str): optional part to put at the end of a log.
     """
     #Creating message (lines)
@@ -149,6 +150,7 @@ def log_results(output_file:Path, model_name:str, accuracy, mAP, amt_classes, am
     lines.append("-"*90 + "\n")
     lines.append(f"performance assessment logging results on {date_string} @ {time_string}.\n")
     lines.append(f"Embedding gallery of model {model_name} was used to calculated these scores.\n")
+    lines.append(f"The model was using the best params from cross validation, best_params:{best_params}\n")
     #log results
     lines.append(f"acc={accuracy*100}% (accuracy calculated on testing set)\n")
     lines.append(f"mAP={mAP*100}% (mAP calculated on testing set with {amt_classes_AP}/{amt_classes} classes)\n")
@@ -178,7 +180,7 @@ def performance_assesment(verbose:bool=False, exist_ok:bool=False):
     targets = get_targets("Choose a model to evaluate performace for")
     
     #select which classifier to optimize hyperparams for
-    classifier = input("please select a classifier to search optimal hyperparams for: (SVM/mlp)")
+    classifier = input("please select a classifier to evaluate performance for (SVM/mlp): ")
     if(classifier != "mlp"):
         classifier = "svm"
     else:
@@ -240,6 +242,7 @@ def performance_assesment(verbose:bool=False, exist_ok:bool=False):
                 mlp = MLPClassifier(
                     hidden_layer_sizes = best_params["hidden_layer_sizes"],
                     solver= best_params["solver"],
+                    alpha=best_params["alpha"],
                     max_iter=best_params["max_iter"]
                 )
                 acc, mAP, amt_classes, amt_classes_AP, cm = eval_performance(mlp, train_set, train_labels, test_set, test_labels, verbose=verbose)
@@ -251,7 +254,8 @@ def performance_assesment(verbose:bool=False, exist_ok:bool=False):
                 mAP=mAP, 
                 amt_classes=amt_classes,
                 amt_classes_AP=amt_classes_AP,
-                cm=cm
+                cm=cm,
+                best_params=best_params
             )
             
     dir = Path("data")

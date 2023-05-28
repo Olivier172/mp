@@ -1,0 +1,141 @@
+Total log compiled at 2023-05-27 @ 01:41:15.
+
+Results for rotnet
+origin_file: data/rotnet/cross_val_mlp.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-26 @ 16:17:43.
+Embedding gallery of model rotnet was used to calculated these scores.
+best params {'alpha': 0.01, 'hidden_layer_sizes': 128, 'max_iter': 10000, 'solver': 'lbfgs'}
+test score 0.601823708206687
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/rotnet/cross_val_strict_mlp.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-26 @ 16:54:15.
+Embedding gallery of model rotnet was used to calculated these scores.
+best params {'alpha': 0.01, 'hidden_layer_sizes': 128, 'max_iter': 10000, 'solver': 'lbfgs'}
+test score 0.4463087248322148
+------------------------------------------------------------------------------------------
+
+
+
+Results for jigsaw
+origin_file: data/jigsaw/cross_val_mlp.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-26 @ 18:32:56.
+Embedding gallery of model jigsaw was used to calculated these scores.
+best params {'alpha': 0.1, 'hidden_layer_sizes': 128, 'max_iter': 10000, 'solver': 'lbfgs'}
+test score 0.5379939209726444
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/jigsaw/cross_val_strict_mlp.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-26 @ 19:27:41.
+Embedding gallery of model jigsaw was used to calculated these scores.
+best params {'alpha': 0.01, 'hidden_layer_sizes': 128, 'max_iter': 10000, 'solver': 'lbfgs'}
+test score 0.32550335570469796
+------------------------------------------------------------------------------------------
+
+
+
+Results for moco32
+origin_file: data/moco32/cross_val_mlp.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-26 @ 19:40:42.
+Embedding gallery of model moco32 was used to calculated these scores.
+best params {'alpha': 0.01, 'hidden_layer_sizes': 128, 'max_iter': 10000, 'solver': 'lbfgs'}
+test score 0.6595744680851063
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/moco32/cross_val_strict_mlp.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-26 @ 19:48:57.
+Embedding gallery of model moco32 was used to calculated these scores.
+best params {'alpha': 0.01, 'hidden_layer_sizes': 128, 'max_iter': 10000, 'solver': 'lbfgs'}
+test score 0.4865771812080537
+------------------------------------------------------------------------------------------
+
+
+
+Results for moco64
+origin_file: data/moco64/cross_val_mlp.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-26 @ 20:01:33.
+Embedding gallery of model moco64 was used to calculated these scores.
+best params {'alpha': 0.1, 'hidden_layer_sizes': 128, 'max_iter': 10000, 'solver': 'lbfgs'}
+test score 0.668693009118541
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/moco64/cross_val_strict_mlp.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-26 @ 20:09:17.
+Embedding gallery of model moco64 was used to calculated these scores.
+best params {'alpha': 0.01, 'hidden_layer_sizes': 128, 'max_iter': 10000, 'solver': 'lbfgs'}
+test score 0.5436241610738255
+------------------------------------------------------------------------------------------
+
+
+
+Results for simclr
+origin_file: data/simclr/cross_val_mlp.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-26 @ 20:25:38.
+Embedding gallery of model simclr was used to calculated these scores.
+best params {'alpha': 0.1, 'hidden_layer_sizes': 128, 'max_iter': 10000, 'solver': 'lbfgs'}
+test score 0.6291793313069909
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/simclr/cross_val_strict_mlp.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-26 @ 20:37:35.
+Embedding gallery of model simclr was used to calculated these scores.
+best params {'alpha': 0.01, 'hidden_layer_sizes': 128, 'max_iter': 10000, 'solver': 'lbfgs'}
+test score 0.4597315436241611
+------------------------------------------------------------------------------------------
+
+
+
+Results for imgnet_pretrained
+origin_file: data/imgnet_pretrained/cross_val_mlp.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-26 @ 20:50:18.
+Embedding gallery of model imgnet_pretrained was used to calculated these scores.
+best params {'alpha': 0.01, 'hidden_layer_sizes': 128, 'max_iter': 10000, 'solver': 'lbfgs'}
+test score 0.6717325227963525
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/imgnet_pretrained/cross_val_strict_mlp.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-26 @ 20:58:47.
+Embedding gallery of model imgnet_pretrained was used to calculated these scores.
+best params {'alpha': 0.01, 'hidden_layer_sizes': 128, 'max_iter': 10000, 'solver': 'lbfgs'}
+test score 0.5906040268456376
+------------------------------------------------------------------------------------------
+
+
+
+Results for random
+origin_file: data/random/cross_val_mlp.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-26 @ 23:46:17.
+Embedding gallery of model random was used to calculated these scores.
+best params {'alpha': 0.01, 'hidden_layer_sizes': 128, 'max_iter': 10000, 'solver': 'lbfgs'}
+test score 0.030395136778115502
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/random/cross_val_strict_mlp.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-27 @ 01:41:15.
+Embedding gallery of model random was used to calculated these scores.
+best params {'alpha': 0.01, 'hidden_layer_sizes': 128, 'max_iter': 10000, 'solver': 'lbfgs'}
+test score 0.2483221476510067
+------------------------------------------------------------------------------------------
+
+
