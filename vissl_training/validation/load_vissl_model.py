@@ -198,7 +198,7 @@ def load_model(model_name:str, verbose=False):
     
     # 1. Checkpoint config is located at vissl/configs/config/validation/*/train_config.yaml.
     # 2. weights are located at /home/olivier/Documents/master/mp/checkpoints/sku110k/*
-    # The * in the above paths stand for rotnet_full, jigsaw_full or moco_full
+    # The * in the above paths stand for rotnet_full, jigsaw_full, simclr_full, moco32_full, moco64_full or swav_full
     # All other options specified below override the train_config.yaml config.
 
     cfg = [

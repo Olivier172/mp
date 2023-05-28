@@ -10,28 +10,6 @@ from sklearn.metrics import average_precision_score
 
 from embedding_gallery import read_embedding_gallery
 
-def read_blacklist(file_path:Path, verbose=False) -> list:
-    """
-    Reads in the blacklist for class labels not to use when evaluating mAP scores of embedding_gallery_avg.
-    Because these classes contain only one element in the CornerShop dataset and would be an "easy match".
-
-    Args:
-        file_path (Path): path to the blacklist file.
-        verbose (bool, optional): print switch.
-
-    Returns:
-        blacklist (list): list of strings containing the blacklisted classes. 
-    """
-    if(not os.path.isfile):
-        cprint(f"Warning: blacklist file for embedding_gallery_avg doesn't exist at {file_path}", "red")
-        return []
-    
-    with open(file_path, "r") as f:
-        blacklist = f.read().splitlines()
-        if(verbose):
-            cprint(f"Blacklist file succesfully read. There are  "+ str(len(blacklist)) + " classes blacklisted.", "green")
-    return blacklist
-
 def calc_ip_cosim(query_stack:torch.Tensor, embedding_gallery:torch.Tensor, verbose=False):
     """
     Calulates a similarity matrix based on the inner product / cosine similarity as a metric.
@@ -223,7 +201,8 @@ def generate_blacklist(gallery_labels:list, verbose=False):
 
 def calc_embedding_gallery_avg(
     output_file:Path, 
-    dir:Path, model_name:str, 
+    dir:Path, 
+    model_name:str, 
     embedding_gallery:torch.Tensor, 
     embedding_gallery_norm:torch.Tensor, 
     gallery_labels:list, 

@@ -4,6 +4,29 @@ from collections import Counter
 import os
 import json
 
+def read_blacklist(file_path:Path, verbose=False) -> list:
+    """
+    Reads in the blacklist for class labels not to use when evaluating mAP scores of embedding_gallery_avg.
+    Because these classes contain only one element in the CornerShop dataset and would be an "easy match".
+
+    Args:
+        file_path (Path): path to the blacklist file.
+        verbose (bool, optional): print switch.
+
+    Returns:
+        blacklist (list): list of strings containing the blacklisted classes. 
+    """
+    if(not os.path.isfile):
+        cprint(f"Warning: blacklist file for embedding_gallery_avg doesn't exist at {file_path}", "red")
+        return []
+    
+    with open(file_path, "r") as f:
+        blacklist = f.read().splitlines()
+        if(verbose):
+            cprint(f"Blacklist file succesfully read. There are  "+ str(len(blacklist)) + " classes blacklisted.", "green")
+    return blacklist
+
+
 def generate_blacklist(label_file:Path, blacklist_file:Path, verbose=False, generate_occurence_json=False):
     """
     Read in the label_file that represents all the labels that were used to create
