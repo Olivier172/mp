@@ -1,0 +1,681 @@
+Total log compiled at 2023-05-29 @ 00:35:12.
+
+Results for rotnet
+origin_file: data/rotnet/cross_val_svm.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-28 @ 21:23:50.
+Embedding gallery of model rotnet was used to calculated these scores.
+best params {'C': 5, 'degree': 2, 'kernel': 'poly'}
+test score 0.6322188449848024
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/rotnet/cross_val_strict_svm.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-28 @ 21:25:29.
+Embedding gallery of model rotnet was used to calculated these scores.
+best params {'C': 1, 'degree': 3, 'kernel': 'poly'}
+test score 0.4597315436241611
+------------------------------------------------------------------------------------------
+
+
+
+Results for rotnet_phase0
+origin_file: data/rotnet_phase0/cross_val_svm.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-28 @ 21:29:50.
+Embedding gallery of model rotnet_phase0 was used to calculated these scores.
+best params {'C': 5, 'degree': 2, 'kernel': 'poly'}
+test score 0.3069908814589666
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/rotnet_phase0/cross_val_strict_svm.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-28 @ 21:31:25.
+Embedding gallery of model rotnet_phase0 was used to calculated these scores.
+best params {'C': 5, 'degree': 3, 'kernel': 'poly'}
+test score 0.22483221476510068
+------------------------------------------------------------------------------------------
+
+
+
+Results for rotnet_phase25
+origin_file: data/rotnet_phase25/cross_val_svm.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-28 @ 21:36:02.
+Embedding gallery of model rotnet_phase25 was used to calculated these scores.
+best params {'C': 10, 'degree': 2, 'kernel': 'poly'}
+test score 0.48632218844984804
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/rotnet_phase25/cross_val_strict_svm.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-28 @ 21:37:44.
+Embedding gallery of model rotnet_phase25 was used to calculated these scores.
+best params {'C': 10, 'degree': 2, 'kernel': 'poly'}
+test score 0.36577181208053694
+------------------------------------------------------------------------------------------
+
+
+
+Results for rotnet_phase50
+origin_file: data/rotnet_phase50/cross_val_svm.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-28 @ 21:42:20.
+Embedding gallery of model rotnet_phase50 was used to calculated these scores.
+best params {'C': 10, 'degree': 2, 'kernel': 'poly'}
+test score 0.5927051671732523
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/rotnet_phase50/cross_val_strict_svm.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-28 @ 21:44:01.
+Embedding gallery of model rotnet_phase50 was used to calculated these scores.
+best params {'C': 5, 'degree': 2, 'kernel': 'poly'}
+test score 0.40939597315436244
+------------------------------------------------------------------------------------------
+
+
+
+Results for rotnet_phase75
+origin_file: data/rotnet_phase75/cross_val_svm.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-28 @ 21:48:34.
+Embedding gallery of model rotnet_phase75 was used to calculated these scores.
+best params {'C': 5, 'degree': 2, 'kernel': 'poly'}
+test score 0.6231003039513677
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/rotnet_phase75/cross_val_strict_svm.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-28 @ 21:50:13.
+Embedding gallery of model rotnet_phase75 was used to calculated these scores.
+best params {'C': 5, 'degree': 2, 'kernel': 'poly'}
+test score 0.4697986577181208
+------------------------------------------------------------------------------------------
+
+
+
+Results for rotnet_phase100
+origin_file: data/rotnet_phase100/cross_val_svm.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-28 @ 21:54:46.
+Embedding gallery of model rotnet_phase100 was used to calculated these scores.
+best params {'C': 5, 'degree': 2, 'kernel': 'poly'}
+test score 0.6322188449848024
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/rotnet_phase100/cross_val_strict_svm.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-28 @ 21:56:25.
+Embedding gallery of model rotnet_phase100 was used to calculated these scores.
+best params {'C': 1, 'degree': 3, 'kernel': 'poly'}
+test score 0.47315436241610737
+------------------------------------------------------------------------------------------
+
+
+
+Results for jigsaw
+origin_file: data/jigsaw/cross_val_svm.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-28 @ 22:00:43.
+Embedding gallery of model jigsaw was used to calculated these scores.
+best params {'C': 5, 'degree': 3, 'kernel': 'poly'}
+test score 0.5440729483282675
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/jigsaw/cross_val_strict_svm.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-28 @ 22:02:13.
+Embedding gallery of model jigsaw was used to calculated these scores.
+best params {'C': 10, 'degree': 2, 'kernel': 'poly'}
+test score 0.3288590604026846
+------------------------------------------------------------------------------------------
+
+
+
+Results for jigsaw_phase0
+origin_file: data/jigsaw_phase0/cross_val_svm.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-28 @ 22:06:19.
+Embedding gallery of model jigsaw_phase0 was used to calculated these scores.
+best params {'C': 0.1, 'degree': 5, 'kernel': 'poly'}
+test score 0.3191489361702128
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/jigsaw_phase0/cross_val_strict_svm.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-28 @ 22:07:46.
+Embedding gallery of model jigsaw_phase0 was used to calculated these scores.
+best params {'C': 10, 'kernel': 'rbf'}
+test score 0.17114093959731544
+------------------------------------------------------------------------------------------
+
+
+
+Results for jigsaw_phase25
+origin_file: data/jigsaw_phase25/cross_val_svm.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-28 @ 22:12:03.
+Embedding gallery of model jigsaw_phase25 was used to calculated these scores.
+best params {'C': 5, 'degree': 4, 'kernel': 'poly'}
+test score 0.3738601823708207
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/jigsaw_phase25/cross_val_strict_svm.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-28 @ 22:13:34.
+Embedding gallery of model jigsaw_phase25 was used to calculated these scores.
+best params {'C': 5, 'degree': 2, 'kernel': 'poly'}
+test score 0.24161073825503357
+------------------------------------------------------------------------------------------
+
+
+
+Results for jigsaw_phase50
+origin_file: data/jigsaw_phase50/cross_val_svm.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-28 @ 22:17:53.
+Embedding gallery of model jigsaw_phase50 was used to calculated these scores.
+best params {'C': 5, 'degree': 2, 'kernel': 'poly'}
+test score 0.5197568389057751
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/jigsaw_phase50/cross_val_strict_svm.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-28 @ 22:19:24.
+Embedding gallery of model jigsaw_phase50 was used to calculated these scores.
+best params {'C': 1, 'degree': 4, 'kernel': 'poly'}
+test score 0.31543624161073824
+------------------------------------------------------------------------------------------
+
+
+
+Results for jigsaw_phase75
+origin_file: data/jigsaw_phase75/cross_val_svm.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-28 @ 22:23:42.
+Embedding gallery of model jigsaw_phase75 was used to calculated these scores.
+best params {'C': 10, 'degree': 2, 'kernel': 'poly'}
+test score 0.5683890577507599
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/jigsaw_phase75/cross_val_strict_svm.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-28 @ 22:25:13.
+Embedding gallery of model jigsaw_phase75 was used to calculated these scores.
+best params {'C': 0.5, 'degree': 5, 'kernel': 'poly'}
+test score 0.34563758389261745
+------------------------------------------------------------------------------------------
+
+
+
+Results for jigsaw_phase100
+origin_file: data/jigsaw_phase100/cross_val_svm.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-28 @ 22:29:30.
+Embedding gallery of model jigsaw_phase100 was used to calculated these scores.
+best params {'C': 10, 'degree': 2, 'kernel': 'poly'}
+test score 0.5440729483282675
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/jigsaw_phase100/cross_val_strict_svm.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-28 @ 22:31:00.
+Embedding gallery of model jigsaw_phase100 was used to calculated these scores.
+best params {'C': 10, 'degree': 2, 'kernel': 'poly'}
+test score 0.33557046979865773
+------------------------------------------------------------------------------------------
+
+
+
+Results for moco32
+origin_file: data/moco32/cross_val_svm.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-28 @ 22:35:36.
+Embedding gallery of model moco32 was used to calculated these scores.
+best params {'C': 5, 'degree': 2, 'kernel': 'poly'}
+test score 0.6534954407294833
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/moco32/cross_val_strict_svm.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-28 @ 22:37:17.
+Embedding gallery of model moco32 was used to calculated these scores.
+best params {'C': 5, 'degree': 2, 'kernel': 'poly'}
+test score 0.5369127516778524
+------------------------------------------------------------------------------------------
+
+
+
+Results for moco32_phase0
+origin_file: data/moco32_phase0/cross_val_svm.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-28 @ 22:41:08.
+Embedding gallery of model moco32_phase0 was used to calculated these scores.
+best params {'C': 0.1, 'degree': 10, 'kernel': 'poly'}
+test score 0.44680851063829785
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/moco32_phase0/cross_val_strict_svm.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-28 @ 22:42:26.
+Embedding gallery of model moco32_phase0 was used to calculated these scores.
+best params {'C': 0.5, 'degree': 4, 'kernel': 'poly'}
+test score 0.3187919463087248
+------------------------------------------------------------------------------------------
+
+
+
+Results for moco32_phase25
+origin_file: data/moco32_phase25/cross_val_svm.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-28 @ 22:46:58.
+Embedding gallery of model moco32_phase25 was used to calculated these scores.
+best params {'C': 10, 'degree': 2, 'kernel': 'poly'}
+test score 0.6291793313069909
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/moco32_phase25/cross_val_strict_svm.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-28 @ 22:48:38.
+Embedding gallery of model moco32_phase25 was used to calculated these scores.
+best params {'C': 10, 'degree': 2, 'kernel': 'poly'}
+test score 0.5
+------------------------------------------------------------------------------------------
+
+
+
+Results for moco32_phase50
+origin_file: data/moco32_phase50/cross_val_svm.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-28 @ 22:53:11.
+Embedding gallery of model moco32_phase50 was used to calculated these scores.
+best params {'C': 10, 'degree': 2, 'kernel': 'poly'}
+test score 0.6534954407294833
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/moco32_phase50/cross_val_strict_svm.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-28 @ 22:54:52.
+Embedding gallery of model moco32_phase50 was used to calculated these scores.
+best params {'C': 5, 'degree': 2, 'kernel': 'poly'}
+test score 0.5167785234899329
+------------------------------------------------------------------------------------------
+
+
+
+Results for moco32_phase75
+origin_file: data/moco32_phase75/cross_val_svm.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-28 @ 22:59:26.
+Embedding gallery of model moco32_phase75 was used to calculated these scores.
+best params {'C': 10, 'degree': 2, 'kernel': 'poly'}
+test score 0.6534954407294833
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/moco32_phase75/cross_val_strict_svm.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-28 @ 23:01:07.
+Embedding gallery of model moco32_phase75 was used to calculated these scores.
+best params {'C': 10, 'kernel': 'linear'}
+test score 0.540268456375839
+------------------------------------------------------------------------------------------
+
+
+
+Results for moco64
+origin_file: data/moco64/cross_val_svm.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-28 @ 23:05:44.
+Embedding gallery of model moco64 was used to calculated these scores.
+best params {'C': 5, 'degree': 2, 'kernel': 'poly'}
+test score 0.6838905775075987
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/moco64/cross_val_strict_svm.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-28 @ 23:07:25.
+Embedding gallery of model moco64 was used to calculated these scores.
+best params {'C': 5, 'degree': 2, 'kernel': 'poly'}
+test score 0.5704697986577181
+------------------------------------------------------------------------------------------
+
+
+
+Results for moco64_phase0
+origin_file: data/moco64_phase0/cross_val_svm.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-28 @ 23:11:20.
+Embedding gallery of model moco64_phase0 was used to calculated these scores.
+best params {'C': 0.5, 'degree': 5, 'kernel': 'poly'}
+test score 0.5319148936170213
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/moco64_phase0/cross_val_strict_svm.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-28 @ 23:12:39.
+Embedding gallery of model moco64_phase0 was used to calculated these scores.
+best params {'C': 0.5, 'degree': 5, 'kernel': 'poly'}
+test score 0.3523489932885906
+------------------------------------------------------------------------------------------
+
+
+
+Results for moco64_phase25
+origin_file: data/moco64_phase25/cross_val_svm.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-28 @ 23:17:14.
+Embedding gallery of model moco64_phase25 was used to calculated these scores.
+best params {'C': 10, 'degree': 2, 'kernel': 'poly'}
+test score 0.6474164133738601
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/moco64_phase25/cross_val_strict_svm.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-28 @ 23:18:54.
+Embedding gallery of model moco64_phase25 was used to calculated these scores.
+best params {'C': 10, 'kernel': 'linear'}
+test score 0.5369127516778524
+------------------------------------------------------------------------------------------
+
+
+
+Results for moco64_phase50
+origin_file: data/moco64_phase50/cross_val_svm.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-28 @ 23:23:31.
+Embedding gallery of model moco64_phase50 was used to calculated these scores.
+best params {'C': 10, 'kernel': 'linear'}
+test score 0.668693009118541
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/moco64_phase50/cross_val_strict_svm.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-28 @ 23:25:12.
+Embedding gallery of model moco64_phase50 was used to calculated these scores.
+best params {'C': 10, 'kernel': 'linear'}
+test score 0.5570469798657718
+------------------------------------------------------------------------------------------
+
+
+
+Results for moco64_phase75
+origin_file: data/moco64_phase75/cross_val_svm.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-28 @ 23:29:48.
+Embedding gallery of model moco64_phase75 was used to calculated these scores.
+best params {'C': 10, 'kernel': 'linear'}
+test score 0.6808510638297872
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/moco64_phase75/cross_val_strict_svm.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-28 @ 23:31:29.
+Embedding gallery of model moco64_phase75 was used to calculated these scores.
+best params {'C': 5, 'degree': 2, 'kernel': 'poly'}
+test score 0.5604026845637584
+------------------------------------------------------------------------------------------
+
+
+
+Results for simclr
+origin_file: data/simclr/cross_val_svm.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-28 @ 23:36:07.
+Embedding gallery of model simclr was used to calculated these scores.
+best params {'C': 5, 'degree': 2, 'kernel': 'poly'}
+test score 0.6413373860182371
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/simclr/cross_val_strict_svm.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-28 @ 23:37:47.
+Embedding gallery of model simclr was used to calculated these scores.
+best params {'C': 5, 'degree': 2, 'kernel': 'poly'}
+test score 0.4664429530201342
+------------------------------------------------------------------------------------------
+
+
+
+Results for simclr_phase0
+origin_file: data/simclr_phase0/cross_val_svm.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-28 @ 23:42:01.
+Embedding gallery of model simclr_phase0 was used to calculated these scores.
+best params {'C': 0.1, 'degree': 4, 'kernel': 'poly'}
+test score 0.5653495440729484
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/simclr_phase0/cross_val_strict_svm.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-28 @ 23:43:30.
+Embedding gallery of model simclr_phase0 was used to calculated these scores.
+best params {'C': 5, 'degree': 2, 'kernel': 'poly'}
+test score 0.45302013422818793
+------------------------------------------------------------------------------------------
+
+
+
+Results for simclr_phase25
+origin_file: data/simclr_phase25/cross_val_svm.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-28 @ 23:47:58.
+Embedding gallery of model simclr_phase25 was used to calculated these scores.
+best params {'C': 10, 'degree': 2, 'kernel': 'poly'}
+test score 0.6352583586626139
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/simclr_phase25/cross_val_strict_svm.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-28 @ 23:49:34.
+Embedding gallery of model simclr_phase25 was used to calculated these scores.
+best params {'C': 1, 'degree': 3, 'kernel': 'poly'}
+test score 0.4563758389261745
+------------------------------------------------------------------------------------------
+
+
+
+Results for simclr_phase50
+origin_file: data/simclr_phase50/cross_val_svm.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-28 @ 23:54:09.
+Embedding gallery of model simclr_phase50 was used to calculated these scores.
+best params {'C': 10, 'degree': 2, 'kernel': 'poly'}
+test score 0.6413373860182371
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/simclr_phase50/cross_val_strict_svm.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-28 @ 23:55:49.
+Embedding gallery of model simclr_phase50 was used to calculated these scores.
+best params {'C': 10, 'degree': 2, 'kernel': 'poly'}
+test score 0.4865771812080537
+------------------------------------------------------------------------------------------
+
+
+
+Results for simclr_phase75
+origin_file: data/simclr_phase75/cross_val_svm.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-29 @ 00:00:25.
+Embedding gallery of model simclr_phase75 was used to calculated these scores.
+best params {'C': 5, 'degree': 2, 'kernel': 'poly'}
+test score 0.6565349544072948
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/simclr_phase75/cross_val_strict_svm.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-29 @ 00:02:06.
+Embedding gallery of model simclr_phase75 was used to calculated these scores.
+best params {'C': 5, 'degree': 2, 'kernel': 'poly'}
+test score 0.4563758389261745
+------------------------------------------------------------------------------------------
+
+
+
+Results for swav
+origin_file: data/swav/cross_val_svm.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-29 @ 00:05:13.
+Embedding gallery of model swav was used to calculated these scores.
+best params {'C': 0.1, 'kernel': 'rbf'}
+test score 0.030395136778115502
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/swav/cross_val_strict_svm.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-29 @ 00:06:20.
+Embedding gallery of model swav was used to calculated these scores.
+best params {'C': 0.1, 'kernel': 'rbf'}
+test score 0.006711409395973154
+------------------------------------------------------------------------------------------
+
+
+
+Results for swav_phase0
+origin_file: data/swav_phase0/cross_val_svm.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-29 @ 00:09:50.
+Embedding gallery of model swav_phase0 was used to calculated these scores.
+best params {'C': 10, 'degree': 10, 'kernel': 'poly'}
+test score 0.24620060790273557
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/swav_phase0/cross_val_strict_svm.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-29 @ 00:11:03.
+Embedding gallery of model swav_phase0 was used to calculated these scores.
+best params {'C': 10, 'degree': 10, 'kernel': 'poly'}
+test score 0.1644295302013423
+------------------------------------------------------------------------------------------
+
+
+
+Results for swav_phase25
+origin_file: data/swav_phase25/cross_val_svm.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-29 @ 00:14:12.
+Embedding gallery of model swav_phase25 was used to calculated these scores.
+best params {'C': 0.5, 'kernel': 'rbf'}
+test score 0.030395136778115502
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/swav_phase25/cross_val_strict_svm.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-29 @ 00:15:19.
+Embedding gallery of model swav_phase25 was used to calculated these scores.
+best params {'C': 0.1, 'kernel': 'rbf'}
+test score 0.006711409395973154
+------------------------------------------------------------------------------------------
+
+
+
+Results for swav_phase50
+origin_file: data/swav_phase50/cross_val_svm.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-29 @ 00:18:29.
+Embedding gallery of model swav_phase50 was used to calculated these scores.
+best params {'C': 0.1, 'kernel': 'rbf'}
+test score 0.030395136778115502
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/swav_phase50/cross_val_strict_svm.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-29 @ 00:19:36.
+Embedding gallery of model swav_phase50 was used to calculated these scores.
+best params {'C': 0.1, 'kernel': 'rbf'}
+test score 0.006711409395973154
+------------------------------------------------------------------------------------------
+
+
+
+Results for swav_phase75
+origin_file: data/swav_phase75/cross_val_svm.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-29 @ 00:22:45.
+Embedding gallery of model swav_phase75 was used to calculated these scores.
+best params {'C': 0.5, 'kernel': 'rbf'}
+test score 0.030395136778115502
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/swav_phase75/cross_val_strict_svm.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-29 @ 00:23:53.
+Embedding gallery of model swav_phase75 was used to calculated these scores.
+best params {'C': 0.1, 'kernel': 'rbf'}
+test score 0.006711409395973154
+------------------------------------------------------------------------------------------
+
+
+
+Results for imgnet_pretrained
+origin_file: data/imgnet_pretrained/cross_val_svm.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-29 @ 00:28:33.
+Embedding gallery of model imgnet_pretrained was used to calculated these scores.
+best params {'C': 5, 'degree': 2, 'kernel': 'poly'}
+test score 0.6899696048632219
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/imgnet_pretrained/cross_val_strict_svm.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-29 @ 00:30:15.
+Embedding gallery of model imgnet_pretrained was used to calculated these scores.
+best params {'C': 5, 'degree': 2, 'kernel': 'poly'}
+test score 0.5805369127516778
+------------------------------------------------------------------------------------------
+
+
+
+Results for random
+origin_file: data/random/cross_val_svm.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-29 @ 00:33:54.
+Embedding gallery of model random was used to calculated these scores.
+best params {'C': 5, 'degree': 10, 'kernel': 'poly'}
+test score 0.42857142857142855
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/random/cross_val_strict_svm.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-29 @ 00:35:12.
+Embedding gallery of model random was used to calculated these scores.
+best params {'C': 5, 'degree': 10, 'kernel': 'poly'}
+test score 0.3221476510067114
+------------------------------------------------------------------------------------------
+
+
