@@ -98,10 +98,10 @@ def plot_metric_progression(json_file, models, gallery, metric, output_file):
 
         plt.plot(x_values, y_values, marker=markers[i % len(markers)], label=model)
 
-    plt.xlabel('checkpoint_phase')
+    plt.xlabel('epochs')
     plt.ylabel('mAP Score')
     plt.title(f'Progression of mAP score (metric = {metric}, gallery = {gallery})')
-    plt.legend(loc="best")
+    plt.legend(loc="lower right")
     plt.grid(True)
     plt.xticks(rotation=45)
     plt.tight_layout()
@@ -109,9 +109,10 @@ def plot_metric_progression(json_file, models, gallery, metric, output_file):
     plt.close()
 
 
-def main():
-    print("log_to_json")
-    # PARSING mAPs to json
+
+def proces_mAP_logs():
+    
+    # # PARSING mAP logs to json
     # f_name = "total_gallery_mAP_scores_log"
     # log_mAP_txt = Path(f"thesis_logs/{f_name}.txt")
     # log_mAP_json = Path(f"thesis_logs/{f_name}.json")
@@ -133,6 +134,10 @@ def main():
         for metric in metrics:
             output_file = output_folder / metric
             plot_metric_progression(log_mAP_json, models, gallery, metric, output_file)
+
+def main():
+    print("log_to_json")
+    proces_mAP_logs()
 
     
 if __name__ == "__main__":

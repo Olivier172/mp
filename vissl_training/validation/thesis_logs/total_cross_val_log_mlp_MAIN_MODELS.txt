@@ -1,4 +1,4 @@
-Total log compiled at 2023-05-27 @ 01:41:15.
+Total log compiled at 2023-05-30 @ 00:03:41.
 
 Results for rotnet
 origin_file: data/rotnet/cross_val_mlp.txt
@@ -96,6 +96,26 @@ cross validation logging results on 2023-05-26 @ 20:37:35.
 Embedding gallery of model simclr was used to calculated these scores.
 best params {'alpha': 0.01, 'hidden_layer_sizes': 128, 'max_iter': 10000, 'solver': 'lbfgs'}
 test score 0.4597315436241611
+------------------------------------------------------------------------------------------
+
+
+
+Results for swav
+origin_file: data/swav/cross_val_mlp.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-27 @ 04:18:36.
+Embedding gallery of model swav was used to calculated these scores.
+best params {'alpha': 0.01, 'hidden_layer_sizes': 64, 'max_iter': 10000, 'solver': 'lbfgs'}
+test score 0.030395136778115502
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/swav/cross_val_strict_mlp.txt
+------------------------------------------------------------------------------------------
+cross validation logging results on 2023-05-27 @ 04:19:14.
+Embedding gallery of model swav was used to calculated these scores.
+best params {'alpha': 0.01, 'hidden_layer_sizes': 64, 'max_iter': 10000, 'solver': 'lbfgs'}
+test score 0.006711409395973154
 ------------------------------------------------------------------------------------------
 
 
