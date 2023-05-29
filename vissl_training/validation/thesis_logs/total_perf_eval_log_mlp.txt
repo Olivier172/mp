@@ -1,0 +1,1225 @@
+Total log compiled at 2023-05-29 @ 13:02:07.
+
+Results for rotnet
+origin_file: data/rotnet/perf_eval_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-28 @ 12:22:53.
+Embedding gallery of model rotnet was used to calculated these scores.
+The model was using the best params from cross validation, best_params:{'alpha': 0.01, 'hidden_layer_sizes': 128, 'max_iter': 10000, 'solver': 'lbfgs'}
+acc=59.27051671732523% (accuracy calculated on testing set)
+mAP=69.8560007842646% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 2 0]
+ [0 0 0 ... 0 0 0]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/rotnet/perf_eval_strict_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-28 @ 12:23:06.
+Embedding gallery of model rotnet was used to calculated these scores.
+The model was using the best params from cross validation, best_params:{'alpha': 0.01, 'hidden_layer_sizes': 128, 'max_iter': 10000, 'solver': 'lbfgs'}
+acc=46.308724832214764% (accuracy calculated on testing set)
+mAP=51.4977960077742% (mAP calculated on testing set with 187/187 classes)
+cm= [[1 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 3]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+
+Results for rotnet_phase0
+origin_file: data/rotnet_phase0/perf_eval_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-29 @ 10:57:13.
+Embedding gallery of model rotnet_phase0 was used to calculated these scores.
+The model was using the best params from cross validation, best_params:{'alpha': 0.01, 'hidden_layer_sizes': 64, 'max_iter': 10000, 'solver': 'lbfgs'}
+acc=28.267477203647417% (accuracy calculated on testing set)
+mAP=38.80900200021799% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 1 1]
+ [0 0 0 ... 0 0 0]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/rotnet_phase0/perf_eval_strict_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-29 @ 10:57:40.
+Embedding gallery of model rotnet_phase0 was used to calculated these scores.
+The model was using the best params from cross validation, best_params:{'alpha': 0.01, 'hidden_layer_sizes': 128, 'max_iter': 10000, 'solver': 'lbfgs'}
+acc=21.812080536912752% (accuracy calculated on testing set)
+mAP=26.027699637627922% (mAP calculated on testing set with 187/187 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 2 0]
+ [0 0 0 ... 0 0 0]]
+------------------------------------------------------------------------------------------
+
+
+
+Results for rotnet_phase25
+origin_file: data/rotnet_phase25/perf_eval_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-29 @ 11:02:12.
+Embedding gallery of model rotnet_phase25 was used to calculated these scores.
+The model was using the best params from cross validation, best_params:{'alpha': 0.1, 'hidden_layer_sizes': 128, 'max_iter': 10000, 'solver': 'lbfgs'}
+acc=46.504559270516715% (accuracy calculated on testing set)
+mAP=57.372970092689066% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 1 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 2 0]
+ [0 0 0 ... 0 0 0]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/rotnet_phase25/perf_eval_strict_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-29 @ 11:02:23.
+Embedding gallery of model rotnet_phase25 was used to calculated these scores.
+The model was using the best params from cross validation, best_params:{'alpha': 0.01, 'hidden_layer_sizes': 128, 'max_iter': 10000, 'solver': 'lbfgs'}
+acc=35.23489932885906% (accuracy calculated on testing set)
+mAP=40.105330775018835% (mAP calculated on testing set with 187/187 classes)
+cm= [[1 0 0 ... 0 0 0]
+ [0 1 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 1]
+ [0 0 0 ... 0 0 0]]
+------------------------------------------------------------------------------------------
+
+
+
+Results for rotnet_phase50
+origin_file: data/rotnet_phase50/perf_eval_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-29 @ 11:03:38.
+Embedding gallery of model rotnet_phase50 was used to calculated these scores.
+The model was using the best params from cross validation, best_params:{'alpha': 0.1, 'hidden_layer_sizes': 128, 'max_iter': 10000, 'solver': 'lbfgs'}
+acc=52.27963525835866% (accuracy calculated on testing set)
+mAP=66.75370646023376% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 2 0]
+ [0 0 0 ... 0 0 0]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/rotnet_phase50/perf_eval_strict_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-29 @ 11:03:50.
+Embedding gallery of model rotnet_phase50 was used to calculated these scores.
+The model was using the best params from cross validation, best_params:{'alpha': 0.01, 'hidden_layer_sizes': 128, 'max_iter': 10000, 'solver': 'lbfgs'}
+acc=40.604026845637584% (accuracy calculated on testing set)
+mAP=46.90872950537329% (mAP calculated on testing set with 187/187 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 2]
+ [0 0 0 ... 0 0 0]]
+------------------------------------------------------------------------------------------
+
+
+
+Results for rotnet_phase75
+origin_file: data/rotnet_phase75/perf_eval_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-29 @ 11:04:08.
+Embedding gallery of model rotnet_phase75 was used to calculated these scores.
+The model was using the best params from cross validation, best_params:{'alpha': 0.01, 'hidden_layer_sizes': 128, 'max_iter': 10000, 'solver': 'lbfgs'}
+acc=56.838905775075986% (accuracy calculated on testing set)
+mAP=68.65479265122234% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 1 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 2 0]
+ [0 0 0 ... 0 0 0]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/rotnet_phase75/perf_eval_strict_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-29 @ 11:04:19.
+Embedding gallery of model rotnet_phase75 was used to calculated these scores.
+The model was using the best params from cross validation, best_params:{'alpha': 0.01, 'hidden_layer_sizes': 128, 'max_iter': 10000, 'solver': 'lbfgs'}
+acc=44.966442953020135% (accuracy calculated on testing set)
+mAP=49.08202271328365% (mAP calculated on testing set with 187/187 classes)
+cm= [[1 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 2 0]
+ [0 0 0 ... 0 0 0]]
+------------------------------------------------------------------------------------------
+
+
+
+Results for rotnet_phase100
+origin_file: data/rotnet_phase100/perf_eval_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-29 @ 11:04:38.
+Embedding gallery of model rotnet_phase100 was used to calculated these scores.
+The model was using the best params from cross validation, best_params:{'alpha': 0.01, 'hidden_layer_sizes': 128, 'max_iter': 10000, 'solver': 'lbfgs'}
+acc=58.96656534954408% (accuracy calculated on testing set)
+mAP=70.32245918646353% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 2 0]
+ [0 0 0 ... 0 0 0]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/rotnet_phase100/perf_eval_strict_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-29 @ 11:04:52.
+Embedding gallery of model rotnet_phase100 was used to calculated these scores.
+The model was using the best params from cross validation, best_params:{'alpha': 0.01, 'hidden_layer_sizes': 128, 'max_iter': 10000, 'solver': 'lbfgs'}
+acc=46.308724832214764% (accuracy calculated on testing set)
+mAP=52.05165507696117% (mAP calculated on testing set with 187/187 classes)
+cm= [[1 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 2 0]
+ [0 0 0 ... 0 0 0]]
+------------------------------------------------------------------------------------------
+
+
+
+Results for jigsaw
+origin_file: data/jigsaw/perf_eval_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-28 @ 12:30:54.
+Embedding gallery of model jigsaw was used to calculated these scores.
+The model was using the best params from cross validation, best_params:{'alpha': 0.1, 'hidden_layer_sizes': 128, 'max_iter': 10000, 'solver': 'lbfgs'}
+acc=52.27963525835866% (accuracy calculated on testing set)
+mAP=63.74042060549413% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 1 0]
+ [0 0 0 ... 0 1 0]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/jigsaw/perf_eval_strict_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-28 @ 12:31:13.
+Embedding gallery of model jigsaw was used to calculated these scores.
+The model was using the best params from cross validation, best_params:{'alpha': 0.01, 'hidden_layer_sizes': 128, 'max_iter': 10000, 'solver': 'lbfgs'}
+acc=32.88590604026846% (accuracy calculated on testing set)
+mAP=40.55037177005658% (mAP calculated on testing set with 187/187 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 1 0]
+ [0 0 0 ... 0 0 0]]
+------------------------------------------------------------------------------------------
+
+
+
+Results for jigsaw_phase0
+origin_file: data/jigsaw_phase0/perf_eval_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-29 @ 11:18:19.
+Embedding gallery of model jigsaw_phase0 was used to calculated these scores.
+The model was using the best params from cross validation, best_params:{'alpha': 0.1, 'hidden_layer_sizes': 128, 'max_iter': 10000, 'solver': 'lbfgs'}
+acc=28.267477203647417% (accuracy calculated on testing set)
+mAP=38.435585867631% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 1 0]
+ [0 0 0 ... 0 1 0]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/jigsaw_phase0/perf_eval_strict_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-29 @ 11:22:23.
+Embedding gallery of model jigsaw_phase0 was used to calculated these scores.
+The model was using the best params from cross validation, best_params:{'alpha': 0.1, 'hidden_layer_sizes': 128, 'max_iter': 10000, 'solver': 'lbfgs'}
+acc=18.120805369127517% (accuracy calculated on testing set)
+mAP=21.854785926319337% (mAP calculated on testing set with 187/187 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 1]
+ [0 0 0 ... 0 0 0]]
+------------------------------------------------------------------------------------------
+
+
+
+Results for jigsaw_phase25
+origin_file: data/jigsaw_phase25/perf_eval_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-29 @ 11:34:12.
+Embedding gallery of model jigsaw_phase25 was used to calculated these scores.
+The model was using the best params from cross validation, best_params:{'alpha': 0.1, 'hidden_layer_sizes': 128, 'max_iter': 10000, 'solver': 'lbfgs'}
+acc=37.38601823708207% (accuracy calculated on testing set)
+mAP=46.8457388002658% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/jigsaw_phase25/perf_eval_strict_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-29 @ 11:38:57.
+Embedding gallery of model jigsaw_phase25 was used to calculated these scores.
+The model was using the best params from cross validation, best_params:{'alpha': 0.01, 'hidden_layer_sizes': 128, 'max_iter': 10000, 'solver': 'lbfgs'}
+acc=23.825503355704697% (accuracy calculated on testing set)
+mAP=31.20369558339615% (mAP calculated on testing set with 187/187 classes)
+cm= [[1 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 1 1]
+ [0 0 0 ... 0 0 0]]
+------------------------------------------------------------------------------------------
+
+
+
+Results for jigsaw_phase50
+origin_file: data/jigsaw_phase50/perf_eval_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-29 @ 11:45:08.
+Embedding gallery of model jigsaw_phase50 was used to calculated these scores.
+The model was using the best params from cross validation, best_params:{'alpha': 0.1, 'hidden_layer_sizes': 128, 'max_iter': 10000, 'solver': 'lbfgs'}
+acc=49.544072948328264% (accuracy calculated on testing set)
+mAP=59.206012003583254% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 1 1]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/jigsaw_phase50/perf_eval_strict_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-29 @ 11:45:37.
+Embedding gallery of model jigsaw_phase50 was used to calculated these scores.
+The model was using the best params from cross validation, best_params:{'alpha': 0.01, 'hidden_layer_sizes': 128, 'max_iter': 10000, 'solver': 'lbfgs'}
+acc=30.536912751677853% (accuracy calculated on testing set)
+mAP=38.52563413380178% (mAP calculated on testing set with 187/187 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]]
+------------------------------------------------------------------------------------------
+
+
+
+Results for jigsaw_phase75
+origin_file: data/jigsaw_phase75/perf_eval_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-29 @ 11:46:11.
+Embedding gallery of model jigsaw_phase75 was used to calculated these scores.
+The model was using the best params from cross validation, best_params:{'alpha': 0.01, 'hidden_layer_sizes': 128, 'max_iter': 10000, 'solver': 'lbfgs'}
+acc=53.191489361702125% (accuracy calculated on testing set)
+mAP=64.83192567178715% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 1 0]
+ [0 0 0 ... 0 0 0]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/jigsaw_phase75/perf_eval_strict_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-29 @ 11:46:31.
+Embedding gallery of model jigsaw_phase75 was used to calculated these scores.
+The model was using the best params from cross validation, best_params:{'alpha': 0.01, 'hidden_layer_sizes': 128, 'max_iter': 10000, 'solver': 'lbfgs'}
+acc=32.88590604026846% (accuracy calculated on testing set)
+mAP=41.67212474907727% (mAP calculated on testing set with 187/187 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 1 0]
+ [0 0 0 ... 0 0 0]]
+------------------------------------------------------------------------------------------
+
+
+
+Results for jigsaw_phase100
+origin_file: data/jigsaw_phase100/perf_eval_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-29 @ 11:53:56.
+Embedding gallery of model jigsaw_phase100 was used to calculated these scores.
+The model was using the best params from cross validation, best_params:{'alpha': 0.1, 'hidden_layer_sizes': 64, 'max_iter': 10000, 'solver': 'lbfgs'}
+acc=52.27963525835866% (accuracy calculated on testing set)
+mAP=63.98264545913273% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 2 0]
+ [0 0 0 ... 0 0 0]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/jigsaw_phase100/perf_eval_strict_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-29 @ 11:54:20.
+Embedding gallery of model jigsaw_phase100 was used to calculated these scores.
+The model was using the best params from cross validation, best_params:{'alpha': 0.01, 'hidden_layer_sizes': 128, 'max_iter': 10000, 'solver': 'lbfgs'}
+acc=31.879194630872483% (accuracy calculated on testing set)
+mAP=39.539679697771255% (mAP calculated on testing set with 187/187 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]]
+------------------------------------------------------------------------------------------
+
+
+
+Results for moco32
+origin_file: data/moco32/perf_eval_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-28 @ 12:31:29.
+Embedding gallery of model moco32 was used to calculated these scores.
+The model was using the best params from cross validation, best_params:{'alpha': 0.01, 'hidden_layer_sizes': 128, 'max_iter': 10000, 'solver': 'lbfgs'}
+acc=64.13373860182371% (accuracy calculated on testing set)
+mAP=76.15344584175841% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 1 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 2 0]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/moco32/perf_eval_strict_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-28 @ 12:31:38.
+Embedding gallery of model moco32 was used to calculated these scores.
+The model was using the best params from cross validation, best_params:{'alpha': 0.01, 'hidden_layer_sizes': 128, 'max_iter': 10000, 'solver': 'lbfgs'}
+acc=47.31543624161073% (accuracy calculated on testing set)
+mAP=58.44442159865301% (mAP calculated on testing set with 187/187 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 1 0 0]
+ [0 0 0 ... 0 3 0]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+
+Results for moco32_phase0
+origin_file: data/moco32_phase0/perf_eval_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-29 @ 12:04:48.
+Embedding gallery of model moco32_phase0 was used to calculated these scores.
+The model was using the best params from cross validation, best_params:{'alpha': 0.1, 'hidden_layer_sizes': 128, 'max_iter': 10000, 'solver': 'lbfgs'}
+acc=43.161094224924014% (accuracy calculated on testing set)
+mAP=55.77074833968466% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 2 0]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/moco32_phase0/perf_eval_strict_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-29 @ 12:05:41.
+Embedding gallery of model moco32_phase0 was used to calculated these scores.
+The model was using the best params from cross validation, best_params:{'alpha': 0.01, 'hidden_layer_sizes': 128, 'max_iter': 10000, 'solver': 'lbfgs'}
+acc=27.85234899328859% (accuracy calculated on testing set)
+mAP=34.23084171974983% (mAP calculated on testing set with 187/187 classes)
+cm= [[1 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 1 0 0]
+ [0 0 0 ... 0 2 0]
+ [0 0 0 ... 0 0 0]]
+------------------------------------------------------------------------------------------
+
+
+
+Results for moco32_phase25
+origin_file: data/moco32_phase25/perf_eval_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-29 @ 12:05:59.
+Embedding gallery of model moco32_phase25 was used to calculated these scores.
+The model was using the best params from cross validation, best_params:{'alpha': 0.01, 'hidden_layer_sizes': 128, 'max_iter': 10000, 'solver': 'lbfgs'}
+acc=59.57446808510638% (accuracy calculated on testing set)
+mAP=72.04882110588709% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 2 0]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/moco32_phase25/perf_eval_strict_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-29 @ 12:06:10.
+Embedding gallery of model moco32_phase25 was used to calculated these scores.
+The model was using the best params from cross validation, best_params:{'alpha': 0.01, 'hidden_layer_sizes': 128, 'max_iter': 10000, 'solver': 'lbfgs'}
+acc=44.966442953020135% (accuracy calculated on testing set)
+mAP=54.80493876164621% (mAP calculated on testing set with 187/187 classes)
+cm= [[1 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 1 0 0]
+ [0 0 0 ... 0 3 0]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+
+Results for moco32_phase50
+origin_file: data/moco32_phase50/perf_eval_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-29 @ 12:06:35.
+Embedding gallery of model moco32_phase50 was used to calculated these scores.
+The model was using the best params from cross validation, best_params:{'alpha': 0.1, 'hidden_layer_sizes': 128, 'max_iter': 10000, 'solver': 'lbfgs'}
+acc=63.22188449848024% (accuracy calculated on testing set)
+mAP=75.61278635246738% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 2 0]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/moco32_phase50/perf_eval_strict_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-29 @ 12:09:17.
+Embedding gallery of model moco32_phase50 was used to calculated these scores.
+The model was using the best params from cross validation, best_params:{'alpha': 0.1, 'hidden_layer_sizes': 128, 'max_iter': 10000, 'solver': 'lbfgs'}
+acc=47.98657718120805% (accuracy calculated on testing set)
+mAP=56.75071374845355% (mAP calculated on testing set with 187/187 classes)
+cm= [[1 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 1 0 0]
+ [0 0 0 ... 0 2 0]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+
+Results for moco32_phase75
+origin_file: data/moco32_phase75/perf_eval_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-29 @ 12:09:33.
+Embedding gallery of model moco32_phase75 was used to calculated these scores.
+The model was using the best params from cross validation, best_params:{'alpha': 0.01, 'hidden_layer_sizes': 128, 'max_iter': 10000, 'solver': 'lbfgs'}
+acc=65.04559270516718% (accuracy calculated on testing set)
+mAP=75.2912201018316% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 1 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 2 0]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/moco32_phase75/perf_eval_strict_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-29 @ 12:09:44.
+Embedding gallery of model moco32_phase75 was used to calculated these scores.
+The model was using the best params from cross validation, best_params:{'alpha': 0.1, 'hidden_layer_sizes': 64, 'max_iter': 10000, 'solver': 'lbfgs'}
+acc=46.97986577181208% (accuracy calculated on testing set)
+mAP=57.16512252605585% (mAP calculated on testing set with 187/187 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 1 0 0]
+ [0 0 0 ... 0 2 1]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+
+Results for moco64
+origin_file: data/moco64/perf_eval_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-28 @ 12:32:05.
+Embedding gallery of model moco64 was used to calculated these scores.
+The model was using the best params from cross validation, best_params:{'alpha': 0.1, 'hidden_layer_sizes': 128, 'max_iter': 10000, 'solver': 'lbfgs'}
+acc=67.17325227963525% (accuracy calculated on testing set)
+mAP=79.39280658776198% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 1 0 ... 0 0 0]
+ [0 0 1 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 2 0]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/moco64/perf_eval_strict_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-28 @ 12:32:15.
+Embedding gallery of model moco64 was used to calculated these scores.
+The model was using the best params from cross validation, best_params:{'alpha': 0.01, 'hidden_layer_sizes': 128, 'max_iter': 10000, 'solver': 'lbfgs'}
+acc=53.02013422818792% (accuracy calculated on testing set)
+mAP=62.86424750675441% (mAP calculated on testing set with 187/187 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 1 0 0]
+ [0 0 0 ... 0 3 0]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+
+Results for moco64_phase0
+origin_file: data/moco64_phase0/perf_eval_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-29 @ 12:22:17.
+Embedding gallery of model moco64_phase0 was used to calculated these scores.
+The model was using the best params from cross validation, best_params:{'alpha': 0.1, 'hidden_layer_sizes': 128, 'max_iter': 10000, 'solver': 'lbfgs'}
+acc=48.328267477203646% (accuracy calculated on testing set)
+mAP=62.05674786185952% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/moco64_phase0/perf_eval_strict_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-29 @ 12:22:55.
+Embedding gallery of model moco64_phase0 was used to calculated these scores.
+The model was using the best params from cross validation, best_params:{'alpha': 0.01, 'hidden_layer_sizes': 128, 'max_iter': 10000, 'solver': 'lbfgs'}
+acc=33.89261744966443% (accuracy calculated on testing set)
+mAP=41.296768998776116% (mAP calculated on testing set with 187/187 classes)
+cm= [[1 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 1 0 0]
+ [0 0 0 ... 0 3 0]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+
+Results for moco64_phase25
+origin_file: data/moco64_phase25/perf_eval_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-29 @ 12:23:27.
+Embedding gallery of model moco64_phase25 was used to calculated these scores.
+The model was using the best params from cross validation, best_params:{'alpha': 0.1, 'hidden_layer_sizes': 128, 'max_iter': 10000, 'solver': 'lbfgs'}
+acc=64.13373860182371% (accuracy calculated on testing set)
+mAP=76.24911874472669% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 1 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 2 0]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/moco64_phase25/perf_eval_strict_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-29 @ 12:23:45.
+Embedding gallery of model moco64_phase25 was used to calculated these scores.
+The model was using the best params from cross validation, best_params:{'alpha': 0.1, 'hidden_layer_sizes': 128, 'max_iter': 10000, 'solver': 'lbfgs'}
+acc=51.67785234899329% (accuracy calculated on testing set)
+mAP=59.93633751183268% (mAP calculated on testing set with 187/187 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 1 0 0]
+ [0 0 0 ... 0 3 0]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+
+Results for moco64_phase50
+origin_file: data/moco64_phase50/perf_eval_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-29 @ 12:24:02.
+Embedding gallery of model moco64_phase50 was used to calculated these scores.
+The model was using the best params from cross validation, best_params:{'alpha': 0.01, 'hidden_layer_sizes': 128, 'max_iter': 10000, 'solver': 'lbfgs'}
+acc=65.04559270516718% (accuracy calculated on testing set)
+mAP=77.11931571631266% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 1 0 ... 0 0 0]
+ [0 0 1 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 2 0]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/moco64_phase50/perf_eval_strict_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-29 @ 12:24:13.
+Embedding gallery of model moco64_phase50 was used to calculated these scores.
+The model was using the best params from cross validation, best_params:{'alpha': 0.01, 'hidden_layer_sizes': 128, 'max_iter': 10000, 'solver': 'lbfgs'}
+acc=52.348993288590606% (accuracy calculated on testing set)
+mAP=60.18840189996894% (mAP calculated on testing set with 187/187 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 1 0 0]
+ [0 0 0 ... 0 2 0]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+
+Results for moco64_phase75
+origin_file: data/moco64_phase75/perf_eval_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-29 @ 12:24:30.
+Embedding gallery of model moco64_phase75 was used to calculated these scores.
+The model was using the best params from cross validation, best_params:{'alpha': 0.01, 'hidden_layer_sizes': 128, 'max_iter': 10000, 'solver': 'lbfgs'}
+acc=66.8693009118541% (accuracy calculated on testing set)
+mAP=78.3979165245776% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 1 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 2 0]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/moco64_phase75/perf_eval_strict_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-29 @ 12:24:42.
+Embedding gallery of model moco64_phase75 was used to calculated these scores.
+The model was using the best params from cross validation, best_params:{'alpha': 0.01, 'hidden_layer_sizes': 128, 'max_iter': 10000, 'solver': 'lbfgs'}
+acc=52.013422818791945% (accuracy calculated on testing set)
+mAP=61.199468989826315% (mAP calculated on testing set with 187/187 classes)
+cm= [[1 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 1 0 0]
+ [0 0 0 ... 0 3 0]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+
+Results for simclr
+origin_file: data/simclr/perf_eval_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-28 @ 12:32:45.
+Embedding gallery of model simclr was used to calculated these scores.
+The model was using the best params from cross validation, best_params:{'alpha': 0.1, 'hidden_layer_sizes': 128, 'max_iter': 10000, 'solver': 'lbfgs'}
+acc=61.702127659574465% (accuracy calculated on testing set)
+mAP=74.9028443392945% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 1 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 1 0]
+ [0 0 0 ... 0 1 0]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/simclr/perf_eval_strict_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-28 @ 12:32:57.
+Embedding gallery of model simclr was used to calculated these scores.
+The model was using the best params from cross validation, best_params:{'alpha': 0.01, 'hidden_layer_sizes': 128, 'max_iter': 10000, 'solver': 'lbfgs'}
+acc=42.61744966442953% (accuracy calculated on testing set)
+mAP=52.791051995455426% (mAP calculated on testing set with 187/187 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 1 0 0]
+ [0 0 0 ... 0 1 1]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+
+Results for simclr_phase0
+origin_file: data/simclr_phase0/perf_eval_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-29 @ 12:30:36.
+Embedding gallery of model simclr_phase0 was used to calculated these scores.
+The model was using the best params from cross validation, best_params:{'alpha': 0.1, 'hidden_layer_sizes': 128, 'max_iter': 10000, 'solver': 'lbfgs'}
+acc=51.06382978723404% (accuracy calculated on testing set)
+mAP=65.07779158509594% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 1 1]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/simclr_phase0/perf_eval_strict_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-29 @ 12:32:34.
+Embedding gallery of model simclr_phase0 was used to calculated these scores.
+The model was using the best params from cross validation, best_params:{'alpha': 0.1, 'hidden_layer_sizes': 128, 'max_iter': 10000, 'solver': 'lbfgs'}
+acc=40.939597315436245% (accuracy calculated on testing set)
+mAP=50.87056334752259% (mAP calculated on testing set with 187/187 classes)
+cm= [[1 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 1 0 0]
+ [0 0 0 ... 0 3 0]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+
+Results for simclr_phase25
+origin_file: data/simclr_phase25/perf_eval_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-29 @ 12:41:32.
+Embedding gallery of model simclr_phase25 was used to calculated these scores.
+The model was using the best params from cross validation, best_params:{'alpha': 0.1, 'hidden_layer_sizes': 128, 'max_iter': 10000, 'solver': 'lbfgs'}
+acc=58.96656534954408% (accuracy calculated on testing set)
+mAP=70.7616614455209% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 1 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 2 0]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/simclr_phase25/perf_eval_strict_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-29 @ 12:41:46.
+Embedding gallery of model simclr_phase25 was used to calculated these scores.
+The model was using the best params from cross validation, best_params:{'alpha': 0.01, 'hidden_layer_sizes': 128, 'max_iter': 10000, 'solver': 'lbfgs'}
+acc=36.577181208053695% (accuracy calculated on testing set)
+mAP=49.761581185313766% (mAP calculated on testing set with 187/187 classes)
+cm= [[1 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 1 0 0]
+ [0 0 0 ... 0 2 0]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+
+Results for simclr_phase50
+origin_file: data/simclr_phase50/perf_eval_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-29 @ 12:42:04.
+Embedding gallery of model simclr_phase50 was used to calculated these scores.
+The model was using the best params from cross validation, best_params:{'alpha': 0.01, 'hidden_layer_sizes': 128, 'max_iter': 10000, 'solver': 'lbfgs'}
+acc=63.829787234042556% (accuracy calculated on testing set)
+mAP=73.8962269821028% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 1 0 ... 0 0 0]
+ [0 0 1 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 2 0]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/simclr_phase50/perf_eval_strict_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-29 @ 12:42:15.
+Embedding gallery of model simclr_phase50 was used to calculated these scores.
+The model was using the best params from cross validation, best_params:{'alpha': 0.01, 'hidden_layer_sizes': 128, 'max_iter': 10000, 'solver': 'lbfgs'}
+acc=41.2751677852349% (accuracy calculated on testing set)
+mAP=52.82859095317526% (mAP calculated on testing set with 187/187 classes)
+cm= [[1 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 1 0 0]
+ [0 0 0 ... 0 0 3]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+
+Results for simclr_phase75
+origin_file: data/simclr_phase75/perf_eval_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-29 @ 12:42:43.
+Embedding gallery of model simclr_phase75 was used to calculated these scores.
+The model was using the best params from cross validation, best_params:{'alpha': 0.1, 'hidden_layer_sizes': 128, 'max_iter': 10000, 'solver': 'lbfgs'}
+acc=63.22188449848024% (accuracy calculated on testing set)
+mAP=75.06753703997269% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 1 0 ... 0 0 0]
+ [0 0 1 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 2 0]
+ [0 0 0 ... 0 1 0]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/simclr_phase75/perf_eval_strict_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-29 @ 12:42:54.
+Embedding gallery of model simclr_phase75 was used to calculated these scores.
+The model was using the best params from cross validation, best_params:{'alpha': 0.01, 'hidden_layer_sizes': 128, 'max_iter': 10000, 'solver': 'lbfgs'}
+acc=44.966442953020135% (accuracy calculated on testing set)
+mAP=53.76085137340619% (mAP calculated on testing set with 187/187 classes)
+cm= [[1 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 1 0 0]
+ [0 0 0 ... 0 1 1]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+
+Results for swav
+origin_file: data/swav/perf_eval_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-28 @ 12:32:58.
+Embedding gallery of model swav was used to calculated these scores.
+The model was using the best params from cross validation, best_params:{'alpha': 0.01, 'hidden_layer_sizes': 64, 'max_iter': 10000, 'solver': 'lbfgs'}
+acc=3.0395136778115504% (accuracy calculated on testing set)
+mAP=2.99956498550442% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/swav/perf_eval_strict_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-28 @ 12:32:59.
+Embedding gallery of model swav was used to calculated these scores.
+The model was using the best params from cross validation, best_params:{'alpha': 0.01, 'hidden_layer_sizes': 64, 'max_iter': 10000, 'solver': 'lbfgs'}
+acc=0.6711409395973155% (accuracy calculated on testing set)
+mAP=3.1074843291397234% (mAP calculated on testing set with 187/187 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]]
+------------------------------------------------------------------------------------------
+
+
+
+Results for swav_phase0
+origin_file: data/swav_phase0/perf_eval_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-29 @ 12:56:18.
+Embedding gallery of model swav_phase0 was used to calculated these scores.
+The model was using the best params from cross validation, best_params:{'alpha': 0.01, 'hidden_layer_sizes': 128, 'max_iter': 10000, 'solver': 'lbfgs'}
+acc=26.13981762917933% (accuracy calculated on testing set)
+mAP=38.06258866573273% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 1]
+ [0 0 0 ... 0 0 0]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/swav_phase0/perf_eval_strict_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-29 @ 13:02:00.
+Embedding gallery of model swav_phase0 was used to calculated these scores.
+The model was using the best params from cross validation, best_params:{'alpha': 0.01, 'hidden_layer_sizes': 64, 'max_iter': 10000, 'solver': 'lbfgs'}
+acc=20.13422818791946% (accuracy calculated on testing set)
+mAP=25.72777036524475% (mAP calculated on testing set with 187/187 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 1 1]
+ [0 0 0 ... 0 0 0]]
+------------------------------------------------------------------------------------------
+
+
+
+Results for swav_phase25
+origin_file: data/swav_phase25/perf_eval_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-29 @ 13:02:01.
+Embedding gallery of model swav_phase25 was used to calculated these scores.
+The model was using the best params from cross validation, best_params:{'alpha': 0.01, 'hidden_layer_sizes': 64, 'max_iter': 10000, 'solver': 'lbfgs'}
+acc=3.0395136778115504% (accuracy calculated on testing set)
+mAP=2.988532587532126% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/swav_phase25/perf_eval_strict_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-29 @ 13:02:02.
+Embedding gallery of model swav_phase25 was used to calculated these scores.
+The model was using the best params from cross validation, best_params:{'alpha': 0.01, 'hidden_layer_sizes': 32, 'max_iter': 10000, 'solver': 'lbfgs'}
+acc=0.6711409395973155% (accuracy calculated on testing set)
+mAP=3.1074843291397247% (mAP calculated on testing set with 187/187 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]]
+------------------------------------------------------------------------------------------
+
+
+
+Results for swav_phase50
+origin_file: data/swav_phase50/perf_eval_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-29 @ 13:02:03.
+Embedding gallery of model swav_phase50 was used to calculated these scores.
+The model was using the best params from cross validation, best_params:{'alpha': 0.01, 'hidden_layer_sizes': 32, 'max_iter': 10000, 'solver': 'lbfgs'}
+acc=3.0395136778115504% (accuracy calculated on testing set)
+mAP=2.9987824855090355% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/swav_phase50/perf_eval_strict_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-29 @ 13:02:04.
+Embedding gallery of model swav_phase50 was used to calculated these scores.
+The model was using the best params from cross validation, best_params:{'alpha': 0.01, 'hidden_layer_sizes': 32, 'max_iter': 10000, 'solver': 'lbfgs'}
+acc=0.6711409395973155% (accuracy calculated on testing set)
+mAP=3.1074843291397225% (mAP calculated on testing set with 187/187 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]]
+------------------------------------------------------------------------------------------
+
+
+
+Results for swav_phase75
+origin_file: data/swav_phase75/perf_eval_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-29 @ 13:02:06.
+Embedding gallery of model swav_phase75 was used to calculated these scores.
+The model was using the best params from cross validation, best_params:{'alpha': 0.01, 'hidden_layer_sizes': 128, 'max_iter': 10000, 'solver': 'lbfgs'}
+acc=3.0395136778115504% (accuracy calculated on testing set)
+mAP=3.0023079180521757% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/swav_phase75/perf_eval_strict_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-29 @ 13:02:07.
+Embedding gallery of model swav_phase75 was used to calculated these scores.
+The model was using the best params from cross validation, best_params:{'alpha': 0.01, 'hidden_layer_sizes': 128, 'max_iter': 10000, 'solver': 'lbfgs'}
+acc=0.6711409395973155% (accuracy calculated on testing set)
+mAP=3.107484329139724% (mAP calculated on testing set with 187/187 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]]
+------------------------------------------------------------------------------------------
+
+
+
+Results for imgnet_pretrained
+origin_file: data/imgnet_pretrained/perf_eval_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-28 @ 12:33:16.
+Embedding gallery of model imgnet_pretrained was used to calculated these scores.
+The model was using the best params from cross validation, best_params:{'alpha': 0.01, 'hidden_layer_sizes': 128, 'max_iter': 10000, 'solver': 'lbfgs'}
+acc=66.56534954407294% (accuracy calculated on testing set)
+mAP=79.86539259719603% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 2 0]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/imgnet_pretrained/perf_eval_strict_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-28 @ 12:33:26.
+Embedding gallery of model imgnet_pretrained was used to calculated these scores.
+The model was using the best params from cross validation, best_params:{'alpha': 0.01, 'hidden_layer_sizes': 128, 'max_iter': 10000, 'solver': 'lbfgs'}
+acc=58.053691275167786% (accuracy calculated on testing set)
+mAP=63.92146745638707% (mAP calculated on testing set with 187/187 classes)
+cm= [[1 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 1 0 0]
+ [0 0 0 ... 0 3 0]
+ [0 0 0 ... 0 0 1]]
+------------------------------------------------------------------------------------------
+
+
+
+Results for random
+origin_file: data/random/perf_eval_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-28 @ 12:47:38.
+Embedding gallery of model random was used to calculated these scores.
+The model was using the best params from cross validation, best_params:{'alpha': 0.01, 'hidden_layer_sizes': 128, 'max_iter': 10000, 'solver': 'lbfgs'}
+acc=38.60182370820669% (accuracy calculated on testing set)
+mAP=49.80813856936715% (mAP calculated on testing set with 172/384 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 1 0]
+ [0 0 0 ... 0 0 0]]
+------------------------------------------------------------------------------------------
+
+
+origin_file: data/random/perf_eval_strict_mlp.txt
+------------------------------------------------------------------------------------------
+performance assessment logging results on 2023-05-28 @ 12:53:26.
+Embedding gallery of model random was used to calculated these scores.
+The model was using the best params from cross validation, best_params:{'alpha': 0.01, 'hidden_layer_sizes': 128, 'max_iter': 10000, 'solver': 'lbfgs'}
+acc=29.86577181208054% (accuracy calculated on testing set)
+mAP=33.163546840561395% (mAP calculated on testing set with 187/187 classes)
+cm= [[0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ [0 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 1 0 0]
+ [0 0 0 ... 0 3 0]
+ [0 0 0 ... 0 0 0]]
+------------------------------------------------------------------------------------------
+
+

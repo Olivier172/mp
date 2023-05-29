@@ -1,0 +1,478 @@
+{
+    "rotnet": {
+        "embedding_gallery": {
+            "ip": 2.3819904319801504,
+            "cosim": 43.30521840577283,
+            "eucl_dist": 40.751993029861154,
+            "eucl_dist_norm": 43.30521738203939
+        },
+        "embedding_gallery_avg": {
+            "ip": 8.863552816400906,
+            "cosim": 66.57201086884709,
+            "eucl_dist": 63.66596449101155,
+            "eucl_dist_norm": 66.57201086884709
+        }
+    },
+    "rotnet_phase0": {
+        "embedding_gallery": {
+            "ip": 1.0195959572696658,
+            "cosim": 16.67931284799577,
+            "eucl_dist": 15.093476828391362,
+            "eucl_dist_norm": 16.679313311221712
+        },
+        "embedding_gallery_avg": {
+            "ip": 3.943541065034153,
+            "cosim": 33.72436292871422,
+            "eucl_dist": 28.895903823113393,
+            "eucl_dist_norm": 33.72436292871422
+        }
+    },
+    "rotnet_phase25": {
+        "embedding_gallery": {
+            "ip": 4.120439057497354,
+            "cosim": 33.10968759474825,
+            "eucl_dist": 31.22427709943499,
+            "eucl_dist_norm": 33.10968443745191
+        },
+        "embedding_gallery_avg": {
+            "ip": 18.013941301324287,
+            "cosim": 58.86237604478926,
+            "eucl_dist": 54.96625380577913,
+            "eucl_dist_norm": 58.86237604478926
+        }
+    },
+    "rotnet_phase50": {
+        "embedding_gallery": {
+            "ip": 2.6668663903486234,
+            "cosim": 41.620818879631955,
+            "eucl_dist": 38.21432879787041,
+            "eucl_dist_norm": 41.6208199727252
+        },
+        "embedding_gallery_avg": {
+            "ip": 12.45804673193509,
+            "cosim": 66.8130321801388,
+            "eucl_dist": 62.592217183018114,
+            "eucl_dist_norm": 66.8130321801388
+        }
+    },
+    "rotnet_phase75": {
+        "embedding_gallery": {
+            "ip": 2.196226772546982,
+            "cosim": 42.92594869238259,
+            "eucl_dist": 40.198738246373495,
+            "eucl_dist_norm": 42.92595039909578
+        },
+        "embedding_gallery_avg": {
+            "ip": 8.537263833649815,
+            "cosim": 66.95750733127194,
+            "eucl_dist": 63.76312417477351,
+            "eucl_dist_norm": 66.95750733127194
+        }
+    },
+    "rotnet_phase100": {
+        "embedding_gallery": {
+            "ip": 2.2023606729571354,
+            "cosim": 43.345140980027274,
+            "eucl_dist": 41.07255426176342,
+            "eucl_dist_norm": 43.34514113407484
+        },
+        "embedding_gallery_avg": {
+            "ip": 8.450946442792805,
+            "cosim": 66.65638872010923,
+            "eucl_dist": 63.32263236621871,
+            "eucl_dist_norm": 66.65638872010923
+        }
+    },
+    "jigsaw": {
+        "embedding_gallery": {
+            "ip": 1.7889650032998243,
+            "cosim": 36.82660365429844,
+            "eucl_dist": 35.55478120115495,
+            "eucl_dist_norm": 36.82668084552858
+        },
+        "embedding_gallery_avg": {
+            "ip": 6.820477701069036,
+            "cosim": 56.2163143180717,
+            "eucl_dist": 56.25713009670555,
+            "eucl_dist_norm": 56.2163143180717
+        }
+    },
+    "jigsaw_phase0": {
+        "embedding_gallery": {
+            "ip": 0.8981110359577352,
+            "cosim": 16.66770508678875,
+            "eucl_dist": 15.828830703524716,
+            "eucl_dist_norm": 16.667727322661236
+        },
+        "embedding_gallery_avg": {
+            "ip": 2.8652076013089722,
+            "cosim": 26.005140825755944,
+            "eucl_dist": 25.227111612608756,
+            "eucl_dist_norm": 26.005140825755944
+        }
+    },
+    "jigsaw_phase25": {
+        "embedding_gallery": {
+            "ip": 0.8466729977807286,
+            "cosim": 21.91044861412531,
+            "eucl_dist": 20.48592254723987,
+            "eucl_dist_norm": 21.91045090984876
+        },
+        "embedding_gallery_avg": {
+            "ip": 3.2673895745088064,
+            "cosim": 33.84081125185912,
+            "eucl_dist": 31.811232439124698,
+            "eucl_dist_norm": 33.84081125185912
+        }
+    },
+    "jigsaw_phase50": {
+        "embedding_gallery": {
+            "ip": 1.2516645649681855,
+            "cosim": 32.873397331456815,
+            "eucl_dist": 31.781743522484707,
+            "eucl_dist_norm": 32.874076274780954
+        },
+        "embedding_gallery_avg": {
+            "ip": 4.513083218459169,
+            "cosim": 48.76342411713493,
+            "eucl_dist": 48.10290908102472,
+            "eucl_dist_norm": 48.76342411713493
+        }
+    },
+    "jigsaw_phase75": {
+        "embedding_gallery": {
+            "ip": 1.634323920661307,
+            "cosim": 37.83940512469805,
+            "eucl_dist": 36.27467133969837,
+            "eucl_dist_norm": 37.83941453155464
+        },
+        "embedding_gallery_avg": {
+            "ip": 6.414641656074155,
+            "cosim": 59.02869735102504,
+            "eucl_dist": 58.46376849679509,
+            "eucl_dist_norm": 59.02869735102504
+        }
+    },
+    "jigsaw_phase100": {
+        "embedding_gallery": {
+            "ip": 1.5340819613767218,
+            "cosim": 37.06337979367962,
+            "eucl_dist": 35.58125789080642,
+            "eucl_dist_norm": 37.063384328836094
+        },
+        "embedding_gallery_avg": {
+            "ip": 5.435206614140659,
+            "cosim": 56.02232234647302,
+            "eucl_dist": 55.38424903415026,
+            "eucl_dist_norm": 56.02232234647302
+        }
+    },
+    "moco32": {
+        "embedding_gallery": {
+            "ip": 16.46806365114059,
+            "cosim": 54.03885547236479,
+            "eucl_dist": 53.3555145340345,
+            "eucl_dist_norm": 54.03885564737245
+        },
+        "embedding_gallery_avg": {
+            "ip": 42.89123886995715,
+            "cosim": 78.31691226359018,
+            "eucl_dist": 76.63533622448307,
+            "eucl_dist_norm": 78.31691226359018
+        }
+    },
+    "moco32_phase0": {
+        "embedding_gallery": {
+            "ip": 3.638240648719454,
+            "cosim": 25.726063801587696,
+            "eucl_dist": 26.00489276887571,
+            "eucl_dist_norm": 25.72606341986084
+        },
+        "embedding_gallery_avg": {
+            "ip": 15.346164477031799,
+            "cosim": 49.229005374196745,
+            "eucl_dist": 48.355383269735256,
+            "eucl_dist_norm": 49.229005374196745
+        }
+    },
+    "moco32_phase25": {
+        "embedding_gallery": {
+            "ip": 6.616559983162398,
+            "cosim": 49.39712978325031,
+            "eucl_dist": 47.65785217089131,
+            "eucl_dist_norm": 49.39712830539793
+        },
+        "embedding_gallery_avg": {
+            "ip": 32.17701262396529,
+            "cosim": 74.75958239331764,
+            "eucl_dist": 73.13481874854672,
+            "eucl_dist_norm": 74.75958239331764
+        }
+    },
+    "moco32_phase50": {
+        "embedding_gallery": {
+            "ip": 17.22005793963655,
+            "cosim": 50.56922753642694,
+            "eucl_dist": 49.581523779161074,
+            "eucl_dist_norm": 50.569422987887926
+        },
+        "embedding_gallery_avg": {
+            "ip": 45.885160090104,
+            "cosim": 75.89843624489208,
+            "eucl_dist": 74.28026668093017,
+            "eucl_dist_norm": 75.89843624489208
+        }
+    },
+    "moco32_phase75": {
+        "embedding_gallery": {
+            "ip": 15.819774870286299,
+            "cosim": 52.90578337646058,
+            "eucl_dist": 51.921590360032525,
+            "eucl_dist_norm": 52.90578412979902
+        },
+        "embedding_gallery_avg": {
+            "ip": 40.12835981510257,
+            "cosim": 76.9503683546337,
+            "eucl_dist": 76.89290433907819,
+            "eucl_dist_norm": 76.9503683546337
+        }
+    },
+    "moco64": {
+        "embedding_gallery": {
+            "ip": 21.624641606412,
+            "cosim": 56.817102242933636,
+            "eucl_dist": 55.07830243042553,
+            "eucl_dist_norm": 56.81624081081049
+        },
+        "embedding_gallery_avg": {
+            "ip": 45.38522512210945,
+            "cosim": 79.32913768714913,
+            "eucl_dist": 79.3245866513065,
+            "eucl_dist_norm": 79.32913768714913
+        }
+    },
+    "moco64_phase0": {
+        "embedding_gallery": {
+            "ip": 3.844972517003506,
+            "cosim": 34.099455445757016,
+            "eucl_dist": 32.54637393424497,
+            "eucl_dist_norm": 34.09966199665866
+        },
+        "embedding_gallery_avg": {
+            "ip": 16.732334912986772,
+            "cosim": 56.782646991814964,
+            "eucl_dist": 54.75347998704223,
+            "eucl_dist_norm": 56.782646991814964
+        }
+    },
+    "moco64_phase25": {
+        "embedding_gallery": {
+            "ip": 16.510467380812766,
+            "cosim": 51.23839759310047,
+            "eucl_dist": 49.70689533373401,
+            "eucl_dist_norm": 51.238400421302764
+        },
+        "embedding_gallery_avg": {
+            "ip": 40.466691196743874,
+            "cosim": 75.07861031410827,
+            "eucl_dist": 74.56275177601931,
+            "eucl_dist_norm": 75.07861031410827
+        }
+    },
+    "moco64_phase50": {
+        "embedding_gallery": {
+            "ip": 22.652469037391224,
+            "cosim": 52.873976580137224,
+            "eucl_dist": 51.03796009706536,
+            "eucl_dist_norm": 52.87397810020409
+        },
+        "embedding_gallery_avg": {
+            "ip": 49.637547583774314,
+            "cosim": 77.92811226600428,
+            "eucl_dist": 75.95344023040536,
+            "eucl_dist_norm": 77.92811226600428
+        }
+    },
+    "moco64_phase75": {
+        "embedding_gallery": {
+            "ip": 22.498564220928944,
+            "cosim": 55.635734744480025,
+            "eucl_dist": 53.92726015565511,
+            "eucl_dist_norm": 55.63573471224031
+        },
+        "embedding_gallery_avg": {
+            "ip": 50.24175457487735,
+            "cosim": 79.27714234291884,
+            "eucl_dist": 78.5520178615873,
+            "eucl_dist_norm": 79.27714234291884
+        }
+    },
+    "simclr": {
+        "embedding_gallery": {
+            "ip": 4.475644255542932,
+            "cosim": 52.960473984051006,
+            "eucl_dist": 51.616616381677694,
+            "eucl_dist_norm": 52.96049274702527
+        },
+        "embedding_gallery_avg": {
+            "ip": 16.819971025717813,
+            "cosim": 74.79698018454165,
+            "eucl_dist": 74.52782384453607,
+            "eucl_dist_norm": 74.79698018454165
+        }
+    },
+    "simclr_phase0": {
+        "embedding_gallery": {
+            "ip": 3.62833010458868,
+            "cosim": 41.6582373939589,
+            "eucl_dist": 40.515246263729054,
+            "eucl_dist_norm": 41.6539213695618
+        },
+        "embedding_gallery_avg": {
+            "ip": 9.618494177030232,
+            "cosim": 68.52369963840881,
+            "eucl_dist": 67.36690681698039,
+            "eucl_dist_norm": 68.52369963840881
+        }
+    },
+    "simclr_phase25": {
+        "embedding_gallery": {
+            "ip": 2.921379324008557,
+            "cosim": 48.132395355329,
+            "eucl_dist": 47.76730390649973,
+            "eucl_dist_norm": 48.13239207351102
+        },
+        "embedding_gallery_avg": {
+            "ip": 9.233231368079602,
+            "cosim": 73.63238642508628,
+            "eucl_dist": 70.9528503251501,
+            "eucl_dist_norm": 73.63238642508628
+        }
+    },
+    "simclr_phase50": {
+        "embedding_gallery": {
+            "ip": 6.32960917064857,
+            "cosim": 52.06286311463045,
+            "eucl_dist": 50.75118130563998,
+            "eucl_dist_norm": 52.06285412134668
+        },
+        "embedding_gallery_avg": {
+            "ip": 20.000811605968956,
+            "cosim": 74.54942302468245,
+            "eucl_dist": 74.63144609800565,
+            "eucl_dist_norm": 74.54942302468245
+        }
+    },
+    "simclr_phase75": {
+        "embedding_gallery": {
+            "ip": 5.300899590594348,
+            "cosim": 52.943294106429605,
+            "eucl_dist": 52.23424274958228,
+            "eucl_dist_norm": 52.94330143630903
+        },
+        "embedding_gallery_avg": {
+            "ip": 19.314510824697848,
+            "cosim": 74.63082532983702,
+            "eucl_dist": 74.40317702892672,
+            "eucl_dist_norm": 74.63082532983702
+        }
+    },
+    "swav": {
+        "embedding_gallery": {
+            "ip": 0.27529902451417293,
+            "cosim": 0.3681320919567967,
+            "eucl_dist": 24.2271984637036,
+            "eucl_dist_norm": 21.352930846803414
+        },
+        "embedding_gallery_avg": {
+            "ip": 0.588284845716912,
+            "cosim": 0.7970157166837157,
+            "eucl_dist": 22.865401098754578,
+            "eucl_dist_norm": 21.425148088883518
+        }
+    },
+    "swav_phase0": {
+        "embedding_gallery": {
+            "ip": 1.173003557009504,
+            "cosim": 12.125445178804801,
+            "eucl_dist": 10.789307527542077,
+            "eucl_dist_norm": 12.112372063360127
+        },
+        "embedding_gallery_avg": {
+            "ip": 4.125433793761879,
+            "cosim": 18.16855914574229,
+            "eucl_dist": 15.721980292701318,
+            "eucl_dist_norm": 18.170784334883365
+        }
+    },
+    "swav_phase25": {
+        "embedding_gallery": {
+            "ip": 0.2728752771767964,
+            "cosim": 0.3977915575743055,
+            "eucl_dist": 24.795863028865035,
+            "eucl_dist_norm": 21.65915236710877
+        },
+        "embedding_gallery_avg": {
+            "ip": 0.5867618012763368,
+            "cosim": 0.7815582118647484,
+            "eucl_dist": 24.356937328846463,
+            "eucl_dist_norm": 22.39318373434344
+        }
+    },
+    "swav_phase50": {
+        "embedding_gallery": {
+            "ip": 0.2761071033527514,
+            "cosim": 0.396383276283429,
+            "eucl_dist": 24.292582304404124,
+            "eucl_dist_norm": 21.75858295084509
+        },
+        "embedding_gallery_avg": {
+            "ip": 0.5752966527042419,
+            "cosim": 0.8111619184683555,
+            "eucl_dist": 24.690272396518814,
+            "eucl_dist_norm": 22.9471150926921
+        }
+    },
+    "swav_phase75": {
+        "embedding_gallery": {
+            "ip": 0.27897987167469585,
+            "cosim": 0.40355072806404985,
+            "eucl_dist": 23.40128096759072,
+            "eucl_dist_norm": 21.228010196620254
+        },
+        "embedding_gallery_avg": {
+            "ip": 0.5800493022261018,
+            "cosim": 0.7740214188063078,
+            "eucl_dist": 24.031942406623905,
+            "eucl_dist_norm": 21.82899960944665
+        }
+    },
+    "imgnet_pretrained": {
+        "embedding_gallery": {
+            "ip": 11.642385839593231,
+            "cosim": 56.560276770069606,
+            "eucl_dist": 53.907332345648044,
+            "eucl_dist_norm": 56.560260669419414
+        },
+        "embedding_gallery_avg": {
+            "ip": 22.656325586781627,
+            "cosim": 81.40934143010611,
+            "eucl_dist": 79.29868822930676,
+            "eucl_dist_norm": 81.40934143010611
+        }
+    },
+    "random": {
+        "embedding_gallery": {
+            "ip": 0.848737531866965,
+            "cosim": 22.37983425109923,
+            "eucl_dist": 8.940280592631442,
+            "eucl_dist_norm": 22.35504252209386
+        },
+        "embedding_gallery_avg": {
+            "ip": 2.7831129464050828,
+            "cosim": 41.62004023360453,
+            "eucl_dist": 18.46714688132004,
+            "eucl_dist_norm": 41.76660203149842
+        }
+    }
+}
