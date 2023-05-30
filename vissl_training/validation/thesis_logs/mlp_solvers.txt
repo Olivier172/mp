@@ -26,6 +26,19 @@ experiment : model jigsaw
 accuracy scores are reported
 solver:
     lbfgs   
+        cv: 45.2% in 34min42s    
+        T: 45.6% in 9min 41s
+    sgd     
+        cv: 2.1% in 2min12s    
+        T: 3.0% 30s
+    adam    
+        cv: 35.7 % in 53min 25s    
+        T: 40.4 % in 18min 16s
+
+experiment : model moco32
+accuracy scores are reported
+solver:
+    lbfgs   
         cv:     
         T: 
     sgd     
