@@ -39,14 +39,14 @@ experiment : model moco32
 accuracy scores are reported
 solver:
     lbfgs   
-        cv:     
-        T: 
+        cv: 56.3% in 4min 16s     
+        T: 59.6% in 59s
     sgd     
-        cv:     
-        T: 
+        cv: 2.4% in 1min52s    
+        T: 3.0% in 28s
     adam    
-        cv:    
-        T: 
+        cv: 54.8% in 37min 19s   
+        T: 58.1% in 16min 32s
 
 experiment : model moco64
 accuracy scores are reported
@@ -55,8 +55,8 @@ solver:
         cv: 58.4% 4min46s    
         T: 61.4% 1min13s
     sgd     
-        cv: 2.1% 1min53s    
-        T: 52.6% 5min38s
+        cv: 2.4% 1min52s    
+        T: 3.0% 30s
     adam    
         cv: 54.9% 35min19s    
         T: 57.8% 14min56s
@@ -65,24 +65,50 @@ experiment : model simclr
 accuracy scores are reported
 solver:
     lbfgs   
-        cv:     
-        T: 
+        cv: 52.1 % in 5min 54s   
+        T: 55.0% in 1min 6s 
     sgd     
-        cv:     
-        T: 
+        cv: 2.0% in 1min 41s    
+        T: 3.0 % in 34s
     adam    
-        cv:    
-        T: 
+        cv: 48.9 % in 46min 27s   
+        T: 54.7 in 12min 12s
+
+experiment : model swav
+accuracy scores are reported
+solver:
+    lbfgs   
+        cv: 1.8 % in 10s    
+        T: 3.0 % in 3s
+    sgd     
+        cv: 1.9 % in 2min 10 s    
+        T: 3.0 % in 30s
+    adam    
+        cv: 1.8% in 35s   
+        T: 3.0 % in 8s
 
 experiment : model imgnet_pretrained
 accuracy scores are reported
 solver:
     lbfgs   
-        cv:     
-        T: 
+        cv: 55.1% in 3min 28s    
+        T: 58.1 % in 50s
     sgd     
-        cv:     
-        T: 
+        cv: 2.1 % in 1min 45s    
+        T: 3.0 % in 27s
     adam    
-        cv:    
-        T: 
+        cv: 51.8 % in 49min 44s   
+        T: 50.2 % in 15min 29s
+
+experiment : model random
+accuracy scores are reported
+solver:
+    lbfgs   
+        cv: 29.9 % in 57min 58s    
+        T: 30.4 % in 12min 10s 
+    sgd     
+        cv: 1.9 % in 1min 35 s    
+        T: 3.0 % in 27s
+    adam    
+        cv: 1.8 % 14s   
+        T: 3.0 % in 2s
